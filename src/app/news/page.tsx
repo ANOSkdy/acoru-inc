@@ -1,6 +1,16 @@
 // src/app/news/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getNews } from "@/lib/airtableNews";
+
+export const metadata: Metadata = {
+  title: "ニュース | AcoruのDX・RFIDシステム最新情報",
+  description:
+    "AcoruのDX・RFIDシステムに関するニュース一覧。北海道発のDX事例、RFID/NFCやAIエージェントのアップデート、イベント情報を掲載。",
+  alternates: {
+    canonical: "/news",
+  },
+};
 
 export const runtime = "nodejs";
 
@@ -18,9 +28,14 @@ export default async function NewsPage() {
             プロダクトリリース・イベント・メディア掲載などの最新情報。
           </h1>
           <p className="max-w-2xl text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
-            AI日報「スマレポ」やAIエージェント、各種イベント・メディア掲載など、
-            Acoruに関する最新のお知らせを掲載しています。
+            AI日報「スマレポ」やAIエージェント、北海道発のDX・RFIDシステムのアップデート、各種イベント・メディア掲載など、
+            Acoruに関する最新のお知らせを掲載しています。単体記事を読んでも、AcoruのDX・RFIDシステムの文脈が伝わるように構成しています。
           </p>
+          <div className="text-[12px] font-semibold tracking-[0.2em] text-slate-800">
+            <Link href="/" className="underline underline-offset-4 hover:text-slate-950">
+              ホームでAcoru 北海道 DX RFID システムの概要を見る
+            </Link>
+          </div>
         </div>
 
         <div className="mt-6 space-y-2 rounded-3xl border border-slate-200 bg-white p-3 shadow-sm shadow-slate-100/70">

@@ -23,9 +23,24 @@ if (!API_TOKEN || !BASE_ID) {
   );
 }
 
+type CaseFields = {
+  title?: string;
+  slug?: string;
+  client_name?: string;
+  clientName?: string;
+  industry?: string;
+  summary?: string;
+  challenge?: string;
+  solution?: string;
+  result?: string;
+  publishedAt?: string;
+  published_at?: string;
+  hero_image?: { url?: string }[];
+};
+
 type AirtableRecord = {
   id: string;
-  fields: { [key: string]: any };
+  fields: CaseFields;
 };
 
 async function fetchCasesFromAirtable(): Promise<Case[]> {

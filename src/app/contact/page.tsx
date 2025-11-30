@@ -1,5 +1,16 @@
 // src/app/contact/page.tsx
+import type { Metadata } from "next";
+import Link from "next/link";
 import { ContactForm } from "./ContactForm";
+
+export const metadata: Metadata = {
+  title: "お問い合わせ | 北海道のDX・RFIDシステム相談",
+  description:
+    "AcoruのDX・RFIDシステム、AIエージェント、現場DX設計に関するお問い合わせページ。北海道の課題に合わせたRFID/NFC×AI活用をご相談いただけます。",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 export const runtime = "nodejs";
 
@@ -15,9 +26,14 @@ export default function ContactPage() {
           導入のご相談・資料請求・ご質問はこちらから。
         </h1>
         <p className="max-w-2xl text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
-          AI日報やAIエージェント、DX設計支援のご相談、デモのご依頼などがございましたら、
+          AI日報やAIエージェント、北海道の現場に合わせたDX・RFIDシステム設計支援のご相談、デモのご依頼などがございましたら、
           下記フォームよりお気軽にお問い合わせください。内容を確認の上、担当よりご連絡いたします。
         </p>
+        <div className="text-[12px] font-semibold tracking-[0.2em] text-slate-800">
+          <Link href="/service" className="underline underline-offset-4 hover:text-slate-950">
+            事業内容（DX・RFIDシステム）の詳細を見る
+          </Link>
+        </div>
       </section>
 
       {/* フォーム本体 */}

@@ -1,6 +1,16 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { services } from "./_data";
+
+export const metadata: Metadata = {
+  title: "サービス | 北海道のDX・RFIDシステムとAI伴走支援",
+  description:
+    "Acoruのサービス一覧。北海道でDX・RFIDシステムを設計し、RFID/NFCとAIを活用した現場DXや日報自動化、AIエージェント導入を提供します。",
+  alternates: {
+    canonical: "/service",
+  },
+};
 
 export default function ServicePage() {
   const sorted = [...services].sort((a, b) => a.name.localeCompare(b.name));
@@ -19,11 +29,11 @@ export default function ServicePage() {
             “困った”を無くす。
           </h1>
           <p className="mt-5 text-[14px] leading-relaxed text-slate-700 md:text-[15px]">
-            Acoru合同会社は、RFID・NFCなどのIoT技術とAIエージェントを活用し、誰一人取り残さない「インクルーシブDX」を実現します。
+            Acoru合同会社は、RFID・NFCなどのIoT技術とAIエージェントを活用し、北海道発のDX・RFIDシステムで誰一人取り残さない「インクルーシブDX」を実現します。
           </p>
           <p className="mt-3 text-[14px] leading-relaxed text-slate-700 md:text-[15px]">
             インクルーシブDXとは、年齢・職種・障がいの有無・ITリテラシー・地域格差といった“デジタル分断”を越え、
-            現場の誰もがデータとテクノロジーを当たり前に使いこなせる状態をつくる変革です。
+            現場の誰もがデータとテクノロジーを当たり前に使いこなせる状態をつくる変革です。寒冷地や広域移動が前提となる北海道でも、RFIDとAIの組み合わせでシンプルに運用できる仕組みを設計しています。
           </p>
         </div>
 
@@ -49,12 +59,18 @@ export default function ServicePage() {
             事業内容
           </p>
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-[26px]">
-            RFID / AI を軸にした、現場起点のDXサービス。
+            北海道のDX・RFIDシステムとAIを軸にした、現場起点のDXサービス。
           </h2>
           <p className="max-w-2xl text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
             まずは1現場・1プロジェクトから始められるように、Acoruでは3つのサービスラインをご提供しています。
             現場の日報自動化、DX計画の設計、AIエージェント導入支援など、現在地に合わせてお選びいただけます。
           </p>
+        </div>
+
+        <div className="text-[12px] font-semibold tracking-[0.2em] text-slate-800">
+          <Link href="/" className="underline underline-offset-4 hover:text-slate-950">
+            北海道発のDX・RFIDシステムをホームで見る
+          </Link>
         </div>
 
         <div className="mt-6 grid gap-5 md:grid-cols-3">

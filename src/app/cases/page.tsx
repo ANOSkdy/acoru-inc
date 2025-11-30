@@ -1,6 +1,16 @@
 // src/app/cases/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getCases } from "@/lib/airtableCases";
+
+export const metadata: Metadata = {
+  title: "導入事例 | AcoruのDX・RFIDシステム活用ケース",
+  description:
+    "AcoruのDX・RFIDシステム導入事例を紹介。北海道の現場でRFID/NFCとAIを活用し、日報自動化や業務改善を実現したプロジェクトを掲載。",
+  alternates: {
+    canonical: "/cases",
+  },
+};
 
 export const runtime = "nodejs";
 
@@ -19,8 +29,18 @@ export default async function CasesPage() {
           </h1>
           <p className="max-w-2xl text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
             北海道の建設・運送現場を中心に、AI日報やAIエージェント、DX設計支援などを組み合わせた
-            プロジェクトの一部をご紹介します。実際にどのような課題をどう解決したのかをご覧いただけます。
+            プロジェクトの一部をご紹介します。AcoruのDX・RFIDシステムが実際にどのような課題をどう解決したのか、
+            北海道発の事例でご覧いただけます。
           </p>
+          <p className="max-w-2xl text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
+            RF計測とAI要約を組み合わせた「Acoru 北海道 DX RFID システム」の活用例として、
+            資材の所在管理から作業進捗の見える化まで幅広く掲載しています。
+          </p>
+          <div className="text-[12px] font-semibold tracking-[0.2em] text-slate-800">
+            <Link href="/service" className="underline underline-offset-4 hover:text-slate-950">
+              DX・RFIDシステムのサービス概要を確認する
+            </Link>
+          </div>
         </div>
 
         <div className="mt-6 space-y-3 rounded-3xl border border-slate-200 bg-white p-3 shadow-sm shadow-slate-100/70">

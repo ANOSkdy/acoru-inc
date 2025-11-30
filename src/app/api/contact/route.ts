@@ -27,7 +27,6 @@ export async function POST(req: Request) {
     personName,
     email,
     phone,
-    category, // いまは使わないが、型だけ残しておく
     message,
     privacyAgreed,
   } = body as {
@@ -55,7 +54,7 @@ export async function POST(req: Request) {
   );
 
   // Airtable 側のフィールド名に合わせてマッピング
-  const fields: Record<string, any> = {
+  const fields: Record<string, string> = {
     company_name: companyName || "",
     person_name: personName || "",
     email: email || "",

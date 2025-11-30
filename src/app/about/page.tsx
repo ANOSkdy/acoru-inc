@@ -1,5 +1,15 @@
-﻿import Image from "next/image";
+﻿import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Acoruについて | 北海道発のDX・RFIDシステム開発パートナー",
+  description:
+    "Acoruは北海道からDX・RFIDシステムを提供する開発パートナー。RFID/NFCとAIを活用し、現場DXやインクルーシブDXを支援します。",
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 type CompanyFields = {
   name?: string;
@@ -80,6 +90,7 @@ export default async function AboutPage() {
           <p className="mt-6 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
             Acoru合同会社は、RFID／NFCとAI技術を核に、企業の成長と競争力向上を支援します。
             タグ一枚から既存システム連携まで、現場の「見えない情報」を自動で拾い上げ、AIが即座に解析・提案します。
+            北海道の現場に適したDX・RFIDシステムを設計し、「Acoru 北海道 DX RFID システム」として提供しています。
             多くの中小企業がDXの必要性を感じながらも、「何から始めればよいか分からない」
             「コストと人手が足りない」という壁に直面しています。
           </p>
@@ -108,6 +119,17 @@ export default async function AboutPage() {
             導入事例を見る
           </Link>
         </div>
+      </section>
+
+      <section className="mt-10 rounded-2xl border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-100/70 md:px-7 md:py-7">
+        <h2 className="text-base font-semibold tracking-tight text-slate-900 md:text-lg">
+          北海道発のDX・RFIDシステム開発パートナー
+        </h2>
+        <p className="mt-3 text-[14px] leading-relaxed text-slate-700 md:text-[15px]">
+          現場の温度や雪の状況など、北海道ならではの条件を踏まえてRFIDハードとソフトを選定し、
+          DX設計からPoC、AIエージェント運用まで伴走します。インクルーシブDXの思想で、
+          ITに不慣れなメンバーでも使いこなせるUI/UXを重視し、AcoruのDX・RFIDシステムが現場をつなぎます。
+        </p>
       </section>
 
       {/* MISSION / VISION */}
