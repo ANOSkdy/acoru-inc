@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { RichText } from "@/components/common/RichText";
 import { getNewsBySlug } from "@/lib/airtableNews";
 
 type Props = {
@@ -76,8 +77,8 @@ export async function NewsDetail({ slug }: Props) {
 
         {/* 本文（見出しは表示しない） */}
         {n.body && (
-          <section className="text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-            <p className="whitespace-pre-line">{n.body}</p>
+          <section>
+            <RichText source={n.body} />
           </section>
         )}
 
