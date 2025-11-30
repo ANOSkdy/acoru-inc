@@ -38,7 +38,7 @@ export default async function HomePage() {
 
           <p className="mt-5 max-w-2xl text-center text-[15px] leading-relaxed text-slate-100/85">
             Acoru inc. は、RFID / NFC と AI エージェントを活用して、
-            現場の打刻・集計・レポートまでを自動化する開発パートナーです。
+            現場業務または事務業務を自動化するシステム開発パートナーです。
             北海道から、誰一人取り残さないインクルーシブ DX を共に実現します。
           </p>
 
@@ -83,7 +83,7 @@ export default async function HomePage() {
         <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-slate-50/70">
           {latestNews.length === 0 ? (
             <p className="px-5 py-4 text-[13px] text-slate-500">
-              現在表示できるお知らせはありません。Airtable の「News」テーブルにデータを追加してください。
+              現在表示できるお知らせはありません。「News」テーブルにデータを追加してください。
             </p>
           ) : (
             latestNews.map((n, index) => (
@@ -135,7 +135,7 @@ export default async function HomePage() {
               <p className="text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
                 Acoru 合同会社は、RFID・NFC などの IoT 技術と AI
                 エージェントを活用し、誰一人取り残さない「インクルーシブ DX」を実現します。
-                現場の業務フローに寄り添いながら、打刻・集計・レポートまでの一連のプロセスを再設計します。
+                現場の業務フローに寄り添いながら、一連のプロセスを再設計します。
               </p>
             </div>
 
@@ -195,7 +195,7 @@ export default async function HomePage() {
           <div className="grow grid gap-3 md:grid-cols-2">
             {featuredCases.length === 0 ? (
               <p className="px-2 py-4 text-[13px] text-slate-500">
-                現在表示できる導入事例はありません。Airtable の「Cases」テーブルにデータを追加してください。
+                現在表示できる導入事例はありません。「Cases」テーブルにデータを追加してください。
               </p>
             ) : (
               featuredCases.map((c, index) => (
