@@ -49,11 +49,11 @@ export default function ServicePage() {
             事業内容
           </p>
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-[26px]">
-            RFID / AI を軸にした、現場起点のDXサービス。
+            RFID / AI を軸にした、現場起点のDXサービス
           </h2>
           <p className="max-w-2xl text-[14px] leading-relaxed text-slate-600 md:text-[15px]">
             まずは1現場・1プロジェクトから始められるように、Acoruでは3つのサービスラインをご提供しています。
-            現場の日報自動化、DX計画の設計、AIエージェント導入支援など、現在地に合わせてお選びいただけます。
+            現場の業務自動化、DX計画の設計、AIエージェント導入支援など、現在地に合わせてお選びいただけます。
           </p>
         </div>
 
