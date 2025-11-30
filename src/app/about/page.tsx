@@ -6,6 +6,7 @@ type CompanyFields = {
   tagline?: string;
   mission?: string;
   vision?: string;
+  ceo?: string;
   address?: string;
   phone?: string;
   email?: string;
@@ -203,6 +204,17 @@ export default async function AboutPage() {
               </div>
 
               <div className="space-y-3">
+                {company.ceo && (
+                  <div>
+                    <p className="text-xs font-semibold text-slate-500">
+                      代表
+                    </p>
+                    <p className="font-semibold text-slate-900">
+                      {company.ceo}
+                    </p>
+                  </div>
+                )}
+
                 {company.address && (
                   <div>
                     <p className="text-xs font-semibold text-slate-500">
