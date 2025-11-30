@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { RichText } from "@/components/common/RichText";
 import { getCaseBySlug } from "@/lib/airtableCases";
 
 type Props = {
@@ -85,20 +86,32 @@ export async function CaseDetail({ slug }: Props) {
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
               課題
             </h2>
-            <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-              {c.challenge ??
-                "（Airtableの Cases テーブルの「challenge」フィールドに課題を入力してください）"}
-            </p>
+            {c.challenge ? (
+              <RichText
+                source={c.challenge}
+                className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]"
+              />
+            ) : (
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+                （Airtableの Cases テーブルの「challenge」フィールドに課題を入力してください）
+              </p>
+            )}
           </section>
 
           <section>
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
               解決策
             </h2>
-            <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-              {c.solution ??
-                "（Airtableの Cases テーブルの「solution」フィールドに解決策を入力してください）"}
-            </p>
+            {c.solution ? (
+              <RichText
+                source={c.solution}
+                className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]"
+              />
+            ) : (
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+                （Airtableの Cases テーブルの「solution」フィールドに解決策を入力してください）
+              </p>
+            )}
           </section>
         </div>
 
@@ -107,10 +120,16 @@ export async function CaseDetail({ slug }: Props) {
           <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
             導入効果
           </h2>
-          <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-            {c.result ??
-              "（Airtableの Cases テーブルの「result」フィールドに導入効果を入力してください）"}
-          </p>
+          {c.result ? (
+            <RichText
+              source={c.result}
+              className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]"
+            />
+          ) : (
+            <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+              （Airtableの Cases テーブルの「result」フィールドに導入効果を入力してください）
+            </p>
+          )}
         </section>
       </section>
     </div>

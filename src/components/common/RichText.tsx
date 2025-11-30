@@ -26,36 +26,36 @@ export function RichText({ source, className }: RichTextProps) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          h1: ({ node, ...props }) => (
+          h1: ({ ...props }) => (
             <h2
               className="text-lg font-semibold tracking-tight text-slate-900 md:text-xl"
               {...props}
             />
           ),
-          h2: ({ node, ...props }) => (
+          h2: ({ ...props }) => (
             <h3
               className="text-base font-semibold tracking-tight text-slate-900 md:text-lg"
               {...props}
             />
           ),
-          h3: ({ node, ...props }) => (
+          h3: ({ ...props }) => (
             <h4
               className="text-[15px] font-semibold tracking-tight text-slate-900"
               {...props}
             />
           ),
-          p: ({ node, ...props }) => <p className="leading-relaxed" {...props} />,
-          strong: ({ node, ...props }) => (
+          p: ({ ...props }) => <p className="leading-relaxed" {...props} />,
+          strong: ({ ...props }) => (
             <strong className="font-semibold text-slate-900" {...props} />
           ),
-          ul: ({ node, ...props }) => (
+          ul: ({ ...props }) => (
             <ul className="list-disc space-y-2 pl-5" {...props} />
           ),
-          ol: ({ node, ...props }) => (
+          ol: ({ ...props }) => (
             <ol className="list-decimal space-y-2 pl-5" {...props} />
           ),
-          li: ({ node, ...props }) => <li className="leading-relaxed" {...props} />,
-          a: ({ node, href, ...props }) => {
+          li: ({ ...props }) => <li className="leading-relaxed" {...props} />,
+          a: ({ href, ...props }) => {
             const isExternal = href?.startsWith("http");
             return (
               <a
