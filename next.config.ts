@@ -35,6 +35,11 @@ const nextConfig = {
         destination: "/news/post8",
         permanent: true,
       },
+      {
+        source: "/cases/jJgWcKcx",
+        destination: "/news/post5",
+        permanent: true,
+      },
     ];
   },
 };
