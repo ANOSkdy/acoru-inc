@@ -25,7 +25,20 @@ if (!API_TOKEN || !BASE_ID) {
 
 type AirtableRecord = {
   id: string;
-  fields: { [key: string]: any };
+  fields: {
+    title?: string;
+    slug?: string;
+    client_name?: string;
+    clientName?: string;
+    industry?: string;
+    summary?: string;
+    challenge?: string;
+    solution?: string;
+    result?: string;
+    publishedAt?: string;
+    published_at?: string;
+    hero_image?: { url?: string }[];
+  };
 };
 
 async function fetchCasesFromAirtable(): Promise<Case[]> {

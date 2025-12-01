@@ -3,6 +3,8 @@
 
 import { useState, FormEvent } from "react";
 
+import { Button } from "@/components/ui/Button";
+
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function ContactForm() {
@@ -73,7 +75,7 @@ export function ContactForm() {
       <div className="space-y-1">
         <label
           htmlFor="companyName"
-          className="text-[13px] font-semibold text-slate-800 md:text-[14px]"
+          className="text-sm font-semibold text-slate-800"
         >
           会社名（任意）
         </label>
@@ -81,7 +83,7 @@ export function ContactForm() {
           id="companyName"
           name="companyName"
           type="text"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
         />
       </div>
 
@@ -89,7 +91,7 @@ export function ContactForm() {
       <div className="space-y-1">
         <label
           htmlFor="personName"
-          className="text-[13px] font-semibold text-slate-800 md:text-[14px]"
+          className="text-sm font-semibold text-slate-800"
         >
           お名前 <span className="text-rose-500">*</span>
         </label>
@@ -98,7 +100,7 @@ export function ContactForm() {
           name="personName"
           type="text"
           required
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
         />
       </div>
 
@@ -106,7 +108,7 @@ export function ContactForm() {
       <div className="space-y-1">
         <label
           htmlFor="email"
-          className="text-[13px] font-semibold text-slate-800 md:text-[14px]"
+          className="text-sm font-semibold text-slate-800"
         >
           メールアドレス（どちらか一方で可）
         </label>
@@ -114,7 +116,7 @@ export function ContactForm() {
           id="email"
           name="email"
           type="email"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
         />
       </div>
 
@@ -122,7 +124,7 @@ export function ContactForm() {
       <div className="space-y-1">
         <label
           htmlFor="phone"
-          className="text-[13px] font-semibold text-slate-800 md:text-[14px]"
+          className="text-sm font-semibold text-slate-800"
         >
           電話番号（どちらか一方で可）
         </label>
@@ -130,7 +132,7 @@ export function ContactForm() {
           id="phone"
           name="phone"
           type="tel"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
         />
       </div>
 
@@ -138,14 +140,14 @@ export function ContactForm() {
       <div className="space-y-1">
         <label
           htmlFor="category"
-          className="text-[13px] font-semibold text-slate-800 md:text-[14px]"
+          className="text-sm font-semibold text-slate-800"
         >
           お問い合わせの種別（任意）
         </label>
         <select
           id="category"
           name="category"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
           defaultValue=""
         >
           <option value="">選択してください</option>
@@ -160,7 +162,7 @@ export function ContactForm() {
       <div className="space-y-1">
         <label
           htmlFor="message"
-          className="text-[13px] font-semibold text-slate-800 md:text-[14px]"
+          className="text-sm font-semibold text-slate-800"
         >
           お問い合わせ内容 <span className="text-rose-500">*</span>
         </label>
@@ -169,17 +171,17 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
+          className="w-full min-h-[140px] rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
         />
       </div>
 
       {/* 個人情報保護法の承諾 */}
-      <div className="space-y-2 rounded-xl bg-slate-50 px-3 py-3 text-[12px] text-slate-700 md:text-[13px]">
-        <label className="flex items-start gap-2">
+      <div className="space-y-2 rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-700">
+        <label className="flex items-start gap-3">
           <input
             type="checkbox"
             name="privacyAgreed"
-            className="mt-[2px] h-4 w-4 rounded border-slate-300 text-slate-900"
+            className="mt-[2px] h-5 w-5 rounded border-slate-300 text-slate-900"
             required
           />
           <span>
@@ -197,21 +199,21 @@ export function ContactForm() {
 
       {/* 送信ボタン＆ステータス */}
       <div className="space-y-2">
-        <button
+        <Button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2 text-[12px] font-semibold tracking-[0.22em] text-white shadow-sm shadow-slate-400/60 transition hover:-translate-y-0.5 hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
         >
           {status === "submitting" ? "送信中…" : "送信する"}
-        </button>
+        </Button>
 
         {status === "success" && (
-          <p className="text-[12px] text-emerald-600">
+          <p className="text-sm text-emerald-600">
             送信が完了しました。内容を確認のうえ、担当者よりご連絡いたします。
           </p>
         )}
         {status === "error" && (
-          <p className="text-[12px] text-rose-600">
+          <p className="text-sm text-rose-600">
             {errorMessage ??
               "エラーが発生しました。時間をおいて再度お試しください。"}
           </p>
