@@ -23,7 +23,20 @@ if (!API_TOKEN || !BASE_ID) {
 
 type AirtableRecord = {
   id: string;
-  fields: { [key: string]: any };
+  fields: {
+    title?: string;
+    slug?: string;
+    date?: string;
+    publishedAt?: string;
+    published_at?: string;
+    category?: string;
+    summary?: string;
+    excerpt?: string;
+    body?: string;
+    external_url?: string;
+    externalUrl?: string;
+    hero_image?: { url?: string }[];
+  };
 };
 
 async function fetchNewsFromAirtable(): Promise<NewsItem[]> {
