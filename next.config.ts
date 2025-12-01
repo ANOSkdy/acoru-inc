@@ -27,7 +27,7 @@ const nextConfig = {
       },
       {
         source: "/cases/CGnEZvsr",
-        destination: "/news/poet4",
+        destination: "/news/post4",
         permanent: true,
       },
     ];
