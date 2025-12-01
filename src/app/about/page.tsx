@@ -58,14 +58,15 @@ export default async function AboutPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 md:px-6 md:pt-12">
       {/* HERO：枠なし画像のみ */}
-      <section className="relative h-52 overflow-hidden rounded-3xl md:h-72 lg:h-80">
+      <section className="relative">
         <Image
           src="/about-hero.png"
           alt="Acoruのイメージビジュアル"
-          fill
+          width={1584}
+          height={396}
           priority
           sizes="(min-width: 1024px) 960px, (min-width: 768px) 100vw, 100vw"
-          className="object-cover"
+          className="h-auto w-full rounded-3xl object-contain"
         />
       </section>
 
