@@ -21,23 +21,73 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/cases/K4MFMKdP",
-        destination: "/news/post3",
+        source: "/cases/1_JcrEth",
+        destination: "/cases/case-4",
         permanent: true,
       },
       {
-        source: "/cases/CGnEZvsr",
-        destination: "/news/post4",
+        source: "/cases/IYpZ_6vL",
+        destination: "/cases/case-8",
         permanent: true,
       },
       {
-        source: "/cases/q2leQNYQ",
-        destination: "/news/post8",
+        source: "/cases/hclG8Utv",
+        destination: "/cases/case-5",
+        permanent: true,
+      },
+      {
+        source: "/cases/zGvuo2O7",
+        destination: "/cases/case-6",
+        permanent: true,
+      },
+      {
+        source: "/cases/joIsWFPE",
+        destination: "/cases/case-2",
+        permanent: true,
+      },
+      {
+        source: "/cases/Abc4rmRG",
+        destination: "/cases/case-3",
+        permanent: true,
+      },
+      {
+        source: "/cases/4qdWsex3",
+        destination: "https://www.acoru.jp/news/post1",
+        permanent: true,
+      },
+      {
+        source: "/cases/eXpX1Yfl",
+        destination: "https://www.acoru.jp/news/post7",
+        permanent: true,
+      },
+      {
+        source: "/cases/23dBDo0a",
+        destination: "https://www.acoru.jp/news/post6",
         permanent: true,
       },
       {
         source: "/cases/jJgWcKcx",
-        destination: "/news/post5",
+        destination: "https://www.acoru.jp/news/post5",
+        permanent: true,
+      },
+      {
+        source: "/cases/CGnEZvsr",
+        destination: "https://www.acoru.jp/news/post4",
+        permanent: true,
+      },
+      {
+        source: "/cases/K4MFMKdP",
+        destination: "https://www.acoru.jp/news/post3",
+        permanent: true,
+      },
+      {
+        source: "/cases/q2leQNYQ",
+        destination: "https://www.acoru.jp/news/post8",
+        permanent: true,
+      },
+      {
+        source: "/cases/E3499Bzc",
+        destination: "https://www.acoru.jp/news/post9",
         permanent: true,
       },
     ];
