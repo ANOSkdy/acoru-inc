@@ -6,7 +6,7 @@ const baseClasses =
 
 const variantClasses: Record<"primary" | "ghost", string> = {
   primary:
-    "bg-slate-900 text-white shadow-sm shadow-slate-400/50 hover:-translate-y-0.5 hover:bg-black",
+    "bg-[#534491] text-white shadow-sm shadow-[#534491]/40 hover:-translate-y-0.5 hover:bg-[#433676]",
   ghost:
     "border border-slate-300 bg-white text-slate-900 hover:-translate-y-0.5 hover:border-slate-900 hover:bg-slate-50",
 };
