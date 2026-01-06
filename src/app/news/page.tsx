@@ -41,7 +41,7 @@ export default async function NewsPage() {
                   <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
                     {n.date && <span>{n.date}</span>}
                     {n.category && (
-                      <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold tracking-[0.18em] text-white">
+                      <span className="rounded-full bg-[#534491] px-2 py-0.5 text-[10px] font-semibold tracking-[0.18em] text-white">
                         {n.category}
                       </span>
                     )}

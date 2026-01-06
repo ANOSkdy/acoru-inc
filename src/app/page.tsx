@@ -92,7 +92,7 @@ export default async function HomePage() {
                   >
                     <div className="flex items-center gap-3 sm:w-48 sm:shrink-0">
                       <span className="text-xs font-medium text-slate-500">{n.date ?? ""}</span>
-                      <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-slate-900 px-3.5 py-1 text-[11px] font-semibold text-white transition-colors group-hover:bg-slate-800">
+                      <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#534491] px-3.5 py-1 text-[11px] font-semibold text-white transition-colors group-hover:bg-[#433676]">
                         {n.category ?? "NEWS"}
                       </span>
                     </div>
