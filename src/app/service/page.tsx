@@ -1,10 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { services } from "./_data";
+
+export const metadata: Metadata = {
+  title: "サービス一覧 | 現場と事務をつなぐ仕組みづくり",
+  description:
+    "Acoruのサービス一覧です。現場の記録・報告・確認・集計の負担を減らし、会社ごとの仕事の流れに合う仕組みづくりを支援します。",
+};
 
 export default function ServicePage() {
   const sorted = [...services].sort((a, b) => a.name.localeCompare(b.name));
@@ -16,16 +23,14 @@ export default function ServicePage() {
           <div className="space-y-6">
             <div className="max-w-4xl space-y-4">
               <h1 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
-                RFIDとAIで現場の
-                <br />
-                “困った”を無くす。
+                現場と事務をつなぐ、
+                <br className="sm:hidden" />
+                3つの支援
               </h1>
               <div className="space-y-3 text-sm leading-relaxed text-slate-700 sm:text-base">
                 <p>
-                  Acoru合同会社は、RFID・NFCなどのIoT技術とAIエージェントを活用し、誰一人取り残さない「インクルーシブDX」を実現します。
-                </p>
-                <p>
-                  インクルーシブDXとは、年齢・職種・障がいの有無・ITリテラシー・地域格差といった“デジタル分断”を越え、現場の誰もがデータとテクノロジーを当たり前に使いこなせる状態をつくる変革です。
+                  Acoruは、現場の記録・報告・確認・集計の負担を減らし、今の仕事の流れに合う仕組みを整える会社です。
+                  まずは1現場・1プロジェクトから、無理なく始められます。
                 </p>
               </div>
             </div>
@@ -49,9 +54,9 @@ export default function ServicePage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">RFID / AI を軸にした、現場起点のDXサービス</h2>
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">現場に合わせて選べる3つの支援</h2>
               <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                まずは1現場・1プロジェクトから始められるように、Acoruでは3つのサービスラインをご提供しています。現場の業務自動化、DX計画の設計、AIエージェント導入支援など、現在地に合わせてお選びいただけます。
+                技術を先に当てはめるのではなく、現場で本当に使える形を重視して支援します。課題の整理から、運用に合わせた設計・導入・定着まで伴走します。
               </p>
             </div>
 
@@ -78,7 +83,7 @@ export default function ServicePage() {
                   <h3 className="mt-2 text-base font-semibold text-slate-900 sm:text-lg">{service.name}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{service.shortDescription}</p>
                   <span className="mt-4 text-[11px] font-semibold tracking-[0.18em] text-slate-700 group-hover:text-slate-900">
-                    詳細を見る →
+                    {service.linkLabel ?? "支援内容を詳しく見る"} →
                   </span>
                 </Link>
               ))}

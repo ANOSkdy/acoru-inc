@@ -6,6 +6,13 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/airtableCases";
 import { getNews } from "@/lib/airtableNews";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "北海道の現場業務改善・日報自動化支援",
+  description:
+    "人を増やしにくい中でも、現場の記録・報告・確認・集計が回る仕組みを。Acoruは、紙やExcel、口頭連絡が残る現場に合わせて、NFCや業務システムを活用した仕組みづくりを支援します。",
+};
 
 export default async function HomePage() {
   const [news, cases] = await Promise.all([getNews(), getCases()]);
@@ -32,28 +39,90 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[520px] md:px-10 lg:min-h-[640px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="text-balance text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                RFID の「不可能」を北海道から「可能」に。
-                <br className="hidden md:block" />
-                あらゆるモノが、つながる未来へ。
+              <h1 className="text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
+                人を増やしにくい現場でも、
+                <br />
+                記録・報告・管理が回る仕組みを。
               </h1>
 
-              <p className="max-w-2xl text-center text-sm leading-relaxed text-slate-100/85 sm:text-base">
-                Acoru inc. は、RFID / NFC と AI エージェントを活用して、現場業務または事務業務を自動化するシステム開発パートナーです。
-                北海道から、誰一人取り残さないインクルーシブ DX を共に実現します。
+              <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
+                Acoruは、現場の記録・報告・確認・集計の負担が大きい企業さま向けに、
+                今の仕事の流れに合わせた仕組みを整えます。前に導入したものが合わなかった会社さまにも、
+                現場に合わせて組み直しから伴走します。
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
                 <Button href="/service" className="px-6 text-[12px] tracking-[0.22em]" variant="primary">
                   事業内容を見る
                 </Button>
+                <Button href="/cases" className="px-6 text-[12px] tracking-[0.22em]" variant="ghost">
+                  導入事例を見る
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
+            <div className="space-y-4">
+              <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">よくあるご相談</p>
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">こんなお悩みはありませんか？</h2>
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                {[
+                  "人を増やしたくても増やしにくい",
+                  "現場の報告や確認に手間がかかる",
+                  "紙やExcelや口頭連絡が多い",
+                  "前に導入した仕組みが現場に合わなかった",
+                  "会社のやり方に合う形で整えたい",
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-700 sm:text-base">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+                    現場の流れに合った仕組みで、
+                    <br className="hidden sm:block" />
+                    記録・報告・集計をラクにする
+                  </h2>
+                  <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+                    Acoruは、現場で発生する記録や報告、事務所での確認や集計までを、今の仕事の流れに合わせて整える会社です。
+                    決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
+                  </p>
+                </div>
+
                 <Button
-                  href="/contact"
-                  className="px-6 text-[12px] tracking-[0.22em]"
+                  href="/service"
+                  className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
                   variant="ghost"
                 >
-                  お問い合わせ
+                  事業内容の詳細を見る
                 </Button>
+              </div>
+
+              <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
+                <Image
+                  src="/service-main.jpg"
+                  alt="RFID タグのイメージ"
+                  fill
+                  sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -103,43 +172,6 @@ export default async function HomePage() {
                   </Link>
                 ))
               )}
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="pt-0">
-        <Container>
-          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">RFID と AI で現場の“困った”を無くす</h2>
-                  <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                    Acoru 合同会社は、RFID・NFC などの IoT 技術と AI エージェントを活用し、誰一人取り残さない「インクルーシブ DX」を実現します。
-                    現場の業務フローに寄り添いながら、一連のプロセスを再設計します。
-                  </p>
-                </div>
-
-                <Button
-                  href="/service"
-                  className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
-                  variant="ghost"
-                >
-                  事業内容の詳細を見る
-                </Button>
-              </div>
-
-              <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
-                <Image
-                  src="/service-main.jpg"
-                  alt="RFID タグのイメージ"
-                  fill
-                  sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
             </div>
           </div>
         </Container>
