@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,6 +7,14 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/airtableCases";
 import { getNews } from "@/lib/airtableNews";
+
+
+export const metadata: Metadata = {
+  title: "北海道の現場業務改善・日報自動化支援",
+  description:
+    "人を増やしにくい中でも、現場の記録・報告・確認・集計が回る仕組みを。Acoruは、紙やExcel、口頭連絡が残る現場に合わせて、NFCや業務システムを活用した仕組みづくりを支援します。",
+  alternates: { canonical: "/" },
+};
 
 export default async function HomePage() {
   const [news, cases] = await Promise.all([getNews(), getCases()]);
@@ -33,29 +42,41 @@ export default async function HomePage() {
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
               <h1 className="text-balance text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                RFID の「不可能」を北海道から「可能」に。
-                <br className="hidden md:block" />
-                あらゆるモノが、つながる未来へ。
+                人を増やしにくい現場でも、記録・報告・管理が回る仕組みを。
               </h1>
 
               <p className="max-w-2xl text-center text-sm leading-relaxed text-slate-100/85 sm:text-base">
-                Acoru inc. は、RFID / NFC と AI エージェントを活用して、現場業務または事務業務を自動化するシステム開発パートナーです。
-                北海道から、誰一人取り残さないインクルーシブ DX を共に実現します。
+                Acoruは、現場の記録・報告・確認・集計の負担が大きい企業さま向けに、今の仕事の流れに合わせた仕組みを整えます。前に導入したものが合わなかった会社さまにも、現場に合わせて組み直しから伴走します。
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <Button href="/service" className="px-6 text-[12px] tracking-[0.22em]" variant="primary">
-                  事業内容を見る
+                <Button href="/contact" className="px-6 text-[12px] tracking-[0.22em]" variant="primary">
+                  現場の悩みを相談する
                 </Button>
                 <Button
-                  href="/contact"
+                  href="/cases"
                   className="px-6 text-[12px] tracking-[0.22em]"
                   variant="ghost"
                 >
-                  お問い合わせ
+                  導入事例を見る
                 </Button>
               </div>
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-slate-50/70 p-6 sm:p-8">
+            <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">こんなお悩みはありませんか？</h2>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-slate-700 sm:text-base">
+              <li>・人を増やしたくても増やしにくい</li>
+              <li>・現場の報告や確認に手間がかかる</li>
+              <li>・紙やExcelや口頭連絡が多い</li>
+              <li>・前に導入した仕組みが現場に合わなかった</li>
+              <li>・会社のやり方に合う形で整えたい</li>
+            </ul>
           </div>
         </Container>
       </Section>
@@ -115,10 +136,9 @@ export default async function HomePage() {
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">RFID と AI で現場の“困った”を無くす</h2>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">現場の記録・報告・確認を、無理なく回る仕組みに</h2>
                   <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                    Acoru 合同会社は、RFID・NFC などの IoT 技術と AI エージェントを活用し、誰一人取り残さない「インクルーシブ DX」を実現します。
-                    現場の業務フローに寄り添いながら、一連のプロセスを再設計します。
+                    Acoruは、現場と事務をつなぎ、紙やExcelへの転記・確認・集計の負担を減らす仕組みづくりを支援します。現場の業務フローに寄り添い、いまのやり方に合う形で整えます。
                   </p>
                 </div>
 
@@ -127,14 +147,14 @@ export default async function HomePage() {
                   className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
                   variant="ghost"
                 >
-                  事業内容の詳細を見る
+                  現場に合う支援内容を見る
                 </Button>
               </div>
 
               <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
                 <Image
                   src="/service-main.jpg"
-                  alt="RFID タグのイメージ"
+                  alt="現場業務改善のイメージ"
                   fill
                   sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
                   className="object-cover"

@@ -4,9 +4,31 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Acoru inc. | RFID / NFC × AI × DX",
+  metadataBase: new URL("https://www.acoru.jp"),
+  title: {
+    default: "Acoru | 現場と事務をつなぐ仕組みづくり",
+    template: "%s | Acoru",
+  },
   description:
-    "Acoru inc. は RFID・NFC などの IoT 技術と AI エージェントを活用し、誰一人取り残さないインクルーシブ DX を北海道から実現する開発パートナーです。",
+    "人を増やしにくい中でも、現場の記録・報告・確認・集計が回る仕組みを。Acoruは現場の流れに合わせた業務改善を支援します。",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    siteName: "Acoru",
+    title: "Acoru | 現場と事務をつなぐ仕組みづくり",
+    description:
+      "人を増やしにくい中でも、現場の記録・報告・確認・集計が回る仕組みを。Acoruは現場の流れに合わせた業務改善を支援します。",
+    url: "https://www.acoru.jp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Acoru | 現場と事務をつなぐ仕組みづくり",
+    description:
+      "人を増やしにくい中でも、現場の記録・報告・確認・集計が回る仕組みを。Acoruは現場の流れに合わせた業務改善を支援します。",
+  },
 };
 
 export default function RootLayout({

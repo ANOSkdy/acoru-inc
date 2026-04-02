@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
@@ -52,6 +53,14 @@ async function getCompany(): Promise<CompanyFields | null> {
 
 export const runtime = "nodejs";
 
+export const metadata: Metadata = {
+  title: { absolute: "Acoruについて | 北海道の現場業務改善パートナー" },
+  description:
+    "Acoruは、現場の記録・報告・確認・集計の負担を減らし、人を増やしにくい中でも仕事が回る仕組みを整える会社です。北海道発の現場業務改善パートナーとして伴走します。",
+  alternates: { canonical: "/about" },
+};
+
+
 export default async function AboutPage() {
   const company = await getCompany();
 
@@ -77,20 +86,15 @@ export default async function AboutPage() {
         <Container>
           <div className="max-w-4xl space-y-6">
             <h1 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
-              RFIDの「不可能」を北海道から「可能」に。
-              <br />
-              あらゆるモノが、つながる未来へ。
+              現場に合った仕組みで、仕事を回しやすくする。
             </h1>
 
             <div className="space-y-4 text-sm leading-relaxed text-slate-700 sm:text-base">
               <p>
-                Acoru合同会社は、RFID／NFCとAI技術を核に、企業の成長と競争力向上を支援します。タグ一枚から既存システム連携まで、
-                現場の「見えない情報」を自動で拾い上げ、AIが即座に解析・提案します。多くの中小企業がDXの必要性を感じながらも、「何から始めればよいか分からない」「コストと人手が足りない」という壁に直面しています。
+                Acoruは、現場の負担を増やす仕組みではなく、現場で本当に使われる仕組みを大切にしています。人を増やしにくい中でも、記録・報告・確認・集計が回るように、今の仕事の流れに合わせて整えます。
               </p>
               <p>
-                私たちは、導入計画の策定・機器選定・PoC構築・教育までを一気通貫で伴走し、手書き・属人化・重複入力といったムダを排除。
-                “現場データの自動取得（RFID）×意思決定の高速化（AI）”でその壁を実務レベルで突破し、継続的な改善サイクルまで設計します。
-                補助金活用や小規模スタートにも柔軟に対応し、投資対効果を可視化します。
+                前に導入したものが現場に合わなかった場合でも、運用の見直しから伴走し、無理なく回る形へ組み直します。小さく始めて、現場に定着する改善を積み重ねる進め方を重視しています。
               </p>
             </div>
 
