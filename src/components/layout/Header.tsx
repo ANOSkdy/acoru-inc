@@ -43,7 +43,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white/70 text-slate-900 shadow-sm shadow-slate-200/80 transition hover:-translate-y-0.5 hover:bg-slate-50 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white/70 text-slate-900 shadow-sm shadow-slate-200/80 transition-[background-color,transform,box-shadow] motion-fast motion-spring-soft hover:-translate-y-0.5 hover:bg-slate-50 active:translate-y-0 md:hidden"
           aria-label="メニューを開閉"
           aria-expanded={isOpen}
           onClick={() => setIsOpen((prev) => !prev)}
@@ -51,17 +51,17 @@ export function Header() {
           <span className="sr-only">メニュー</span>
           <span className="relative block h-4 w-5">
             <span
-              className={`absolute block h-0.5 w-5 rounded-full bg-slate-900 transition-transform duration-200 ${
+              className={`absolute block h-0.5 w-5 rounded-full bg-slate-900 transition-transform motion-fast motion-spring-snappy ${
                 isOpen ? "top-1.5 rotate-45" : "top-0"
               }`}
             />
             <span
-              className={`absolute block h-0.5 w-5 rounded-full bg-slate-900 transition-opacity duration-200 ${
+              className={`absolute block h-0.5 w-5 rounded-full bg-slate-900 transition-opacity motion-fast motion-spring-snappy ${
                 isOpen ? "opacity-0" : "top-1.5 opacity-100"
               }`}
             />
             <span
-              className={`absolute block h-0.5 w-5 rounded-full bg-slate-900 transition-transform duration-200 ${
+              className={`absolute block h-0.5 w-5 rounded-full bg-slate-900 transition-transform motion-fast motion-spring-snappy ${
                 isOpen ? "top-1.5 -rotate-45" : "top-3"
               }`}
             />
@@ -85,13 +85,13 @@ export function Header() {
       </Container>
 
       {isOpen && (
-        <nav className="border-t border-slate-200 bg-white/95 shadow-sm shadow-slate-200/80 backdrop-blur md:hidden">
+        <nav className="menu-open-enter border-t border-slate-200 bg-white/95 shadow-sm shadow-slate-200/80 backdrop-blur md:hidden">
           <Container className="flex flex-col gap-2 py-4 text-[13px] font-semibold tracking-[0.14em] text-slate-700">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-2.5 transition hover:bg-slate-50"
+                className="rounded-lg px-3 py-2.5 transition-[background-color,color,transform] motion-fast motion-spring-soft hover:bg-slate-50"
                 onClick={closeMenu}
               >
                 {item.label}

@@ -2,6 +2,10 @@
 
 :root {
   color-scheme: light;
+  --ease-spring-soft: linear(0, 0.024 6.2%, 0.094 12.4%, 0.312 24.8%, 0.598 40.4%, 0.784 52.8%, 0.91 66.3%, 0.973 79.8%, 1);
+  --ease-spring-snappy: linear(0, 0.05 8%, 0.24 16%, 0.66 34%, 0.88 52%, 0.96 70%, 1);
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
 }
 
 body {
@@ -15,5 +19,51 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .motion-spring-soft {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-timing-function: var(--ease-spring-soft);
+  }
+
+  .motion-spring-snappy {
+    transition-timing-function: cubic-bezier(0.2, 0.9, 0.2, 1);
+    transition-timing-function: var(--ease-spring-snappy);
+  }
+
+  .motion-fast {
+    transition-duration: var(--dur-fast);
+  }
+
+  .motion-base {
+    transition-duration: var(--dur-base);
+  }
+
+  .menu-open-enter {
+    animation: menu-open-enter var(--dur-base) both;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-timing-function: var(--ease-spring-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+  }
+
+  .menu-open-enter {
+    animation: none;
+  }
+}
+
+@keyframes menu-open-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

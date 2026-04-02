@@ -70,7 +70,7 @@ export default async function HomePage() {
               </div>
               <Link
                 href="/news"
-                className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold tracking-[0.2em] text-slate-700 underline-offset-4 hover:bg-slate-100 hover:underline"
+                className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold tracking-[0.2em] text-slate-700 underline-offset-4 transition-[background-color,color,text-decoration-color] motion-fast motion-spring-soft hover:bg-slate-100 hover:underline"
               >
                 一覧を見る <span aria-hidden>→</span>
               </Link>
@@ -86,13 +86,13 @@ export default async function HomePage() {
                   <Link
                     key={n.id}
                     href={`/news/${n.slug}`}
-                    className={`group flex flex-col gap-2 px-5 py-4 text-sm transition-colors sm:flex-row sm:items-center sm:gap-4 md:gap-6 md:px-8 ${
+                    className={`group flex flex-col gap-2 px-5 py-4 text-sm transition-[background-color,color] motion-fast motion-spring-soft sm:flex-row sm:items-center sm:gap-4 md:gap-6 md:px-8 ${
                       index !== latestNews.length - 1 ? "border-b border-slate-200" : ""
                     } hover:bg-slate-100`}
                   >
                     <div className="flex items-center gap-3 sm:w-48 sm:shrink-0">
                       <span className="text-xs font-medium text-slate-500">{n.date ?? ""}</span>
-                      <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#534491] px-3.5 py-1 text-[11px] font-semibold text-white transition-colors group-hover:bg-[#433676]">
+                      <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#534491] px-3.5 py-1 text-[11px] font-semibold text-white transition-colors motion-fast motion-spring-soft group-hover:bg-[#433676]">
                         {n.category ?? "NEWS"}
                       </span>
                     </div>
@@ -159,7 +159,7 @@ export default async function HomePage() {
                 </p>
                 <Link
                   href="/cases"
-                  className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-slate-700 underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-slate-700 underline-offset-4 transition-[color,text-decoration-color] motion-fast motion-spring-soft hover:underline"
                 >
                   導入事例をもっと見る <span aria-hidden>→</span>
                 </Link>
@@ -175,7 +175,7 @@ export default async function HomePage() {
                     <Link
                       key={c.id}
                       href={`/cases/${c.slug}`}
-                      className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 shadow-sm shadow-slate-100/80 transition hover:-translate-y-1 hover:border-slate-900/70 hover:bg-white"
+                      className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 shadow-sm shadow-slate-100/80 transition-[background-color,border-color,color,transform,box-shadow] motion-base motion-spring-soft hover:-translate-y-1 hover:border-slate-900/70 hover:bg-white"
                     >
                       <p className="text-[11px] font-semibold tracking-[0.22em] text-slate-400">
                         {`CASE ${String(index + 1).padStart(2, "0")}`}
