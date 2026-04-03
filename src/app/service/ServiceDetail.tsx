@@ -33,14 +33,14 @@ export function ServiceDetail({ slug }: Props) {
           </Link>
         </div>
 
-        <p className="text-[14px] leading-relaxed text-slate-700 md:text-[15px]">
+        <p className="text-[14px] leading-7 text-slate-700 md:text-[15px] md:leading-8">
           {service.overview}
         </p>
 
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-              このサービスで解決したい課題
+              このような課題・会社さまに
             </h2>
             <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
               {service.problems.map((p) => (
@@ -54,7 +54,7 @@ export function ServiceDetail({ slug }: Props) {
 
           <div>
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-              提供する内容
+              支援内容
             </h2>
             <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
               {service.solutions.map((s) => (
@@ -69,7 +69,7 @@ export function ServiceDetail({ slug }: Props) {
 
         <div>
           <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-            導入の進め方（例）
+            導入の進め方
           </h2>
           <ol className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
             {service.steps.map((step, index) => (
@@ -82,6 +82,22 @@ export function ServiceDetail({ slug }: Props) {
             ))}
           </ol>
         </div>
+
+        {service.technicalProof && service.technicalProof.length > 0 && (
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+              技術面の裏付け
+            </h2>
+            <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+              {service.technicalProof.map((proof) => (
+                <li key={proof} className="flex gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-slate-900" />
+                  <span>{proof}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
     </div>
   );
