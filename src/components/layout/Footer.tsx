@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function Footer() {
@@ -8,30 +7,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-slate-200 bg-white">
-      <Container className="flex flex-col gap-8 py-10">
-        {/* Contact カード */}
-        <section className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-7 sm:px-8">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="space-y-2">
-              <p className="text-xs font-semibold tracking-[0.22em] text-slate-500">お問い合わせ</p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                まずは 1 現場・1 プロジェクトから、ご相談ください。
-              </h2>
-              <p className="text-sm text-slate-600 sm:text-base">
-                「まだ要件が固まっていない」「何から始めるべきか分からない」
-                という段階からで構いません。現場の状況を伺い、実現可能な DX プランをご提案します。
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 text-[12px] md:items-end">
-              <Button href="/contact" className="px-7">
-                お問い合わせ
-              </Button>
-              <p className="text-[12px] text-slate-500">※ 営業目的のみのご連絡はご遠慮ください。</p>
-            </div>
-          </div>
-        </section>
-
-        {/* 下部フッター本体 */}
+      <Container className="py-10">
         <div className="flex flex-col gap-4 text-xs text-slate-500 sm:text-sm md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
             <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">ACORU INC.</p>

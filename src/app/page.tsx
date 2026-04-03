@@ -65,33 +65,6 @@ export default async function HomePage() {
 
       <Section className="pt-0">
         <Container>
-          <div className="space-y-5 rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
-            <div className="space-y-2">
-              <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">課題</p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">こんなお悩みはありませんか？</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              {[
-                "人を増やしたくても増やしにくい",
-                "現場の報告や確認に手間がかかる",
-                "紙やExcelや口頭連絡が多い",
-                "前に導入した仕組みが現場に合わなかった",
-                "会社のやり方に合う形で整えたい",
-              ].map((problem) => (
-                <div
-                  key={problem}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium leading-relaxed text-slate-700 sm:text-base"
-                >
-                  {problem}
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="pt-0">
-        <Container>
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
               <div className="space-y-6">
