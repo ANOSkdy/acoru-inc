@@ -63,7 +63,7 @@ export default async function HomePage() {
         </Container>
       </Section>
 
-      <Section className="pt-0">
+      <Section className="pt-0 pb-14">
         <Container>
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
@@ -202,28 +202,6 @@ export default async function HomePage() {
         </Container>
       </Section>
 
-      <Section className="pt-0 pb-14">
-        <Container>
-          <div className="rounded-[32px] border border-slate-200 bg-slate-50 px-6 py-7 sm:px-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold tracking-[0.22em] text-slate-500">ご相談</p>
-                <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                  現場の管理や報告の負担について、
-                  <br className="sm:hidden" />
-                  まずはご相談ください。
-                </h2>
-                <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                  まだ要件が固まっていない段階でも問題ありません。現場の状況を伺い、進め方を一緒に整理します。
-                </p>
-              </div>
-              <Button href="/contact" className="w-full justify-center md:w-auto">
-                現場の悩みを相談する
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </Section>
     </>
   );
 }

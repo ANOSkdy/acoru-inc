@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function Footer() {
@@ -7,7 +8,26 @@ export function Footer() {
 
   return (
     <footer className="border-t border-slate-200 bg-white">
-      <Container className="py-10">
+      <Container className="flex flex-col gap-8 py-10">
+        <section className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-7 sm:px-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold tracking-[0.22em] text-slate-500">ご相談</p>
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+                現場の管理や報告の負担について、
+                <br className="sm:hidden" />
+                まずはご相談ください。
+              </h2>
+              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+                まだ要件が固まっていない段階でも問題ありません。現場の状況を伺い、進め方を一緒に整理します。
+              </p>
+            </div>
+            <Button href="/contact" className="w-full justify-center md:w-auto md:px-7">
+              現場の悩みを相談する
+            </Button>
+          </div>
+        </section>
+
         <div className="flex flex-col gap-4 text-xs text-slate-500 sm:text-sm md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
             <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">ACORU INC.</p>
