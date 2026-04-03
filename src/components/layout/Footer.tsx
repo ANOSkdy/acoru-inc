@@ -14,11 +14,10 @@ export function Footer() {
             <div className="space-y-2">
               <p className="text-xs font-semibold tracking-[0.22em] text-slate-500">ご相談</p>
               <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                現場の管理や報告の負担について、
-                <br className="sm:hidden" />
-                まずはご相談ください。
+                <span className="block sm:inline">現場の管理や報告の負担について、</span>
+                <span className="block sm:inline sm:ml-2">まずはご相談ください。</span>
               </h2>
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+              <p className="max-w-[42rem] text-sm leading-8 text-slate-600 sm:text-base sm:leading-relaxed">
                 まだ要件が固まっていない段階でも問題ありません。現場の状況を伺い、進め方を一緒に整理します。
               </p>
             </div>
@@ -36,8 +35,8 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col items-start gap-2 md:items-end">
-            <div className="flex flex-wrap items-center gap-3 text-[12px] sm:text-sm">
+          <div className="flex flex-col items-start gap-3 md:items-end">
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[12px] sm:flex sm:flex-wrap sm:items-center sm:gap-3 sm:text-sm">
               <Link href="/about" className="inline-flex items-center rounded-full px-3 py-2 transition hover:bg-slate-100">
                 Acoruについて
               </Link>
@@ -49,9 +48,6 @@ export function Footer() {
               </Link>
               <Link href="/news" className="inline-flex items-center rounded-full px-3 py-2 transition hover:bg-slate-100">
                 お知らせ
-              </Link>
-              <Link href="/contact" className="inline-flex items-center rounded-full px-3 py-2 transition hover:bg-slate-100">
-                お問い合わせ
               </Link>
             </div>
             <div className="flex items-center gap-3 text-[12px] text-slate-500 sm:text-sm">

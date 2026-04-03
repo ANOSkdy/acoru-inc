@@ -39,13 +39,13 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[520px] md:px-10 lg:min-h-[640px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="text-center text-2xl font-semibold leading-[1.45] tracking-tight text-white sm:text-3xl lg:text-4xl">
-                人を増やしにくい現場でも、
-                <br />
-                記録・報告・管理が回る仕組みを。
+              <h1 className="text-center text-2xl font-semibold leading-[1.4] tracking-tight text-white sm:text-3xl lg:text-4xl">
+                <span className="block sm:inline">人を増やしにくい現場でも、</span>
+                <span className="block sm:inline sm:ml-2">記録・報告・管理が回る</span>
+                <span className="block sm:inline sm:ml-2">仕組みを。</span>
               </h1>
 
-              <p className="max-w-2xl text-center text-sm leading-7 text-slate-100/90 sm:text-base sm:leading-8">
+              <p className="max-w-[34rem] text-center text-sm leading-8 text-slate-100/90 sm:text-base sm:leading-8">
                 Acoruは、現場の記録・報告・確認・集計の負担が大きい企業さま向けに、今の仕事の流れに合わせた仕組みを整えます。
                 前に導入したものが合わなかった会社さまにも、現場に合わせて組み直しから伴走します。
               </p>
