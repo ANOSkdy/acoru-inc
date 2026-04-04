@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,6 +6,12 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { services } from "./_data";
+
+export const metadata: Metadata = {
+  title: "サービス一覧 | RFIDとAIで現場と事務をつなぐ",
+  description:
+    "Acoruは、現場の記録・報告・確認・集計の負担を減らし、RFIDとAIを活用しながら今の仕事の流れに合う仕組みを整える会社です。",
+};
 
 export default function ServicePage() {
   const sorted = [...services].sort((a, b) => a.name.localeCompare(b.name));
@@ -16,18 +23,13 @@ export default function ServicePage() {
           <div className="space-y-6">
             <div className="max-w-4xl space-y-4">
               <h1 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
-                RFIDとAIで現場の
-                <br />
-                “困った”を無くす。
+                RFIDとAIで、現場と事務をつなぐ
+                <br className="sm:hidden" />
+                3つの支援
               </h1>
-              <div className="space-y-3 text-sm leading-relaxed text-slate-700 sm:text-base">
-                <p>
-                  Acoru合同会社は、RFID・NFCなどのIoT技術とAIエージェントを活用し、誰一人取り残さない「インクルーシブDX」を実現します。
-                </p>
-                <p>
-                  インクルーシブDXとは、年齢・職種・障がいの有無・ITリテラシー・地域格差といった“デジタル分断”を越え、現場の誰もがデータとテクノロジーを当たり前に使いこなせる状態をつくる変革です。
-                </p>
-              </div>
+              <p className="max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
+                Acoruは、現場の記録・報告・確認・集計の負担を減らし、RFIDとAIを活用しながら今の仕事の流れに合う仕組みを整える会社です。まずは1現場・1プロジェクトから、無理なく始められます。
+              </p>
             </div>
 
             <div className="relative h-56 overflow-hidden rounded-3xl md:h-72 lg:h-80">
@@ -49,10 +51,7 @@ export default function ServicePage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">RFID / AI を軸にした、現場起点のDXサービス</h2>
-              <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                まずは1現場・1プロジェクトから始められるように、Acoruでは3つのサービスラインをご提供しています。現場の業務自動化、DX計画の設計、AIエージェント導入支援など、現在地に合わせてお選びいただけます。
-              </p>
+              <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">現場の実態に合わせて、無理なく回る仕組みを整える</h2>
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -75,7 +74,7 @@ export default function ServicePage() {
                   )}
 
                   <p className="text-[11px] font-semibold tracking-[0.18em] text-slate-500">{service.category}</p>
-                  <h3 className="mt-2 text-base font-semibold text-slate-900 sm:text-lg">{service.name}</h3>
+                  <h3 className="mt-2 text-base font-semibold leading-relaxed text-slate-900 sm:text-lg">{service.name}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{service.shortDescription}</p>
                   <span className="mt-4 text-[11px] font-semibold tracking-[0.18em] text-slate-700 group-hover:text-slate-900">
                     詳細を見る →
@@ -84,9 +83,9 @@ export default function ServicePage() {
               ))}
             </div>
 
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-slate-700 sm:text-base">詳細や導入ステップは各サービスページをご覧ください。</p>
-              <Button href="/contact" className="w-full justify-center sm:w-auto">導入の相談をする</Button>
+              <Button href="/contact" className="w-full justify-center sm:w-auto">現場の悩みを相談する</Button>
             </div>
           </div>
         </Container>

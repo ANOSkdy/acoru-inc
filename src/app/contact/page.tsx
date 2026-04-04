@@ -1,9 +1,16 @@
 // src/app/contact/page.tsx
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "./ContactForm";
 
 export const runtime = "nodejs";
+
+export const metadata: Metadata = {
+  title: "お問い合わせ | 現場と事務の困りごとのご相談",
+  description:
+    "人を増やしにくい、紙やExcel管理を見直したい、導入した仕組みが定着しない。そんな現場と事務の課題をAcoruが整理し、改善の進め方をご提案します。",
+};
 
 export default function ContactPage() {
   return (
@@ -13,10 +20,11 @@ export default function ContactPage() {
           <div className="space-y-3 max-w-3xl">
             <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">お問い合わせ</p>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              導入のご相談・資料請求・ご質問はこちらから。
+              現場と事務の困りごとについて、
+              ご相談ください。
             </h1>
             <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-              AI日報やAIエージェント、DX設計支援のご相談、デモのご依頼などがございましたら、下記フォームよりお気軽にお問い合わせください。内容を確認の上、担当よりご連絡いたします。
+              人を増やしたくても増やしにくい。前に入れた仕組みが現場に合わなかった。紙やExcelでの管理を見直したい。そんなお悩みがありましたら、まずは現状をお聞かせください。
             </p>
           </div>
         </Container>
