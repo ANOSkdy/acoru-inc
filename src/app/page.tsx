@@ -40,16 +40,13 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[520px] md:px-10 lg:min-h-[640px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                現場と事務の困りごとを、
-                <br />
-                RFIDとAIで回る仕組みに。
+              <h1 className="text-center text-2xl font-semibold leading-[1.35] tracking-tight text-white sm:text-3xl lg:text-4xl">
+                <span className="block">現場と事務の困りごとを、</span>
+                <span className="block">RFIDとAIで回る仕組みに。</span>
               </h1>
 
-              <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、
-                <br className="hidden sm:block" />
-                <span className="sm:inline-block">人を増やしにくい中でも仕事が回る仕組みを整える会社です。</span>
+              <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base sm:leading-8">
+                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。
               </p>
 
               <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
@@ -71,13 +68,42 @@ export default async function HomePage() {
 
       <Section className="pt-0">
         <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-slate-50/80 p-6 shadow-sm shadow-slate-100/70 sm:p-8">
+            <div className="space-y-4">
+              <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">課題の整理</p>
+              <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">
+                こんなお悩みはありませんか？
+              </h2>
+            </div>
+
+            <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                "人を増やしたくても増やしにくい",
+                "現場の報告や確認に手間がかかる",
+                "紙やExcelや口頭連絡が多い",
+                "前に導入した仕組みが現場に合わなかった",
+                "会社のやり方に合う形で整えたい",
+              ].map((problem) => (
+                <li key={problem} className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-700">
+                  {problem}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">RFIDとAIで、現場と事務が回る仕組みを整える</h2>
-                  <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">
+                    RFIDとAIで、現場と事務が回る仕組みを整える
+                  </h2>
+                  <p className="text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
                     Acoruは、現場で発生する記録や報告、事務所での確認や集計までを、RFIDとAIを活用しながら今の仕事の流れに合わせて整える会社です。決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
                   </p>
                 </div>
@@ -198,6 +224,32 @@ export default async function HomePage() {
                   </Link>
                 ))
               )}
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0 pb-20">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-slate-50 px-6 py-7 shadow-sm shadow-slate-100/80 sm:px-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl space-y-2">
+                <p className="text-[12px] font-semibold tracking-[0.22em] text-slate-500">ご相談</p>
+                <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">
+                  現場の悩みを、まずは整理するところから。
+                </h2>
+                <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                  「何から始めるべきか分からない」という段階でも問題ありません。現場と事務の流れを伺い、無理なく進める形をご提案します。
+                </p>
+              </div>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <Button href="/cases" className="w-full justify-center sm:w-auto" variant="ghost">
+                  導入事例を見る
+                </Button>
+                <Button href="/contact" className="w-full justify-center sm:w-auto">
+                  お問い合わせ
+                </Button>
+              </div>
             </div>
           </div>
         </Container>

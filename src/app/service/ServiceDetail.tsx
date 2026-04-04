@@ -31,24 +31,12 @@ export function ServiceDetail({ slug }: Props) {
           </Link>
         </div>
 
-        <div className="space-y-3 text-[14px] leading-7 text-slate-700 md:text-[15px]">
+        <div className="space-y-3 text-[14px] leading-7 text-slate-700 md:text-[15px] md:leading-8">
           <p>{service.overview}</p>
           <p>{service.fitFor}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <div>
-            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">こんな課題に合います</h2>
-            <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-              {service.problems.map((p) => (
-                <li key={p} className="flex gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-slate-900" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <div>
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">支援の進め方</h2>
             <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
@@ -56,6 +44,18 @@ export function ServiceDetail({ slug }: Props) {
                 <li key={a} className="flex gap-2">
                   <span className="mt-1 h-1.5 w-1.5 rounded-full bg-slate-900" />
                   <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">こんな課題に合います</h2>
+            <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+              {service.problems.map((p) => (
+                <li key={p} className="flex gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-slate-900" />
+                  <span>{p}</span>
                 </li>
               ))}
             </ul>
