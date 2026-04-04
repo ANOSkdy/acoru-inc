@@ -1,34 +1,41 @@
-// src/app/contact/page.tsx
+import type { Metadata } from "next";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "./ContactForm";
 
 export const runtime = "nodejs";
 
+export const metadata: Metadata = {
+  title: "現場の管理・日報自動化のご相談",
+  description:
+    "人を増やしにくい現場の管理や報告負担、紙やExcel中心の運用見直しをご相談ください。AcoruがICタグとAIを活用した実務に合う仕組みづくりを支援します。",
+};
+
 export default function ContactPage() {
   return (
     <>
-      <Section className="pt-10 md:pt-12 pb-6">
+      <Section className="pb-6 pt-10 md:pt-12">
         <Container>
-          <div className="space-y-3 max-w-3xl">
+          <div className="max-w-3xl space-y-3">
             <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">お問い合わせ</p>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              導入のご相談・資料請求・ご質問はこちらから。
+              現場の管理や報告の負担について、ご相談ください。
             </h1>
             <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-              AI日報やAIエージェント、DX設計支援のご相談、デモのご依頼などがございましたら、下記フォームよりお気軽にお問い合わせください。内容を確認の上、担当よりご連絡いたします。
+              人を増やしたくても増やしにくい。前に入れた仕組みが現場に合わなかった。紙やExcelでの管理を見直したい。そんなお悩みがありましたら、まずは現状をお聞かせください。
             </p>
           </div>
         </Container>
       </Section>
 
-      <Section className="pt-0 pb-10">
+      <Section className="pb-10 pt-0">
         <Container>
           <ContactForm />
         </Container>
       </Section>
 
-      <Section id="privacy" className="pt-0 pb-20">
+      <Section id="privacy" className="pb-20 pt-0">
         <Container>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 text-sm leading-relaxed text-slate-700 shadow-sm shadow-slate-100/70 sm:px-7 sm:py-6 sm:text-base">
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">個人情報の取り扱いについて</h2>

@@ -36,7 +36,7 @@ export function Header() {
               ACORU INC.
             </span>
             <span className="text-[11px] text-slate-500">
-              RFID / NFC × AI × DX
+              ICタグとAIで、現場に合う仕組みづくり
             </span>
           </div>
         </Link>

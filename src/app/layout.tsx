@@ -4,9 +4,13 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Acoru inc. | RFID / NFC × AI × DX",
+  metadataBase: new URL("https://acoru-inc.jp"),
+  title: {
+    default: "北海道の現場業務改善・日報自動化支援 | Acoru",
+    template: "%s | Acoru",
+  },
   description:
-    "Acoru inc. は RFID・NFC などの IoT 技術と AI エージェントを活用し、誰一人取り残さないインクルーシブ DX を北海道から実現する開発パートナーです。",
+    "人を増やしにくい中でも、現場の記録・報告・確認・集計が回る仕組みを。Acoruは、ICタグとAIを活用し、紙やExcel、口頭連絡が残る現場に合わせた仕組みづくりを支援します。",
 };
 
 export default function RootLayout({
