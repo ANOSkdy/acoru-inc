@@ -14,13 +14,6 @@ export const metadata: Metadata = {
     "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
 };
 
-const problems = [
-  "人を増やしたくても増やしにくい",
-  "現場の報告や確認に手間がかかる",
-  "紙やExcelや口頭連絡が多い",
-  "前に導入した仕組みが現場に合わなかった",
-  "会社のやり方に合う形で整えたい",
-];
 
 export default async function HomePage() {
   const [news, cases] = await Promise.all([getNews(), getCases()]);
@@ -69,21 +62,6 @@ export default async function HomePage() {
                   お問い合わせ
                 </Button>
               </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="pt-0">
-        <Container>
-          <div className="rounded-[32px] border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">こんなお悩みはありませんか？</h2>
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {problems.map((problem) => (
-                <p key={problem} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-700">
-                  {problem}
-                </p>
-              ))}
             </div>
           </div>
         </Container>
