@@ -36,7 +36,8 @@ export function Footer() {
           <div className="space-y-1">
             <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">ACORU INC.</p>
             <p className="text-[12px] leading-relaxed text-slate-500 sm:text-sm">
-              RFID / NFC と AI を核に、誰一人取り残さないインクルーシブ DX を北海道から設計・実装します。
+              RFIDとAIで現場と事務をつなぎ、
+              人を増やしにくい中でも仕事が回る仕組みを整えます。
             </p>
           </div>
 

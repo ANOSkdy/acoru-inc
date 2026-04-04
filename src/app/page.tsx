@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,6 +7,13 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/airtableCases";
 import { getNews } from "@/lib/airtableNews";
+
+export const metadata: Metadata = {
+  title: "北海道の現場業務改善・日報自動化支援",
+  description:
+    "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
+};
+
 
 export default async function HomePage() {
   const [news, cases] = await Promise.all([getNews(), getCases()]);
@@ -32,28 +40,115 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[520px] md:px-10 lg:min-h-[640px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="text-balance text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                RFID の「不可能」を北海道から「可能」に。
-                <br className="hidden md:block" />
-                あらゆるモノが、つながる未来へ。
+              <h1 className="text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
+                現場と事務の困りごとを、
+                <br />
+                RFIDとAIで回る仕組みに。
               </h1>
 
-              <p className="max-w-2xl text-center text-sm leading-relaxed text-slate-100/85 sm:text-base">
-                Acoru inc. は、RFID / NFC と AI エージェントを活用して、現場業務または事務業務を自動化するシステム開発パートナーです。
-                北海道から、誰一人取り残さないインクルーシブ DX を共に実現します。
+              <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
+                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、
+                <br className="hidden sm:block" />
+                <span className="sm:inline-block">人を増やしにくい中でも仕事が回る仕組みを整える会社です。</span>
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <Button href="/service" className="px-6 text-[12px] tracking-[0.22em]" variant="primary">
+              <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+                <Button href="/service" className="w-full px-6 text-[12px] tracking-[0.22em] sm:w-auto" variant="primary">
                   事業内容を見る
                 </Button>
                 <Button
                   href="/contact"
-                  className="px-6 text-[12px] tracking-[0.22em]"
+                  className="w-full px-6 text-[12px] tracking-[0.22em] sm:w-auto"
                   variant="ghost"
                 >
                   お問い合わせ
                 </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">RFIDとAIで、現場と事務が回る仕組みを整える</h2>
+                  <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                    Acoruは、現場で発生する記録や報告、事務所での確認や集計までを、RFIDとAIを活用しながら今の仕事の流れに合わせて整える会社です。決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
+                  </p>
+                </div>
+
+                <Button
+                  href="/service"
+                  className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
+                  variant="ghost"
+                >
+                  事業内容を見る
+                </Button>
+              </div>
+
+              <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
+                <Image
+                  src="/service-main.jpg"
+                  alt="RFID タグのイメージ"
+                  fill
+                  sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
+            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div className="max-w-xl space-y-3">
+                <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">導入事例</p>
+                <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+                  現場起点で設計した、リアルな改善事例。
+                </h2>
+                <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+                  「どんな現場で、どれくらい事務負荷が下がったのか？」をイメージしやすいように、北海道の建設・運送現場での活用例を紹介します。
+                </p>
+                <Link
+                  href="/cases"
+                  className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-slate-700 underline-offset-4 transition-[color,text-decoration-color] motion-fast motion-spring-soft hover:underline"
+                >
+                  導入事例を見る <span aria-hidden>→</span>
+                </Link>
+              </div>
+
+              <div className="grow grid grid-cols-1 gap-4 md:grid-cols-2">
+                {featuredCases.length === 0 ? (
+                  <p className="px-2 py-4 text-sm text-slate-500">
+                    現在表示できる導入事例はありません。「Cases」テーブルにデータを追加してください。
+                  </p>
+                ) : (
+                  featuredCases.map((c, index) => (
+                    <Link
+                      key={c.id}
+                      href={`/cases/${c.slug}`}
+                      className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 shadow-sm shadow-slate-100/80 transition-[background-color,border-color,color,transform,box-shadow] motion-base motion-spring-soft hover:-translate-y-1 hover:border-slate-900/70 hover:bg-white"
+                    >
+                      <p className="text-[11px] font-semibold tracking-[0.22em] text-slate-400">
+                        {`CASE ${String(index + 1).padStart(2, "0")}`}
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold leading-snug text-slate-900 group-hover:text-slate-950">
+                        {c.title}
+                      </h3>
+                      {c.summary && (
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">{c.summary}</p>
+                      )}
+                    </Link>
+                  ))
+                )}
               </div>
             </div>
           </div>
@@ -103,93 +198,6 @@ export default async function HomePage() {
                   </Link>
                 ))
               )}
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="pt-0">
-        <Container>
-          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">RFID と AI で現場の“困った”を無くす</h2>
-                  <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                    Acoru 合同会社は、RFID・NFC などの IoT 技術と AI エージェントを活用し、誰一人取り残さない「インクルーシブ DX」を実現します。
-                    現場の業務フローに寄り添いながら、一連のプロセスを再設計します。
-                  </p>
-                </div>
-
-                <Button
-                  href="/service"
-                  className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
-                  variant="ghost"
-                >
-                  事業内容の詳細を見る
-                </Button>
-              </div>
-
-              <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
-                <Image
-                  src="/service-main.jpg"
-                  alt="RFID タグのイメージ"
-                  fill
-                  sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="pt-0 pb-14">
-        <Container>
-          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-              <div className="max-w-xl space-y-3">
-                <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">導入事例</p>
-                <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                  現場起点で設計した、リアルな DX プロジェクト。
-                </h2>
-                <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                  「どんな現場で、どれくらい事務負荷が下がったのか？」をイメージしやすいように、北海道の建設・運送現場での活用例を、定量・定性の両面から紹介します。
-                </p>
-                <Link
-                  href="/cases"
-                  className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-slate-700 underline-offset-4 transition-[color,text-decoration-color] motion-fast motion-spring-soft hover:underline"
-                >
-                  導入事例をもっと見る <span aria-hidden>→</span>
-                </Link>
-              </div>
-
-              <div className="grow grid grid-cols-1 gap-4 md:grid-cols-2">
-                {featuredCases.length === 0 ? (
-                  <p className="px-2 py-4 text-sm text-slate-500">
-                    現在表示できる導入事例はありません。「Cases」テーブルにデータを追加してください。
-                  </p>
-                ) : (
-                  featuredCases.map((c, index) => (
-                    <Link
-                      key={c.id}
-                      href={`/cases/${c.slug}`}
-                      className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 shadow-sm shadow-slate-100/80 transition-[background-color,border-color,color,transform,box-shadow] motion-base motion-spring-soft hover:-translate-y-1 hover:border-slate-900/70 hover:bg-white"
-                    >
-                      <p className="text-[11px] font-semibold tracking-[0.22em] text-slate-400">
-                        {`CASE ${String(index + 1).padStart(2, "0")}`}
-                      </p>
-                      <h3 className="mt-2 text-base font-semibold leading-snug text-slate-900 group-hover:text-slate-950">
-                        {c.title}
-                      </h3>
-                      {c.summary && (
-                        <p className="mt-2 text-sm leading-relaxed text-slate-600">{c.summary}</p>
-                      )}
-                    </Link>
-                  ))
-                )}
-              </div>
             </div>
           </div>
         </Container>
