@@ -32,17 +32,17 @@ export function Footer() {
         </section>
 
         {/* 下部フッター本体 */}
-        <div className="flex flex-col gap-4 text-xs text-slate-500 sm:text-sm md:flex-row md:items-center md:justify-between">
-          <div className="space-y-1">
+        <div className="flex flex-col gap-6 text-xs text-slate-500 sm:text-sm md:flex-row md:items-end md:justify-between">
+          <div className="max-w-[38rem] space-y-2">
             <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">ACORU INC.</p>
-            <p className="text-[12px] leading-relaxed text-slate-500 sm:text-sm">
-              RFIDとAIで現場と事務をつなぎ、
-              人を増やしにくい中でも仕事が回る仕組みを整えます。
+            <p className="text-sm font-medium text-slate-700 sm:text-base">RFIDとAIで現場と事務をつなぐ</p>
+            <p className="max-w-[34rem] text-[12px] leading-7 text-slate-500 sm:text-sm sm:leading-7">
+              Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。
             </p>
           </div>
 
-          <div className="flex flex-col items-start gap-2 md:items-end">
-            <div className="flex flex-wrap items-center gap-3 text-[12px] sm:text-sm">
+          <div className="flex flex-col items-start gap-3 md:items-end">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] sm:justify-end sm:text-sm">
               <Link href="/about" className="inline-flex items-center rounded-full px-3 py-2 transition hover:bg-slate-100">
                 Acoruについて
               </Link>
@@ -59,7 +59,7 @@ export function Footer() {
                 お問い合わせ
               </Link>
             </div>
-            <div className="flex items-center gap-3 text-[12px] text-slate-500 sm:text-sm">
+            <div className="flex items-center gap-3 pt-1 text-[12px] text-slate-500 sm:text-sm">
               <Link
                 href="https://x.com"
                 target="_blank"
