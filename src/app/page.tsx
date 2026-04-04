@@ -47,7 +47,9 @@ export default async function HomePage() {
               </h1>
 
               <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。
+                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、
+                <br />
+                人を増やしにくい中でも仕事が回る仕組みを整える会社です。
               </p>
 
               <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
