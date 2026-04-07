@@ -5,12 +5,16 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://acoru.jp"),
+  applicationName: "Acoru",
   title: {
     default: "Acoru | RFIDとAIで現場と事務をつなぐ",
     template: "%s | Acoru",
   },
   description:
     "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。",
+  openGraph: {
+    siteName: "Acoru",
+  },
 };
 
 export default function RootLayout({

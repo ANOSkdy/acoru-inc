@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   title: "北海道の現場業務改善・日報自動化支援",
   description:
     "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "北海道の現場業務改善・日報自動化支援 | Acoru",
+    description:
+      "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
+    siteName: "Acoru",
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 
@@ -47,9 +58,9 @@ export default async function HomePage() {
               </h1>
 
               <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、
+                RFIDとAIで現場の動きと事務作業をつなぎ、
                 <br className="hidden sm:block" />
-                <span className="sm:inline-block">人を増やしにくい中でも仕事が回る仕組みを整える会社です。</span>
+                <span className="sm:inline-block">人を増やしにくい中でも仕事が回る仕組みを、Acoruが現場に合わせて整えます。</span>
               </p>
 
               <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
