@@ -33,7 +33,7 @@ export function Header() {
           />
           <div className="flex flex-col leading-tight">
             <span className="text-xs font-semibold tracking-[0.18em] text-slate-900">
-              ACORU INC.
+              Acoru inc.
             </span>
             <span className="text-[11px] text-slate-500">
               RFIDとAIで現場と事務をつなぐ

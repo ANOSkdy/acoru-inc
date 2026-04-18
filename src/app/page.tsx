@@ -9,16 +9,16 @@ import { getCases } from "@/lib/airtableCases";
 import { getNews } from "@/lib/airtableNews";
 
 export const metadata: Metadata = {
-  title: "北海道の現場業務改善・日報自動化支援",
+  title: "Acoru inc. | 北海道の現場業務改善・日報自動化支援",
   description:
     "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
   openGraph: {
     type: "website",
     url: "/",
-    title: "北海道の現場業務改善・日報自動化支援 | Acoru",
+    title: "Acoru inc. | 北海道の現場業務改善・日報自動化支援",
     description:
       "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
-    siteName: "Acoru",
+    siteName: "Acoru inc.",
   },
   alternates: {
     canonical: "/",
