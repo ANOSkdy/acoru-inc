@@ -5,15 +5,20 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://acoru.jp"),
-  applicationName: "Acoru",
+  applicationName: "Acoru inc.",
   title: {
-    default: "Acoru | RFIDとAIで現場と事務をつなぐ",
-    template: "%s | Acoru",
+    default: "Acoru inc. | RFIDとAIで現場と事務をつなぐ",
+    template: "%s | Acoru inc.",
   },
   description:
     "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。",
+  creator: "Acoru inc.",
+  publisher: "Acoru inc.",
   openGraph: {
-    siteName: "Acoru",
+    siteName: "Acoru inc.",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 
@@ -22,9 +27,30 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Acoru inc.",
+      alternateName: ["Acoru", "Acoru合同会社"],
+      url: "https://acoru.jp/",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Acoru inc.",
+      url: "https://acoru.jp/",
+      logo: "https://acoru.jp/icon.png",
+    },
+  ];
+
   return (
     <html lang="ja">
       <body className="bg-white text-slate-900 antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <div className="relative min-h-screen">
           {/* ごく薄い背景アクセント */}
           <div className="pointer-events-none fixed inset-0 -z-10">

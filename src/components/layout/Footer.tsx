@@ -34,7 +34,7 @@ export function Footer() {
         {/* 下部フッター本体 */}
         <div className="flex flex-col gap-4 text-xs text-slate-500 sm:text-sm md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
-            <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">ACORU INC.</p>
+            <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">Acoru inc.</p>
             <p className="text-[12px] leading-relaxed text-slate-500 sm:text-sm">
               RFIDとAIで現場と事務をつなぎ、
               人を増やしにくい中でも仕事が回る仕組みを整えます。
