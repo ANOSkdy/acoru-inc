@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://acoru.jp"),
   applicationName: "Acoru inc.",
   title: {
-    default: "Acoru inc. | RFIDとAIで現場と事務をつなぐ",
+    default: "Acoru inc. | 北海道の中小企業向け 業務データ基盤化支援",
     template: "%s | Acoru inc.",
   },
   description:
-    "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。",
+    "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読める業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
   creator: "Acoru inc.",
   publisher: "Acoru inc.",
   openGraph: {
@@ -42,6 +42,19 @@ export default function RootLayout({
       name: "Acoru inc.",
       url: "https://acoru.jp/",
       logo: "https://acoru.jp/icon.png",
+      description:
+        "紙・Excel・日報・現場記録を整理し、AIが読める業務データへ変える会社です。",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "Acoru inc.",
+      url: "https://acoru.jp/",
+      image: "https://acoru.jp/icon.png",
+      areaServed: "北海道",
+      serviceType: "業務データ基盤化支援",
+      description:
+        "北海道の中小企業向けに、紙・Excel・日報・現場記録をAIが読める業務データへ整え、現場と経営をつなぐ業務基盤づくりを支援します。",
     },
   ];
 

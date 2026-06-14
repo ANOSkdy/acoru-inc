@@ -13,8 +13,48 @@ export function ServiceDetail({ slug }: Props) {
     notFound();
   }
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    serviceType: service.category,
+    provider: {
+      "@type": "Organization",
+      name: "Acoru inc.",
+      url: "https://acoru.jp/",
+    },
+    areaServed: "北海道",
+    description: service.overview,
+    url: `https://acoru.jp/service/${service.slug}`,
+  };
+
+  const faqJsonLd = service.faq
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-10 md:px-6 md:pt-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <section className="space-y-6 rounded-3xl border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-100/70 md:px-8 md:py-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
           <div>
@@ -34,7 +74,19 @@ export function ServiceDetail({ slug }: Props) {
         <div className="space-y-3 text-[14px] leading-7 text-slate-700 md:text-[15px]">
           <p>{service.overview}</p>
           <p>{service.fitFor}</p>
+          {service.definition && <p>{service.definition}</p>}
         </div>
+
+        {service.targetData && (
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">整理できる業務データ</h2>
+            <ul className="mt-3 grid gap-2 text-[13px] leading-relaxed text-slate-700 md:grid-cols-2 md:text-[14px]">
+              {service.targetData.map((item) => (
+                <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="grid gap-6 md:grid-cols-2">
           <div>
@@ -73,6 +125,41 @@ export function ServiceDetail({ slug }: Props) {
             ))}
           </ul>
         </div>
+
+        {(service.deliverables || service.outcomes) && (
+          <div className="grid gap-6 md:grid-cols-2">
+            {service.deliverables && (
+              <div>
+                <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">主な成果物</h2>
+                <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+                  {service.deliverables.map((item) => <li key={item}>・{item}</li>)}
+                </ul>
+              </div>
+            )}
+            {service.outcomes && (
+              <div>
+                <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">期待できる状態</h2>
+                <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+                  {service.outcomes.map((item) => <li key={item}>・{item}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        {service.faq && (
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">よくある質問</h2>
+            <div className="mt-3 space-y-3">
+              {service.faq.map((item) => (
+                <div key={item.question} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                  <h3 className="text-sm font-semibold text-slate-900">Q. {item.question}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">A. {item.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );

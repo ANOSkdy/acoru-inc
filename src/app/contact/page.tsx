@@ -7,9 +7,9 @@ import { ContactForm } from "./ContactForm";
 export const runtime = "nodejs";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ | 現場と事務の困りごとのご相談",
+  title: "お問い合わせ | 業務データ整理のご相談",
   description:
-    "人を増やしにくい、紙やExcel管理を見直したい、導入した仕組みが定着しない。そんな現場と事務の課題をAcoruが整理し、改善の進め方をご提案します。",
+    "紙・Excel・日報・現場記録を整理したい、AI活用の前に業務データを整えたい。そんな北海道の中小企業のご相談をAcoruが整理し、進め方をご提案します。",
 };
 
 export default function ContactPage() {
@@ -20,11 +20,11 @@ export default function ContactPage() {
           <div className="space-y-3 max-w-3xl">
             <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">お問い合わせ</p>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              現場と事務の困りごとについて、
+              業務データの整理について、
               ご相談ください。
             </h1>
             <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-              人を増やしたくても増やしにくい。前に入れた仕組みが現場に合わなかった。紙やExcelでの管理を見直したい。そんなお悩みがありましたら、まずは現状をお聞かせください。
+              紙・Excel・日報・現場記録が散らばっている。AI活用の前に何を整えるべきか分からない。前に入れた仕組みが現場に合わなかった。そんなお悩みがありましたら、まずは現状をお聞かせください。
             </p>
           </div>
         </Container>
