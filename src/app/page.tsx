@@ -8,6 +8,17 @@ import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/airtableCases";
 import { getNews } from "@/lib/airtableNews";
 
+const dormantDataExamples = [
+  "紙の日報",
+  "Excelの案件表",
+  "手書きの作業記録",
+  "写真・LINE・チャットの報告",
+  "現場ごとの口頭連絡",
+  "属人化したマニュアル",
+  "事務員だけが知っている確認手順",
+  "社長の頭の中にある判断基準",
+];
+
 export const metadata: Metadata = {
   title: "Acoru inc. | 北海道の業務データ基盤化支援",
   description:
@@ -58,9 +69,13 @@ export default async function HomePage() {
               </h1>
 
               <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                <span className="block">北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、</span>
-                <span className="block">AIが読み取り、経営判断に使える業務データへ変えます。</span>
-                <span className="block">システム導入だけでなく、現場で使い続けられる運用まで伴走します。</span>
+                <span className="block sm:hidden">北海道の中小企業に残る</span>
+                <span className="block sm:hidden">紙・Excel・日報・現場記録を整理し、</span>
+                <span className="block sm:hidden">AIが読める経営データへ変えます。</span>
+                <span className="block sm:hidden">運用定着まで伴走します。</span>
+                <span className="hidden sm:block">北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、</span>
+                <span className="hidden sm:block">AIが読み取り、経営判断に使える業務データへ変えます。</span>
+                <span className="hidden sm:block">システム導入だけでなく、現場で使い続けられる運用まで伴走します。</span>
               </p>
 
               <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
@@ -127,17 +142,25 @@ export default async function HomePage() {
                 業務データ基盤化は、社内に散らばる記録や判断基準を棚卸し、AIが読み取りやすく、経営判断に使える形へ整える取り組みです。
               </p>
             </div>
-            <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                "紙の日報",
-                "Excelの案件表",
-                "手書きの作業記録",
-                "写真・LINE・チャットの報告",
-                "現場ごとの口頭連絡",
-                "属人化したマニュアル",
-                "事務員だけが知っている確認手順",
-                "社長の頭の中にある判断基準",
-              ].map((item) => (
+            <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-slate-700 sm:hidden">
+              {dormantDataExamples.slice(0, 4).map((item) => (
+                <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
+                  {item}
+                </div>
+              ))}
+              <details className="group rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800">
+                  ほかの例を見る <span className="text-slate-500 group-open:hidden">＋</span><span className="hidden text-slate-500 group-open:inline">−</span>
+                </summary>
+                <div className="mt-3 space-y-2 border-t border-slate-200 pt-3">
+                  {dormantDataExamples.slice(4).map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </details>
+            </div>
+            <div className="mt-6 hidden gap-3 text-sm text-slate-700 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+              {dormantDataExamples.map((item) => (
                 <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
                   {item}
                 </div>

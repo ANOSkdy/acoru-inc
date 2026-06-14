@@ -71,7 +71,18 @@ export function ServiceDetail({ slug }: Props) {
           </Link>
         </div>
 
-        <div className="space-y-3 text-[14px] leading-7 text-slate-700 md:text-[15px]">
+        <details className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-[14px] leading-7 text-slate-700 sm:hidden">
+          <summary className="cursor-pointer list-none font-semibold text-slate-900">
+            この支援の概要を読む <span className="text-slate-500 group-open:hidden">＋</span><span className="hidden text-slate-500 group-open:inline">−</span>
+          </summary>
+          <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
+            <p>{service.overview}</p>
+            <p>{service.fitFor}</p>
+            {service.definition && <p>{service.definition}</p>}
+          </div>
+        </details>
+
+        <div className="hidden space-y-3 text-[14px] leading-7 text-slate-700 sm:block md:text-[15px]">
           <p>{service.overview}</p>
           <p>{service.fitFor}</p>
           {service.definition && <p>{service.definition}</p>}
@@ -152,10 +163,12 @@ export function ServiceDetail({ slug }: Props) {
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">よくある質問</h2>
             <div className="mt-3 space-y-3">
               {service.faq.map((item) => (
-                <div key={item.question} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-                  <h3 className="text-sm font-semibold text-slate-900">Q. {item.question}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-700">A. {item.answer}</p>
-                </div>
+                <details key={item.question} className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4" open={false}>
+                  <summary className="cursor-pointer list-none text-sm font-semibold leading-6 text-slate-900">
+                    Q. {item.question} <span className="text-slate-500 group-open:hidden">＋</span><span className="hidden text-slate-500 group-open:inline">−</span>
+                  </summary>
+                  <p className="mt-2 border-t border-slate-200 pt-3 text-sm leading-7 text-slate-700">A. {item.answer}</p>
+                </details>
               ))}
             </div>
           </div>
