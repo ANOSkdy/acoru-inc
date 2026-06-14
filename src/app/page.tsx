@@ -62,10 +62,15 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[520px] md:px-10 lg:min-h-[640px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                紙・Excel・日報・現場記録を整理し、
-                <br />
-                現場と経営をつなぐAI時代の業務基盤をつくります。
+              <h1 className="max-w-[18rem] text-center text-[28px] font-semibold leading-[1.35] tracking-tight text-white sm:max-w-none sm:text-3xl sm:leading-tight lg:text-4xl">
+                <span className="block sm:hidden">紙・Excel・日報</span>
+                <span className="block sm:hidden">現場記録を整理し、</span>
+                <span className="block sm:hidden">現場と経営をつなぐ</span>
+                <span className="block sm:hidden">AI時代の業務基盤を</span>
+                <span className="block sm:hidden">つくります。</span>
+                <span className="hidden sm:inline">紙・Excel・日報・現場記録を整理し、</span>
+                <br className="hidden sm:block" />
+                <span className="hidden sm:inline">現場と経営をつなぐAI時代の業務基盤をつくります。</span>
               </h1>
 
               <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
