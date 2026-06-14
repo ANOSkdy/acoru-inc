@@ -54,9 +54,9 @@ async function getCompany(): Promise<CompanyFields | null> {
 export const runtime = "nodejs";
 
 export const metadata: Metadata = {
-  title: "Acoruについて | RFIDとAIで現場と事務をつなぐ会社",
+  title: "Acoruについて | 北海道の業務データ基盤化支援会社",
   description:
-    "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。",
+    "Acoruは、北海道の中小企業に眠る業務データを、AIが使える経営資産に変える会社です。",
 };
 
 export default async function AboutPage() {
@@ -84,15 +84,15 @@ export default async function AboutPage() {
         <Container>
           <div className="max-w-4xl space-y-6">
             <h1 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
-              RFIDとAIで、現場と事務をつなぐ。
+              北海道の中小企業に眠る業務データを、AIが使える経営資産に変える。
             </h1>
 
             <div className="space-y-4 text-sm leading-relaxed text-slate-700 sm:text-base">
               <p>
-                Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。前に導入した仕組みが現場に合わなかった会社さまに対しても、今の仕事の流れに合わせて見直しから伴走します。
+                Acoruは、北海道の中小企業に眠る業務データを、AIが使える経営資産に変える会社です。前に導入した仕組みが現場に合わなかった会社さまに対しても、今の仕事の流れに合わせて見直しから伴走します。
               </p>
               <p>
-                技術先行で仕組みを押しつけるのではなく、現場で実際に使われることを重視して、小さく始めて定着させます。RFID・NFCによる記録自動化やAI活用を、経営・事務・現場が同じ情報を見て判断できる形へ設計します。
+                技術先行で仕組みを押しつけるのではなく、現場で実際に使われることを重視して、小さく始めて定着させます。NFCによる記録自動化やAI活用も、目的は現場・事務・経営が同じ業務データを見て判断できる基盤をつくることです。
               </p>
             </div>
 
@@ -113,18 +113,18 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-100/70 md:px-7 md:py-6">
               <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">MISSION</h2>
-              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">「現場から始まるDX」で、北海道の中小企業を強くする。</p>
+              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">「現場から始まるDX」で、北海道の中小企業の経営を見える化する。</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-                現場の負担を増やすDXではなく、現場の「困った」を解消するところから始めるDXを設計します。まずは1現場・1プロジェクトから、小さく試しながら確実に定着させることを大切にしています。
+                現場の負担を増やすDXではなく、現場の「困った」を解消しながら、記録・確認・集計が経営判断につながるデータ基盤を設計します。まずは1現場・1プロジェクトから、小さく試しながら確実に定着させることを大切にしています。
               </p>
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-100/70 md:px-7 md:py-6">
               <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">VISION</h2>
-              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">RFIDとAIが「当たり前の道具」になる未来をつくる。</p>
+              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">業務データとAIが「当たり前の道具」になる未来をつくる。</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-                特別な企業だけが使えるテクノロジーではなく、現場で働くすべての人にとって自然に使える道具として、RFIDやAIを届けていきます。
-                そのために、UI/UXと業務フローの両方から設計します。
+                特別な企業だけが使えるテクノロジーではなく、現場で働くすべての人にとって自然に使える道具として、業務データ基盤とAI活用を届けていきます。
+                そのために、UI/UX、業務フロー、担当者への操作レクチャー・運用定着まで含めて設計します。
               </p>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default async function AboutPage() {
             <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">インクルーシブDXとは</h2>
             <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">ITスキルや役職にかかわらず、全員が迷わず使えるDX。</p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              「一部の人だけが便利になるDX」ではなく、現場・事務・経営の全員にとって価値のある仕組みをつくること。
+              「一部の人だけが便利になるDX」ではなく、現場・事務・経営の全員にとって価値のある業務データ基盤をつくること。
               それがAcoruの考えるインクルーシブDXです。画面や導線の分かりやすさ、導入〜定着までの伴走も含めて設計します。
             </p>
           </div>

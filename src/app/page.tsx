@@ -8,16 +8,27 @@ import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/airtableCases";
 import { getNews } from "@/lib/airtableNews";
 
+const dormantDataExamples = [
+  "紙の日報",
+  "Excelの案件表",
+  "手書きの作業記録",
+  "写真・LINE・チャットの報告",
+  "現場ごとの口頭連絡",
+  "属人化したマニュアル",
+  "事務員だけが知っている確認手順",
+  "社長の頭の中にある判断基準",
+];
+
 export const metadata: Metadata = {
-  title: "Acoru inc. | 北海道の現場業務改善・日報自動化支援",
+  title: "Acoru inc. | 北海道の業務データ基盤化支援",
   description:
-    "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
+    "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
   openGraph: {
     type: "website",
     url: "/",
-    title: "Acoru inc. | 北海道の現場業務改善・日報自動化支援",
+    title: "Acoru inc. | 北海道の業務データ基盤化支援",
     description:
-      "Acoruは、RFIDとAIで現場の動きと事務作業をつなぎ、人を増やしにくい中でも仕事が回る仕組みを整える会社です。紙やExcel、口頭連絡が残る現場にも対応します。",
+      "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
     siteName: "Acoru inc.",
   },
   alternates: {
@@ -51,16 +62,25 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[520px] md:px-10 lg:min-h-[640px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="text-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-                現場と事務の困りごとを、
-                <br />
-                RFIDとAIで回る仕組みに。
+              <h1 className="max-w-[18rem] text-center text-[28px] font-semibold leading-[1.35] tracking-tight text-white sm:max-w-none sm:text-3xl sm:leading-tight lg:text-4xl">
+                <span className="block sm:hidden">紙・Excel・日報</span>
+                <span className="block sm:hidden">現場記録を整理し、</span>
+                <span className="block sm:hidden">現場と経営をつなぐ</span>
+                <span className="block sm:hidden">AI時代の業務基盤を</span>
+                <span className="block sm:hidden">つくります。</span>
+                <span className="hidden sm:inline">紙・Excel・日報・現場記録を整理し、</span>
+                <br className="hidden sm:block" />
+                <span className="hidden sm:inline">現場と経営をつなぐAI時代の業務基盤をつくります。</span>
               </h1>
 
               <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                RFIDとAIで現場の動きと事務作業をつなぎ、
-                <br className="hidden sm:block" />
-                <span className="sm:inline-block">人を増やしにくい中でも仕事が回る仕組みを、Acoruが現場に合わせて整えます。</span>
+                <span className="block sm:hidden">北海道の中小企業に残る</span>
+                <span className="block sm:hidden">紙・Excel・日報・現場記録を整理し、</span>
+                <span className="block sm:hidden">AIが読める経営データへ変えます。</span>
+                <span className="block sm:hidden">運用定着まで伴走します。</span>
+                <span className="hidden sm:block">北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、</span>
+                <span className="hidden sm:block">AIが読み取り、経営判断に使える業務データへ変えます。</span>
+                <span className="hidden sm:block">システム導入だけでなく、現場で使い続けられる運用まで伴走します。</span>
               </p>
 
               <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
@@ -72,7 +92,7 @@ export default async function HomePage() {
                   className="w-full px-6 text-[12px] tracking-[0.22em] sm:w-auto"
                   variant="ghost"
                 >
-                  お問い合わせ
+                  業務データ診断を相談する
                 </Button>
               </div>
             </div>
@@ -87,9 +107,9 @@ export default async function HomePage() {
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">RFIDとAIで、現場と事務が回る仕組みを整える</h2>
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">業務データで、現場と経営が同じ情報を見られる基盤を整える</h2>
                   <p className="text-sm leading-7 text-slate-600 sm:text-base">
-                    Acoruは、現場で発生する記録や報告、事務所での確認や集計までを、RFIDとAIを活用しながら今の仕事の流れに合わせて整える会社です。決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
+                    Acoruは、現場で発生する記録や報告、事務所での確認や集計、経営側の判断基準までを整理し、AIが読める業務データへ変える会社です。決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
                   </p>
                 </div>
 
@@ -105,12 +125,51 @@ export default async function HomePage() {
               <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
                 <Image
                   src="/service-main.jpg"
-                  alt="RFID タグのイメージ"
+                  alt="業務データ基盤づくりのイメージ"
                   fill
                   sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
                   className="object-cover"
                 />
               </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+
+      <Section className="pt-0">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-slate-50 p-6 shadow-sm shadow-slate-100/70 sm:p-8">
+            <div className="max-w-3xl space-y-3">
+              <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">業務データの棚卸し</p>
+              <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">眠っている業務データはありませんか？</h2>
+              <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                業務データ基盤化は、社内に散らばる記録や判断基準を棚卸し、AIが読み取りやすく、経営判断に使える形へ整える取り組みです。
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-slate-700 sm:hidden">
+              {dormantDataExamples.slice(0, 4).map((item) => (
+                <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
+                  {item}
+                </div>
+              ))}
+              <details className="group rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800">
+                  ほかの例を見る <span className="text-slate-500 group-open:hidden">＋</span><span className="hidden text-slate-500 group-open:inline">−</span>
+                </summary>
+                <div className="mt-3 space-y-2 border-t border-slate-200 pt-3">
+                  {dormantDataExamples.slice(4).map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </details>
+            </div>
+            <div className="mt-6 hidden gap-3 text-sm text-slate-700 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+              {dormantDataExamples.map((item) => (
+                <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </Container>
@@ -126,7 +185,7 @@ export default async function HomePage() {
                   現場起点で設計した、リアルな改善事例。
                 </h2>
                 <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                  「どんな現場で、どれくらい事務負荷が下がったのか？」をイメージしやすいように、北海道の建設・運送現場での活用例を紹介します。
+                  「どんな現場で、どれくらい事務負荷が下がったのか？」をイメージしやすいように、北海道の中小企業での活用例を紹介します。
                 </p>
                 <Link
                   href="/cases"

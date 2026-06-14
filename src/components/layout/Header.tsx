@@ -36,7 +36,7 @@ export function Header() {
               Acoru inc.
             </span>
             <span className="text-[11px] text-slate-500">
-              RFIDとAIで現場と事務をつなぐ
+              業務データで現場と経営をつなぐ
             </span>
           </div>
         </Link>

@@ -151,9 +151,10 @@ export function ContactForm() {
           defaultValue=""
         >
           <option value="">選択してください</option>
-          <option value="ai-nippo">AI日報・勤怠自動化について</option>
-          <option value="ai-agent">AIエージェント・問い合わせ自動化について</option>
-          <option value="dx-design">現場起点のDX設計支援について</option>
+          <option value="data-foundation">業務データ整理・AI活用基盤づくりについて</option>
+          <option value="ai-nippo">NFC打刻・日報自動化について</option>
+          <option value="ai-agent">社内マニュアル・問い合わせAI化について</option>
+          <option value="dx-design">外部情シス・運用定着支援について</option>
           <option value="other">その他</option>
         </select>
       </div>
