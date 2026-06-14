@@ -58,9 +58,9 @@ export default async function HomePage() {
               </h1>
 
               <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、AIが読み取り、経営判断に使える業務データへ変えます。
-                <br className="hidden sm:block" />
-                <span className="sm:inline-block">システム導入だけでなく、現場で使い続けられる運用まで伴走します。</span>
+                <span className="block">北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、</span>
+                <span className="block">AIが読み取り、経営判断に使える業務データへ変えます。</span>
+                <span className="block">システム導入だけでなく、現場で使い続けられる運用まで伴走します。</span>
               </p>
 
               <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
