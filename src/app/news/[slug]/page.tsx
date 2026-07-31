@@ -6,6 +6,7 @@ type Props = {
 };
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export default async function NewsDetailPage({ params }: Props) {
   const { slug } = await params;

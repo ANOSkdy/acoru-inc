@@ -5,11 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "v5.airtableusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "dl.airtable.com",
+        hostname: "oxgzoulsmkdcoyjk.public.blob.vercel-storage.com",
       },
     ],
   },

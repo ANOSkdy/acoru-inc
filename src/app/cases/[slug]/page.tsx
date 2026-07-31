@@ -7,6 +7,7 @@ type Props = {
 };
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export default async function CaseDetailPage({ params }: Props) {
   // Promise から slug を取り出してから使う

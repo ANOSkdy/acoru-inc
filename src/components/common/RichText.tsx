@@ -11,7 +11,7 @@ function combineClassName(base: string, extra?: string) {
 }
 
 /**
- * Airtableのリッチテキスト（Markdown）を安全に描画するサーバーコンポーネント。
+ * Markdownコンテンツを安全に描画するサーバーコンポーネント。
  */
 export function RichText({ source, className }: RichTextProps) {
   if (!source) return null;
