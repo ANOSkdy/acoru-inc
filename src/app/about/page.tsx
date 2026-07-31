@@ -4,54 +4,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-
-type CompanyFields = {
-  name?: string;
-  tagline?: string;
-  mission?: string;
-  vision?: string;
-  ceo?: string;
-  address?: string;
-  phone?: string;
-  email?: string;
-  website?: string;
-  established?: string;
-  map_url?: string;
-  sns_x?: string;
-};
-
-const AIRTABLE_API_TOKEN = process.env.AIRTABLE_API_TOKEN;
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_TABLE_COMPANY = process.env.AIRTABLE_TABLE_COMPANY ?? "Company";
-
-async function getCompany(): Promise<CompanyFields | null> {
-  if (!AIRTABLE_API_TOKEN || !AIRTABLE_BASE_ID) return null;
-
-  const url = new URL(
-    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_COMPANY)}`
-  );
-  url.searchParams.set("maxRecords", "1");
-
-  const res = await fetch(url.toString(), {
-    headers: {
-      Authorization: `Bearer ${AIRTABLE_API_TOKEN}`,
-    },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return null;
-  }
-
-  const data = (await res.json()) as {
-    records?: { fields?: CompanyFields }[];
-  };
-
-  const record = data.records?.[0];
-  return record?.fields ?? null;
-}
+import { getCompanyProfile } from "@/lib/content";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Acoruについて | 北海道の業務データ基盤化支援会社",
@@ -60,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const company = await getCompany();
+  const company = await getCompanyProfile();
 
   return (
     <>

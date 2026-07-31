@@ -3,9 +3,10 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { getNews } from "@/lib/airtableNews";
+import { getNews } from "@/lib/content";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export default async function NewsPage() {
   const news = await getNews();
@@ -27,7 +28,7 @@ export default async function NewsPage() {
           <div className="space-y-3 rounded-3xl border border-slate-200 bg-white p-3 shadow-sm shadow-slate-100/70">
             {news.length === 0 && (
               <p className="px-3 py-4 text-sm text-slate-500">
-                現在表示できるお知らせはありません。Airtableの「News」テーブルにデータを追加してください。
+                現在表示できるお知らせはありません。
               </p>
             )}
 

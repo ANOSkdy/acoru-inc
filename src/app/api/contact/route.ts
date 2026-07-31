@@ -1,100 +1,102 @@
-// src/app/api/contact/route.ts
 import { NextResponse } from "next/server";
 
-const API_TOKEN = process.env.AIRTABLE_API_TOKEN;
-const BASE_ID = process.env.AIRTABLE_BASE_ID;
-const TABLE_CONTACTS = process.env.AIRTABLE_TABLE_CONTACTS ?? "Contacts";
+import { submitContact } from "@/lib/content";
 
-export async function POST(req: Request) {
-  if (!API_TOKEN || !BASE_ID) {
-    console.error(
-      "[api/contact] AIRTABLE_API_TOKEN または AIRTABLE_BASE_ID が設定されていません。"
-    );
-    return NextResponse.json(
-      { error: "Server configuration error." },
-      { status: 500 }
-    );
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+const MAX_REQUEST_BYTES = 64 * 1024;
+const PRIVACY_POLICY_VERSION = "2026-07-31";
+
+function textField(
+  body: Record<string, unknown>,
+  name: string,
+  maxLength: number,
+): string | null {
+  const value = body[name];
+  if (value === undefined || value === null) {
+    return "";
+  }
+  if (typeof value !== "string") {
+    return null;
   }
 
-  const body = await req.json().catch(() => null);
+  const normalized = value.trim();
+  return normalized.length <= maxLength ? normalized : null;
+}
 
-  if (!body) {
+export async function POST(request: Request) {
+  const contentLength = Number(request.headers.get("content-length") ?? "0");
+  if (contentLength > MAX_REQUEST_BYTES) {
+    return NextResponse.json({ error: "Request is too large." }, { status: 413 });
+  }
+
+  const rawBody = await request.text();
+  if (new TextEncoder().encode(rawBody).byteLength > MAX_REQUEST_BYTES) {
+    return NextResponse.json({ error: "Request is too large." }, { status: 413 });
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(rawBody);
+  } catch {
+    parsed = null;
+  }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
     return NextResponse.json({ error: "Invalid body." }, { status: 400 });
   }
 
-  const {
-    companyName,
-    personName,
-    email,
-    phone,
-    message,
-    privacyAgreed,
-  } = body as {
-    companyName?: string;
-    personName?: string;
-    email?: string;
-    phone?: string;
-    message?: string;
-    privacyAgreed?: boolean;
-  };
+  const body = parsed as Record<string, unknown>;
+  const companyName = textField(body, "companyName", 200);
+  const personName = textField(body, "personName", 200);
+  const email = textField(body, "email", 320);
+  const phone = textField(body, "phone", 50);
+  const message = textField(body, "message", 10_000);
+  const serviceInterest = textField(body, "category", 200);
 
-  // 必須チェック
-  if (!personName || (!email && !phone) || !message || !privacyAgreed) {
+  if (
+    companyName === null ||
+    personName === null ||
+    email === null ||
+    phone === null ||
+    message === null ||
+    serviceInterest === null ||
+    body.privacyAgreed !== true ||
+    !personName ||
+    (!email && !phone) ||
+    !message
+  ) {
     return NextResponse.json(
-      { error: "Missing required fields." },
-      { status: 400 }
+      { error: "Missing or invalid fields." },
+      { status: 400 },
     );
   }
 
-  const url = new URL(
-    `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(
-      TABLE_CONTACTS
-    )}`
-  );
-
-  // Airtable 側のフィールド名に合わせてマッピング
-  const fields: Record<string, string> = {
-    company_name: companyName || "",
-    person_name: personName || "",
-    email: email || "",
-    phone: phone || "",
-    // category: category || "", // ← Contacts に category 列を作るまでは送らない
-    message: message || "",
-    source: "Webフォーム",
-    status: "New",
-    // privacy_agreed: !!privacyAgreed, // ← Airtable に privacy_agreed 列を作るまでは送らない
-  };
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return NextResponse.json(
+      { error: "Invalid email address." },
+      { status: 400 },
+    );
+  }
 
   try {
-    const res = await fetch(url.toString(), {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fields }),
+    await submitContact({
+      companyName,
+      personName,
+      email,
+      phone,
+      message,
+      serviceInterest,
+      privacyAccepted: true,
+      privacyPolicyVersion: PRIVACY_POLICY_VERSION,
     });
 
-    if (!res.ok) {
-      const text = await res.text();
-      console.error(
-        "[api/contact] Airtable error:",
-        res.status,
-        res.statusText,
-        text
-      );
-      return NextResponse.json(
-        { error: "Failed to save to Airtable." },
-        { status: 500 }
-      );
-    }
-
     return NextResponse.json({ ok: true }, { status: 200 });
-  } catch (err) {
-    console.error("[api/contact] unexpected error:", err);
+  } catch {
+    console.error("[api/contact] Contact submission failed.");
     return NextResponse.json(
-      { error: "Unexpected server error." },
-      { status: 500 }
+      { error: "Unable to submit the contact request." },
+      { status: 500 },
     );
   }
 }

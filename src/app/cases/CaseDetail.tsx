@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RichText } from "@/components/common/RichText";
-import { getCaseBySlug } from "@/lib/airtableCases";
+import { getCaseBySlug } from "@/lib/content";
 
 type Props = {
   slug: string;
@@ -93,7 +93,7 @@ export async function CaseDetail({ slug }: Props) {
               />
             ) : (
               <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-                （Airtableの Cases テーブルの「challenge」フィールドに課題を入力してください）
+                課題の詳細は現在準備中です。
               </p>
             )}
           </section>
@@ -109,7 +109,7 @@ export async function CaseDetail({ slug }: Props) {
               />
             ) : (
               <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-                （Airtableの Cases テーブルの「solution」フィールドに解決策を入力してください）
+                解決策の詳細は現在準備中です。
               </p>
             )}
           </section>
@@ -127,7 +127,7 @@ export async function CaseDetail({ slug }: Props) {
             />
           ) : (
             <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-              （Airtableの Cases テーブルの「result」フィールドに導入効果を入力してください）
+              導入効果の詳細は現在準備中です。
             </p>
           )}
         </section>

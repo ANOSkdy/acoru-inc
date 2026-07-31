@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RichText } from "@/components/common/RichText";
-import { getNewsBySlug } from "@/lib/airtableNews";
+import { getNewsBySlug } from "@/lib/content";
 
 type Props = {
   slug: string;

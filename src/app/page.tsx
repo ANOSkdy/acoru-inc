@@ -5,8 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { getCases } from "@/lib/airtableCases";
-import { getNews } from "@/lib/airtableNews";
+import { getCases, getNews } from "@/lib/content";
 
 const dormantDataExamples = [
   "紙の日報",
@@ -36,6 +35,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [news, cases] = await Promise.all([getNews(), getCases()]);
