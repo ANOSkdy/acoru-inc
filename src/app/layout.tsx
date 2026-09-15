@@ -41,7 +41,7 @@ export default function RootLayout({
       "@type": "Organization",
       name: "Acoru inc.",
       url: "https://acoru.jp/",
-      logo: "https://acoru.jp/icon.png",
+      logo: "https://acoru.jp/acoru-logo.png",
       description:
         "紙・Excel・日報・現場記録を整理し、AIが読める業務データへ変える会社です。",
     },
@@ -50,7 +50,7 @@ export default function RootLayout({
       "@type": "ProfessionalService",
       name: "Acoru inc.",
       url: "https://acoru.jp/",
-      image: "https://acoru.jp/icon.png",
+      image: "https://acoru.jp/acoru-logo.png",
       areaServed: "北海道",
       serviceType: "業務データ基盤化支援",
       description:

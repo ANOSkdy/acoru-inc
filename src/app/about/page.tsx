@@ -24,7 +24,7 @@ export default async function AboutPage() {
         <Container>
           <div className="relative">
             <Image
-              src="/about-hero.png"
+              src="/acoru-wide-logo.png"
               alt="Acoruのイメージビジュアル"
               width={1584}
               height={396}
