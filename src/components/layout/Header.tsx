@@ -24,7 +24,7 @@ export function Header() {
       <Container className="flex items-center justify-between py-3">
         <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
           <Image
-            src="/acoru-logo.png"
+            src="/acoru-header-logo.png"
             alt="Acoruロゴ"
             width={40}
             height={40}
