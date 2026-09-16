@@ -10,8 +10,14 @@ import { services } from "./_data";
 export const metadata: Metadata = {
   title: "サービス一覧 | 業務データで現場と経営をつなぐ",
   description:
-    "紙・Excel・日報・現場記録を、AIが読める業務データへ整える支援を提供します。",
+    "紙・Excel・日報・現場記録をAIが読める業務データへ整え、AI・業務システムを実装し、デジタル顧問として継続改善まで支援します。",
 };
+
+const serviceJourney = [
+  { label: "整理する", title: "業務データ基盤" },
+  { label: "実装する", title: "社内AI・NFC・業務システム" },
+  { label: "使い続ける", title: "デジタル顧問" },
+];
 
 export default function ServicePage() {
   const sorted = services;
@@ -28,7 +34,7 @@ export default function ServicePage() {
                 AIが読める業務データへ整える支援
               </h1>
               <p className="max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
-                紙・Excel・日報・現場記録を、AIが読める業務データへ整える支援を提供します。まずは1現場・1プロジェクトから、無理なく始められます。
+                紙・Excel・日報・現場記録を、AIが読める業務データへ整え、必要なAI・システムを実装し、現場と経営で使い続けられる状態まで支援します。まずは1現場・1プロジェクトから、無理なく始められます。
               </p>
             </div>
 
@@ -42,6 +48,32 @@ export default function ServicePage() {
                 className="object-cover"
               />
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-2">
+        <Container>
+          <div className="rounded-[32px] border border-slate-200 bg-slate-50 p-5 sm:p-6">
+            <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">支援の流れ</p>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {serviceJourney.map((item, index) => (
+                <div key={item.label} className="relative rounded-2xl border border-slate-200 bg-white px-5 py-4">
+                  <p className="text-[11px] font-semibold tracking-[0.18em] text-slate-500">
+                    {String(index + 1).padStart(2, "0")} / {item.label}
+                  </p>
+                  <p className="mt-2 text-base font-semibold text-slate-900">{item.title}</p>
+                  {index < serviceJourney.length - 1 && (
+                    <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-slate-400 md:-right-4 md:bottom-auto md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0">
+                      ↓
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              データを整え、AIや仕組みを実装し、業務の変化に合わせて改善を続ける。この一連の流れをAcoruが支援します。
+            </p>
           </div>
         </Container>
       </Section>

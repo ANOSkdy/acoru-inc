@@ -20,7 +20,8 @@ export function ServiceDetail({ slug }: Props) {
     serviceType: service.category,
     provider: {
       "@type": "Organization",
-      name: "Acoru inc.",
+      name: "Acoru合同会社",
+      alternateName: "Acoru LLC",
       url: "https://acoru.jp/",
     },
     areaServed: "北海道",
@@ -126,7 +127,7 @@ export function ServiceDetail({ slug }: Props) {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">技術面の実装ポイント</h2>
+          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">技術・実行面の支援内容</h2>
           <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
             {service.technicalProof.map((item) => (
               <li key={item} className="flex gap-2">
@@ -155,6 +156,75 @@ export function ServiceDetail({ slug }: Props) {
                 </ul>
               </div>
             )}
+          </div>
+        )}
+
+        {(service.included || service.excluded) && (
+          <div className="grid gap-6 md:grid-cols-2">
+            {service.included && (
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+                <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">顧問契約に含むもの</h2>
+                <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+                  {service.included.map((item) => <li key={item}>・{item}</li>)}
+                </ul>
+              </div>
+            )}
+            {service.excluded && (
+              <div className="rounded-2xl border border-slate-200 bg-white px-5 py-5">
+                <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">原則として別料金のもの</h2>
+                <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+                  {service.excluded.map((item) => <li key={item}>・{item}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        {service.pricing && (
+          <div>
+            <div className="space-y-2">
+              <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">料金の目安</h2>
+              <p className="text-[13px] leading-relaxed text-slate-600 md:text-[14px]">
+                支援範囲や対象業務により変動します。初回ヒアリング後に必要な範囲を整理してお見積りします。
+              </p>
+            </div>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              {service.pricing.map((item) => (
+                <div key={item.name} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="text-sm font-semibold text-slate-900">{item.name}</h3>
+                    <p className="shrink-0 text-sm font-semibold text-slate-900">{item.price}</p>
+                  </div>
+                  <p className="mt-2 text-[13px] leading-6 text-slate-600">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {service.comparison && (
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">情シス代行・IT顧問との違い</h2>
+            <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
+              <table className="min-w-[640px] w-full border-collapse text-left text-[13px] leading-6 text-slate-700 md:text-[14px]">
+                <thead className="bg-slate-50 text-slate-900">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">比較</th>
+                    <th className="px-4 py-3 font-semibold">一般的な情シス代行</th>
+                    <th className="px-4 py-3 font-semibold">Acoruのデジタル顧問</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {service.comparison.map((item) => (
+                    <tr key={item.label} className="border-t border-slate-200">
+                      <th className="px-4 py-3 font-semibold text-slate-900">{item.label}</th>
+                      <td className="px-4 py-3">{item.general}</td>
+                      <td className="px-4 py-3">{item.acoru}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 

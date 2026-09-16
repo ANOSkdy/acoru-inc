@@ -9,7 +9,6 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <Container className="flex flex-col gap-8 py-10">
-        {/* Contact カード */}
         <section className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-7 sm:px-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="space-y-2">
@@ -19,7 +18,7 @@ export function Footer() {
               </h2>
               <p className="text-sm text-slate-600 sm:text-base">
                 「まだ要件が固まっていない」「何から始めるべきか分からない」
-                という段階からで構いません。現場の状況を伺い、実現可能な DX プランをご提案します。
+                という段階からで構いません。現場の状況を伺い、業務データ整理・AI活用の進め方をご提案します。
               </p>
             </div>
             <div className="flex flex-col gap-3 text-[12px] md:items-end">
@@ -31,10 +30,9 @@ export function Footer() {
           </div>
         </section>
 
-        {/* 下部フッター本体 */}
         <div className="flex flex-col gap-4 text-xs text-slate-500 sm:text-sm md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
-            <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">Acoru inc.</p>
+            <p className="text-sm font-semibold tracking-[0.18em] text-slate-900">Acoru合同会社</p>
             <p className="text-[12px] leading-relaxed text-slate-500 sm:text-sm">
               紙・Excel・日報・現場記録を整理し、
               現場と経営をつなぐAI時代の業務基盤をつくります。
@@ -67,7 +65,7 @@ export function Footer() {
               >
                 X
               </Link>
-              <span>© {year} Acoru inc.</span>
+              <span>© {year} Acoru合同会社</span>
             </div>
           </div>
         </div>

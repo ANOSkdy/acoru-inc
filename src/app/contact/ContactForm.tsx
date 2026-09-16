@@ -29,7 +29,6 @@ export function ContactForm() {
       privacyAgreed: formData.get("privacyAgreed") === "on",
     };
 
-    // フロント側でも最低限のバリデーション
     if (!payload.personName || (!payload.email && !payload.phone)) {
       setStatus("error");
       setErrorMessage("お名前と、メールアドレスまたは電話番号のいずれかは必須です。");
@@ -71,153 +70,78 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="space-y-5 rounded-3xl border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-100/70 md:px-8 md:py-8"
     >
-      {/* 会社名 */}
       <div className="space-y-1">
-        <label
-          htmlFor="companyName"
-          className="text-sm font-semibold text-slate-800"
-        >
+        <label htmlFor="companyName" className="text-sm font-semibold text-slate-800">
           会社名（任意）
         </label>
-        <input
-          id="companyName"
-          name="companyName"
-          type="text"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-        />
+        <input id="companyName" name="companyName" type="text" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]" />
       </div>
 
-      {/* お名前 */}
       <div className="space-y-1">
-        <label
-          htmlFor="personName"
-          className="text-sm font-semibold text-slate-800"
-        >
+        <label htmlFor="personName" className="text-sm font-semibold text-slate-800">
           お名前 <span className="text-rose-500">*</span>
         </label>
-        <input
-          id="personName"
-          name="personName"
-          type="text"
-          required
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-        />
+        <input id="personName" name="personName" type="text" required className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]" />
       </div>
 
-      {/* メールアドレス */}
       <div className="space-y-1">
-        <label
-          htmlFor="email"
-          className="text-sm font-semibold text-slate-800"
-        >
+        <label htmlFor="email" className="text-sm font-semibold text-slate-800">
           メールアドレス（どちらか一方で可）
         </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-        />
+        <input id="email" name="email" type="email" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]" />
       </div>
 
-      {/* 電話番号 */}
       <div className="space-y-1">
-        <label
-          htmlFor="phone"
-          className="text-sm font-semibold text-slate-800"
-        >
+        <label htmlFor="phone" className="text-sm font-semibold text-slate-800">
           電話番号（どちらか一方で可）
         </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-        />
+        <input id="phone" name="phone" type="tel" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]" />
       </div>
 
-      {/* お問い合わせ種別 */}
       <div className="space-y-1">
-        <label
-          htmlFor="category"
-          className="text-sm font-semibold text-slate-800"
-        >
+        <label htmlFor="category" className="text-sm font-semibold text-slate-800">
           お問い合わせの種別（任意）
         </label>
-        <select
-          id="category"
-          name="category"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-          defaultValue=""
-        >
+        <select id="category" name="category" className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]" defaultValue="">
           <option value="">選択してください</option>
-          <option value="data-foundation">業務データ整理・AI活用基盤づくりについて</option>
-          <option value="ai-nippo">NFC打刻・日報自動化について</option>
-          <option value="ai-agent">社内マニュアル・問い合わせAI化について</option>
-          <option value="dx-design">外部情シス・運用定着支援について</option>
+          <option value="data-diagnosis">業務データ診断</option>
+          <option value="data-foundation">データ基盤・AI活用</option>
+          <option value="ai-agent">社内問い合わせAI</option>
+          <option value="ai-nippo">NFC・日報自動化</option>
+          <option value="digital-advisor">デジタル顧問</option>
+          <option value="system-review">既存システムの見直し</option>
           <option value="other">その他</option>
         </select>
       </div>
 
-      {/* お問い合わせ内容 */}
       <div className="space-y-1">
-        <label
-          htmlFor="message"
-          className="text-sm font-semibold text-slate-800"
-        >
+        <label htmlFor="message" className="text-sm font-semibold text-slate-800">
           お問い合わせ内容 <span className="text-rose-500">*</span>
         </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          className="w-full min-h-[140px] rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white"
-        />
+        <textarea id="message" name="message" required rows={5} className="w-full min-h-[140px] rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white" />
       </div>
 
-      {/* 個人情報保護法の承諾 */}
       <div className="space-y-2 rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-700">
         <label className="flex items-start gap-3">
-          <input
-            type="checkbox"
-            name="privacyAgreed"
-            className="mt-[2px] h-5 w-5 rounded border-slate-300 text-slate-900"
-            required
-          />
+          <input type="checkbox" name="privacyAgreed" className="mt-[2px] h-5 w-5 rounded border-slate-300 text-slate-900" required />
           <span>
             個人情報の取り扱い
-            <a
-              href="#privacy"
-              className="underline underline-offset-2"
-            >
-              （こちら）
-            </a>
+            <a href="#privacy" className="underline underline-offset-2">（こちら）</a>
             を確認し、同意しました。
           </span>
         </label>
       </div>
 
-      {/* 送信ボタン＆ステータス */}
       <div className="space-y-2">
-        <Button
-          type="submit"
-          disabled={status === "submitting"}
-          className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
-        >
+        <Button type="submit" disabled={status === "submitting"} className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto">
           {status === "submitting" ? "送信中…" : "送信する"}
         </Button>
 
         {status === "success" && (
-          <p className="text-sm text-emerald-600">
-            送信が完了しました。内容を確認のうえ、担当者よりご連絡いたします。
-          </p>
+          <p className="text-sm text-emerald-600">送信が完了しました。内容を確認のうえ、担当者よりご連絡いたします。</p>
         )}
         {status === "error" && (
-          <p className="text-sm text-rose-600">
-            {errorMessage ??
-              "エラーが発生しました。時間をおいて再度お試しください。"}
-          </p>
+          <p className="text-sm text-rose-600">{errorMessage ?? "エラーが発生しました。時間をおいて再度お試しください。"}</p>
         )}
       </div>
     </form>

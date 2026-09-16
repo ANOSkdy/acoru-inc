@@ -33,7 +33,7 @@ export function Header() {
           />
           <div className="flex flex-col leading-tight">
             <span className="text-xs font-semibold tracking-[0.18em] text-slate-900">
-              Acoru inc.
+              Acoru合同会社
             </span>
             <span className="text-[11px] text-slate-500">
               業務データで現場と経営をつなぐ
