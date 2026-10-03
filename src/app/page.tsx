@@ -80,7 +80,7 @@ export default async function HomePage() {
             <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[480px] md:px-10 lg:min-h-[520px]">
               <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
 
-              <h1 className="max-w-[18rem] text-center text-[28px] font-semibold leading-[1.35] tracking-tight text-white sm:max-w-none sm:text-3xl sm:leading-tight lg:text-4xl">
+              <h1 className="max-w-[18rem] text-center text-[28px] font-semibold leading-[1.35] tracking-tight text-white max-sm:text-balance sm:max-w-none sm:text-3xl sm:leading-tight lg:text-4xl">
                 <span className="block">業務データで現場と経営をつなぐ。</span>
                 <span className="block">AI時代の業務基盤を。</span>
               </h1>
@@ -120,10 +120,13 @@ export default async function HomePage() {
                 導入事例・支援実績
               </p>
               <h2 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-[28px]">
-                技術と現場をつなぐ、Acoruの実績。
+                <span className="block sm:inline">技術と現場をつなぐ、</span>
+                <span className="block whitespace-nowrap sm:inline sm:whitespace-normal">Acoruの実績。</span>
               </h2>
-              <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
-                道内大手インフラ企業向けプロジェクトから、建設現場のAI日報まで。
+              <p className="mt-2 text-sm leading-7 text-slate-600 max-sm:text-balance sm:text-base">
+                <span className="inline-block sm:inline">道内大手インフラ企業向け</span>
+                <span className="inline-block sm:inline">プロジェクトから、</span>
+                <span className="inline-block sm:inline">建設現場のAI日報まで。</span>
               </p>
             </div>
             <Link
@@ -174,7 +177,7 @@ export default async function HomePage() {
                     {c.clientName && (
                       <p className="mt-1 text-xs leading-5 text-slate-500">{c.clientName}</p>
                     )}
-                    <h3 className="mt-3 text-lg font-semibold leading-relaxed tracking-tight text-slate-900 group-hover:text-[#534491]">
+                    <h3 className="mt-3 text-lg font-semibold leading-relaxed tracking-tight text-slate-900 group-hover:text-[#534491] max-sm:text-balance">
                       {featuredCaseTitles[c.slug] || c.title}
                     </h3>
                     {c.summary && (
@@ -202,7 +205,7 @@ export default async function HomePage() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-2">
                 <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">お知らせ</p>
-                <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">最新のお知らせ・採用情報</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-slate-900 max-sm:text-balance sm:text-2xl">最新のお知らせ・採用情報</h2>
               </div>
               <Link
                 href="/news"
@@ -233,7 +236,7 @@ export default async function HomePage() {
                       </span>
                     </div>
 
-                    <p className="flex-1 text-sm font-semibold leading-relaxed text-slate-900 md:text-base group-hover:text-slate-950">
+                    <p className="flex-1 text-sm font-semibold leading-relaxed text-slate-900 md:text-base group-hover:text-slate-950 max-sm:text-balance">
                       {n.title}
                     </p>
                   </Link>
@@ -251,7 +254,7 @@ export default async function HomePage() {
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">業務データで、現場と経営が同じ情報を見られる基盤を整える</h2>
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 max-sm:text-balance sm:text-2xl">業務データで、現場と経営が同じ情報を見られる基盤を整える</h2>
                   <p className="text-sm leading-7 text-slate-600 sm:text-base">
                     Acoruは、現場で発生する記録や報告、事務所での確認や集計、経営側の判断基準までを整理し、AIが読める業務データへ変える会社です。決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
                   </p>
@@ -286,7 +289,7 @@ export default async function HomePage() {
           <div className="rounded-[32px] border border-slate-200 bg-slate-50 p-6 shadow-sm shadow-slate-100/70 sm:p-8">
             <div className="max-w-3xl space-y-3">
               <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">業務データの棚卸し</p>
-              <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 sm:text-2xl">眠っている業務データはありませんか？</h2>
+              <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 max-sm:text-balance sm:text-2xl">眠っている業務データはありませんか？</h2>
               <p className="text-sm leading-7 text-slate-600 sm:text-base">
                 業務データ基盤化は、社内に散らばる記録や判断基準を棚卸し、AIが読み取りやすく、経営判断に使える形へ整える取り組みです。
               </p>
