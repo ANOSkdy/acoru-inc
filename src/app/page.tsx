@@ -39,7 +39,7 @@ export default async function HomePage() {
     title: casePresentation[item.slug]?.title || item.title,
     subtitle: casePresentation[item.slug]?.subtitle || "Acoruの支援実績",
     industry: item.industry, clientName: item.clientName, summary: item.summary,
-    image: item.heroImageUrl, imageAlt: item.heroImageAlt,
+    image: item.heroImageUrl, imageAlt: item.title,
   }));
 
   return (
