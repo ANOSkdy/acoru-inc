@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SiteMotion } from "@/components/motion/SiteMotion";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://acoru.jp"),
@@ -82,6 +83,7 @@ export default function RootLayout({
           </div>
         </div>
         <Analytics />
+        <SiteMotion />
       </body>
     </html>
   );

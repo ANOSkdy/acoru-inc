@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { acoruMarkPaths } from "@/components/brand/acoru-mark";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -15,6 +16,7 @@ const navItems = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
@@ -22,23 +24,23 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur">
       <Container className="flex items-center justify-between py-3">
-        <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
-          <Image
-            src="/acoru-header-logo.png"
-            alt="Acoruロゴ"
-            width={40}
-            height={40}
-            className="h-9 w-9"
-            priority
-          />
-          <div className="flex flex-col leading-tight">
-            <span className="text-xs font-semibold tracking-[0.18em] text-slate-900">
-              Acoru inc.
-            </span>
-            <span className="text-[11px] text-slate-500">
-              業務データで現場と経営をつなぐ
-            </span>
-          </div>
+        <Link href="/" aria-label="Acoru トップへ" className={`acoru-header-brand flex items-center gap-2.5 ${pathname === "/" ? "acoru-header-brand-home" : ""}`} onClick={closeMenu}>
+          <svg
+            data-hero-logo-slot
+            viewBox="0 0 500 500"
+            width={30}
+            height={30}
+            fill="currentColor"
+            aria-hidden="true"
+            className={`h-[30px] w-[30px] shrink-0 text-[#534491] ${pathname === "/" ? "acoru-header-dock-logo" : ""}`}
+          >
+            <path d={acoruMarkPaths.peak} />
+            <path d={acoruMarkPaths.arc1} />
+            <path d={acoruMarkPaths.arc2} />
+          </svg>
+          <span className="acoru-header-wordmark text-lg font-black tracking-[0.04em] text-slate-900">
+            Acoru inc.
+          </span>
         </Link>
 
         <button

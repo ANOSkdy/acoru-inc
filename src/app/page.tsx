@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { HomeHero } from "@/components/home/HomeHero";
 import { getCases, getNews } from "@/lib/content";
 
 const dormantDataExamples = [
@@ -63,53 +63,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <Section className="pt-6 pb-7 sm:pb-8 md:pt-8 md:pb-10">
-        <Container>
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-950">
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              src="/homeback.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/35 to-slate-950/70" />
-
-            <div className="relative flex min-h-[420px] flex-col items-center justify-center gap-5 px-6 py-10 md:min-h-[480px] md:px-10 lg:min-h-[520px]">
-              <p className="text-[12px] font-semibold tracking-[0.28em] text-slate-100/80">北海道・札幌発</p>
-
-              <h1 className="max-w-[18rem] text-center text-[28px] font-semibold leading-[1.35] tracking-tight text-white max-sm:text-balance sm:max-w-none sm:text-3xl sm:leading-tight lg:text-4xl">
-                <span className="block">業務データで現場と経営をつなぐ。</span>
-                <span className="block">AI時代の業務基盤を。</span>
-              </h1>
-
-              <p className="max-w-3xl text-center text-sm leading-7 text-slate-100/85 sm:text-base">
-                <span className="block sm:hidden">北海道の中小企業に残る</span>
-                <span className="block sm:hidden">紙・Excel・日報・現場記録を整理し、</span>
-                <span className="block sm:hidden">AIが読める経営データへ変えます。</span>
-                <span className="block sm:hidden">運用定着まで伴走します。</span>
-                <span className="hidden sm:block">北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、</span>
-                <span className="hidden sm:block">AIが読み取り、経営判断に使える業務データへ変えます。</span>
-                <span className="hidden sm:block">システム導入だけでなく、現場で使い続けられる運用まで伴走します。</span>
-              </p>
-
-              <div className="flex w-full max-w-md flex-col items-center justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row">
-                <Button href="/service" className="w-full px-6 text-[12px] tracking-[0.22em] sm:w-auto" variant="primary">
-                  事業内容を見る
-                </Button>
-                <Button
-                  href="/contact"
-                  className="w-full px-6 text-[12px] tracking-[0.22em] sm:w-auto"
-                  variant="ghost"
-                >
-                  業務データ診断を相談する
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Container>
+      <Section className="pt-0 pb-8 sm:pt-0 sm:pb-10 md:pt-0 md:pb-12">
+        <HomeHero />
       </Section>
 
       <Section id="featured-cases" className="scroll-mt-24 pt-0 sm:pt-0 md:pt-0">
@@ -147,11 +102,13 @@ export default async function HomePage() {
                 <Link
                   key={c.id}
                   href={`/cases/${c.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm shadow-slate-100/80 transition-[border-color,transform,box-shadow] motion-base motion-spring-soft hover:-translate-y-1 hover:border-[#534491]/40 hover:shadow-lg hover:shadow-[#534491]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#534491]"
+                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm shadow-slate-100/80 transition-[border-color,box-shadow] motion-base motion-spring-soft hover:border-[#534491]/40 hover:shadow-lg hover:shadow-[#534491]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#534491]"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden border-b border-slate-100 bg-slate-50">
                     {c.heroImageUrl ? (
                       <Image
+                        data-motion-reveal
+                        data-motion-delay={index * 100}
                         src={c.heroImageUrl}
                         alt={c.title}
                         fill
@@ -246,43 +203,6 @@ export default async function HomePage() {
           </div>
         </Container>
       </Section>
-
-      <Section className="pt-0">
-        <Container>
-          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70 sm:p-8">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)] md:items-center">
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">事業内容</p>
-                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 max-sm:text-balance sm:text-2xl">業務データで、現場と経営が同じ情報を見られる基盤を整える</h2>
-                  <p className="text-sm leading-7 text-slate-600 sm:text-base">
-                    Acoruは、現場で発生する記録や報告、事務所での確認や集計、経営側の判断基準までを整理し、AIが読める業務データへ変える会社です。決まった形を押しつけるのではなく、現場で本当に使われることを前提に設計します。
-                  </p>
-                </div>
-
-                <Button
-                  href="/service"
-                  className="w-full justify-center text-[12px] tracking-[0.22em] sm:w-auto"
-                  variant="ghost"
-                >
-                  事業内容を見る
-                </Button>
-              </div>
-
-              <div className="relative h-52 overflow-hidden rounded-3xl bg-slate-900 md:h-64 lg:h-72">
-                <Image
-                  src="/service-main.jpg"
-                  alt="業務データ基盤づくりのイメージ"
-                  fill
-                  sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
 
       <Section className="pt-0">
         <Container>

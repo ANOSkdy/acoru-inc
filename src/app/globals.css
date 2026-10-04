@@ -67,3 +67,129 @@ body {
     transform: translateY(0);
   }
 }
+
+/* Acoru motion: keep the existing purple, slate and white palette. */
+.acoru-header-dock-logo { opacity: 0; transition: opacity .25s; }
+html[data-hero-docked="true"] .acoru-header-dock-logo { opacity: 1; }
+.acoru-header-wordmark { transition: opacity .3s; }
+.acoru-header-brand-home .acoru-header-wordmark { opacity: .35; }
+html[data-hero-docked="true"] .acoru-header-brand-home .acoru-header-wordmark { opacity: 1; }
+.acoru-hero {
+  --acoru-header-height: 69px;
+  position: relative;
+  height: 320svh;
+  overflow: clip;
+  background: #ffffff;
+}
+.acoru-hero-stage {
+  position: sticky;
+  z-index: 50;
+  top: var(--acoru-header-height);
+  height: calc(100svh - var(--acoru-header-height));
+  min-height: calc(100svh - var(--acoru-header-height));
+  display: flex;
+  align-items: center;
+  padding: 80px 0 72px;
+}
+.acoru-hero[data-docked="true"] .acoru-hero-stage { z-index: auto; }
+.acoru-hero-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(16px, 4vw, 64px);
+}
+.acoru-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+}
+.acoru-hero-steps { display: grid; }
+.acoru-hero-step { grid-area: 1 / 1; transition: opacity .45s, transform .45s; }
+.acoru-hero-step[aria-hidden="true"] { opacity: 0; transform: translateY(14px); pointer-events: none; }
+.acoru-hero-eyebrow { color: #534491; font-weight: 500; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; }
+.acoru-hero-title {
+  margin: .35em 0 .45em;
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 900;
+  letter-spacing: .01em;
+  line-height: 1.22;
+  text-wrap: balance;
+}
+.acoru-hero-description { max-width: 30em; color: #475569; font-size: 15px; line-height: 1.75; text-wrap: pretty; }
+.acoru-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.acoru-hero-actions .acoru-hero-button { min-height: 46px; padding: 0 22px; border: 1px solid #534491; font-size: 14px; font-weight: 500; transform: none; translate: none; box-shadow: none; }
+.acoru-hero-button-ghost { color: #534491; background: transparent; }
+.acoru-hero-button-ghost:hover { background: #5344911a; }
+.acoru-hero-button-primary { color: white; background: #534491; }
+.acoru-hero-button-primary:hover { background: #433676; }
+.acoru-hero-logo-wrap { position: relative; z-index: 1; display: grid; place-items: center; pointer-events: none; }
+.acoru-hero-logo-frame { width: min(100%, 520px); aspect-ratio: 1; }
+.acoru-hero-logo { display: block; width: 100%; height: 100%; overflow: visible; transform-origin: center; }
+.acoru-hero-logo-part { fill: #534491; transform-box: view-box; }
+.acoru-hero-peak-float { animation: acoru-peak-float 1.4s ease-in-out infinite alternate; }
+.acoru-hero-meter {
+  width: 100%;
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #64748b;
+  font-size: 11px;
+}
+.acoru-hero-bar { position: relative; flex: 1; height: 2px; background: #e2e8f0; }
+.acoru-hero-bar > span { position: absolute; inset: 0; background: #534491; transform: scaleX(0); transform-origin: left; }
+.acoru-hero-ticks { display: flex; gap: 18px; }
+.acoru-hero-ticks b { color: #cbd5e1; font-weight: 600; }
+.acoru-hero-ticks b[data-active="true"] { color: #534491; }
+@keyframes acoru-peak-float {
+  from { transform: translateY(calc(-1 * var(--acoru-peak-bob, 0px))); }
+  to { transform: translateY(var(--acoru-peak-bob, 0px)); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .acoru-hero-stage { padding: 80px 0 40px; }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* The open arcs extend beyond the SVG viewBox before the mark assembles. */
+  .acoru-hero-logo-frame { width: 88%; }
+}
+@media (max-width: 767px) {
+  .acoru-hero-stage { padding: 56px 0 60px; }
+  .acoru-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .acoru-hero-logo-wrap { order: -1; }
+  .acoru-hero-logo-frame { width: min(50vw, 220px); }
+  .acoru-hero-description { font-size: 14px; }
+  .acoru-hero-meter { bottom: 16px; }
+}
+@media (max-width: 359px) {
+  .acoru-hero-description { font-size: 12px; }
+}
+@media (max-width: 767px) and (max-height: 740px) {
+  .acoru-hero-stage { padding: 24px 0 36px; }
+  .acoru-hero-grid { gap: 8px; }
+  .acoru-hero-logo-frame { width: min(46vw, 20svh); }
+  .acoru-hero-title { font-size: 24px; line-height: 1.35; }
+  .acoru-hero-description { font-size: 12px; line-height: 1.6; }
+}
+@media (max-width: 767px) and (max-height: 620px) {
+  /* Leave space for the longest message and the progress meter on small phones. */
+  .acoru-hero-stage { padding: 20px 0 56px; }
+  .acoru-hero-logo-frame { width: min(42vw, 16svh); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .acoru-header-dock-logo { opacity: 1; }
+  .acoru-header-brand-home .acoru-header-wordmark { opacity: 1; }
+  .acoru-hero { height: auto !important; }
+  .acoru-hero-stage { position: relative !important; height: auto !important; }
+  .acoru-hero-peak-float { animation: none; }
+  .acoru-hero-meter { display: none; }
+  .acoru-hero-step { transition: none; }
+  [data-motion-reveal], [data-motion-reveal] img { transition-duration: 0ms !important; }
+  [data-motion-reveal]:hover { transform: none; }
+}
