@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import "./hero-b.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SiteMotion } from "@/components/motion/SiteMotion";
+import { heroBody, heroDisplay, heroMono } from "@/lib/hero-fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://acoru.jp"),
@@ -63,7 +65,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="ja">
+    <html lang="ja" className={`${heroDisplay.variable} ${heroBody.variable} ${heroMono.variable}`}>
       <body className="bg-white text-slate-900 antialiased">
         <script
           type="application/ld+json"

@@ -17,22 +17,23 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-      <Container className="flex items-center justify-between py-3">
-        <Link href="/" aria-label="Acoru トップへ" className={`acoru-header-brand flex items-center gap-2.5 ${pathname === "/" ? "acoru-header-brand-home" : ""}`} onClick={closeMenu}>
+    <header className={`sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur ${isHome ? "acoru-b-header" : ""}`}>
+      <Container className={`flex items-center justify-between py-3 ${isHome ? "acoru-b-header-inner" : ""}`}>
+        <Link href="/" aria-label="Acoru トップへ" className="acoru-header-brand flex items-center gap-2.5" onClick={closeMenu}>
           <svg
-            data-hero-logo-slot
+            data-acoru-header-logo
             viewBox="0 0 500 500"
             width={30}
             height={30}
             fill="currentColor"
             aria-hidden="true"
-            className={`h-[30px] w-[30px] shrink-0 text-[#534491] ${pathname === "/" ? "acoru-header-dock-logo" : ""}`}
+            className="h-[30px] w-[30px] shrink-0 text-[#534491]"
           >
             <path d={acoruMarkPaths.peak} />
             <path d={acoruMarkPaths.arc1} />
@@ -70,19 +71,17 @@ export function Header() {
           </span>
         </button>
 
-        <nav className="hidden items-center gap-3 text-[11px] font-semibold tracking-[0.18em] text-slate-500 md:flex">
+        <nav className={`hidden items-center gap-3 text-[11px] font-semibold tracking-[0.18em] text-slate-500 md:flex ${isHome ? "acoru-b-header-links" : ""}`}>
           {navItems.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={isHome && item.href === "/cases" ? "/#featured-cases" : isHome && item.href === "/news" ? "/#latest-news" : item.href}
               className="inline-flex items-center rounded-full px-3 py-2 transition-colors hover:bg-slate-100 hover:text-slate-900"
             >
               {item.label}
             </Link>
           ))}
-          <Button href="/contact" className="px-4" variant="primary">
-            お問い合わせ
-          </Button>
+          {isHome ? <Link href="/contact">お問い合わせ</Link> : <Button href="/contact" className="px-4" variant="primary">お問い合わせ</Button>}
         </nav>
       </Container>
 
@@ -92,7 +91,7 @@ export function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={isHome && item.href === "/cases" ? "/#featured-cases" : isHome && item.href === "/news" ? "/#latest-news" : item.href}
                 className="rounded-lg px-3 py-2.5 transition-[background-color,color,transform] motion-fast motion-spring-soft hover:bg-slate-50"
                 onClick={closeMenu}
               >
