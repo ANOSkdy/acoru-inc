@@ -27,7 +27,7 @@ export function siteGraph() {
       "@type": "Organization", "@id": ORGANIZATION_ID,
       name: "Acoru合同会社", legalName: "Acoru合同会社", url: "https://acoru.jp",
       alternateName: ["Acoru inc.", "アクル"],
-      founder: { "@type": "Person", name: "角谷涼太" },
+      founder: { "@type": "Person", name: "角谷亮太" },
       description: "紙・Excel・日報・現場記録を整理し、AIが読める業務データへ変える会社です。",
       ...(isAbsoluteUrl(organizationDetails.logo) ? { logo: organizationDetails.logo } : {}),
       ...(!JSON.stringify(organizationDetails.address).includes("【要") ? { address: organizationDetails.address } : {}),

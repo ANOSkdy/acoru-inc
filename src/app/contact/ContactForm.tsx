@@ -23,16 +23,16 @@ export function ContactForm() {
       companyName: formData.get("companyName")?.toString().trim() || "",
       personName: formData.get("personName")?.toString().trim() || "",
       email: formData.get("email")?.toString().trim() || "",
-      phone: formData.get("phone")?.toString().trim() || "",
+      phone: "",
       category: formData.get("category")?.toString().trim() || "",
       message: formData.get("message")?.toString().trim() || "",
       privacyAgreed: formData.get("privacyAgreed") === "on",
     };
 
     // フロント側でも最低限のバリデーション
-    if (!payload.personName || (!payload.email && !payload.phone)) {
+    if (!payload.personName || !payload.email) {
       setStatus("error");
-      setErrorMessage("お名前と、メールアドレスまたは電話番号のいずれかは必須です。");
+      setErrorMessage("お名前とメールアドレスは必須です。");
       return;
     }
     if (!payload.message) {
@@ -110,28 +110,13 @@ export function ContactForm() {
           htmlFor="email"
           className="text-sm font-semibold text-slate-800"
         >
-          メールアドレス（どちらか一方で可）
+          メールアドレス <span className="text-rose-500">*</span>
         </label>
         <input
           id="email"
           name="email"
           type="email"
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-        />
-      </div>
-
-      {/* 電話番号 */}
-      <div className="space-y-1">
-        <label
-          htmlFor="phone"
-          className="text-sm font-semibold text-slate-800"
-        >
-          電話番号（どちらか一方で可）
-        </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
+          required
           className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
         />
       </div>

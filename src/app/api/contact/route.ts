@@ -50,7 +50,8 @@ export async function POST(request: Request) {
   const companyName = textField(body, "companyName", 200);
   const personName = textField(body, "personName", 200);
   const email = textField(body, "email", 320);
-  const phone = textField(body, "phone", 50);
+  // 返信はメールに統一する。DB関数の既存引数には空文字を渡す。
+  const phone = "";
   const message = textField(body, "message", 10_000);
   const serviceInterest = textField(body, "category", 200);
 
@@ -58,12 +59,11 @@ export async function POST(request: Request) {
     companyName === null ||
     personName === null ||
     email === null ||
-    phone === null ||
     message === null ||
     serviceInterest === null ||
     body.privacyAgreed !== true ||
     !personName ||
-    (!email && !phone) ||
+    !email ||
     !message
   ) {
     return NextResponse.json(

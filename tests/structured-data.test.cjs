@@ -26,7 +26,7 @@ test("the site identifies the legal entity with a real logo and confirmed profil
   assert.equal(organization.name, "Acoru合同会社");
   assert.equal(organization.legalName, "Acoru合同会社");
   assert.deepEqual(organization.alternateName, ["Acoru inc.", "アクル"]);
-  assert.equal(organization.founder.name, "角谷涼太");
+  assert.equal(organization.founder.name, "角谷亮太");
   assert.equal(organization.url, "https://acoru.jp");
   assert.deepEqual(organization.sameAs, ["https://x.com/acoru_inc", "https://note.com/anoskdy"]);
   const logo = new URL(organization.logo);
