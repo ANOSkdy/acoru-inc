@@ -5,6 +5,7 @@ import { publicCaseHref } from "@/lib/case-urls";
 export type RichTextProps = {
   source?: string;
   className?: string;
+  preserveHeadingLevels?: boolean;
 };
 
 function combineClassName(base: string, extra?: string) {
@@ -14,7 +15,7 @@ function combineClassName(base: string, extra?: string) {
 /**
  * Markdownコンテンツを安全に描画するサーバーコンポーネント。
  */
-export function RichText({ source, className }: RichTextProps) {
+export function RichText({ source, className, preserveHeadingLevels = false }: RichTextProps) {
   if (!source) return null;
 
   const containerClass = combineClassName(
@@ -33,13 +34,17 @@ export function RichText({ source, className }: RichTextProps) {
               {...props}
             />
           ),
-          h2: ({ ...props }) => (
+          h2: ({ ...props }) => preserveHeadingLevels ? (
+            <h2 className="scroll-mt-24 border-b border-slate-200 pb-3 pt-6 text-xl font-semibold leading-relaxed text-slate-900" {...props} />
+          ) : (
             <h3
               className="text-base font-semibold tracking-tight text-slate-900 md:text-lg"
               {...props}
             />
           ),
-          h3: ({ ...props }) => (
+          h3: ({ ...props }) => preserveHeadingLevels ? (
+            <h3 className="pt-3 text-lg font-semibold leading-relaxed text-slate-900" {...props} />
+          ) : (
             <h4
               className="text-[15px] font-semibold tracking-tight text-slate-900"
               {...props}
@@ -56,6 +61,13 @@ export function RichText({ source, className }: RichTextProps) {
             <ol className="list-decimal space-y-2 pl-5" {...props} />
           ),
           li: ({ ...props }) => <li className="leading-relaxed" {...props} />,
+          table: ({ children, ...props }) => (
+            <div role="region" aria-label="比較表（横にスクロールできます）" tabIndex={0} className="max-w-full overflow-x-auto rounded-xl border border-slate-200 focus-visible:outline-2 focus-visible:outline-[#534491]">
+              <table className="w-full min-w-[640px] border-collapse text-left text-sm" {...props}>{children}</table>
+            </div>
+          ),
+          th: ({ ...props }) => <th className="border-b border-slate-200 bg-[#534491]/10 px-4 py-3 font-semibold text-slate-900" {...props} />,
+          td: ({ ...props }) => <td className="border-b border-slate-200 px-4 py-3 align-top" {...props} />,
           a: ({ href, ...props }) => {
             const isExternal = href?.startsWith("http");
             return (

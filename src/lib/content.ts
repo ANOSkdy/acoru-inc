@@ -10,6 +10,7 @@ export type NewsItem = {
   title: string;
   slug: string;
   date?: string;
+  publishedAtIso?: string;
   category?: string;
   summary?: string;
   body?: string;
@@ -54,6 +55,7 @@ type NewsRow = {
   title: string;
   slug: string;
   published_date: string | null;
+  published_iso: string | null;
   category: string | null;
   summary: string | null;
   body_markdown: string | null;
@@ -102,6 +104,7 @@ function toNews(row: NewsRow): NewsItem {
     title: row.title,
     slug: row.slug,
     date: optional(row.published_date),
+    publishedAtIso: row.published_iso ? new Date(row.published_iso).toISOString() : undefined,
     category: optional(row.category),
     summary: optional(row.summary),
     body: optional(row.body_markdown),
@@ -137,6 +140,7 @@ const NEWS_COLUMNS = `
     published_at AT TIME ZONE 'Asia/Tokyo',
     'YYYY-MM-DD'
   ) AS published_date,
+  published_at::text AS published_iso,
   category,
   summary,
   body_markdown,
@@ -173,7 +177,7 @@ export async function getNews(): Promise<NewsItem[]> {
   return rows.map(toNews);
 }
 
-export async function getNewsBySlug(
+export const getNewsBySlug = cache(async function getNewsBySlug(
   slug: string,
 ): Promise<NewsItem | null> {
   const rows = await querySitePublic<NewsRow>(
@@ -187,7 +191,7 @@ export async function getNewsBySlug(
   );
 
   return rows[0] ? toNews(rows[0]) : null;
-}
+});
 
 export async function getCases(): Promise<Case[]> {
   const rows = await querySitePublic<CaseRow>(`
