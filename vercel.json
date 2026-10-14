@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/cases/case-1",
+      "destination": "/cases/sugimura-kenki-nfc-nippo",
+      "permanent": true
+    },
+    {
+      "source": "/cases/case-1/",
+      "destination": "/cases/sugimura-kenki-nfc-nippo",
+      "permanent": true
+    }
+  ]
+}

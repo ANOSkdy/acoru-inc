@@ -1,4 +1,5 @@
 import "server-only";
+import { LEGACY_SUGIMURA_CASE_SLUG, publicCaseSlug, SUGIMURA_CASE_SLUG } from "@/lib/case-urls";
 
 import { querySitePublic } from "@/lib/database";
 
@@ -106,7 +107,7 @@ function toCase(row: CaseRow): Case {
   return {
     id: row.id,
     title: row.title,
-    slug: row.slug,
+    slug: publicCaseSlug(row.slug),
     clientName: optional(row.client_name),
     industry: optional(row.industry),
     summary: optional(row.summary),
@@ -189,14 +190,17 @@ export async function getCases(): Promise<Case[]> {
 export async function getCaseBySlug(
   slug: string,
 ): Promise<Case | null> {
+  const requestedSlug = publicCaseSlug(slug);
+  const legacySlug = requestedSlug === SUGIMURA_CASE_SLUG ? LEGACY_SUGIMURA_CASE_SLUG : requestedSlug;
   const rows = await querySitePublic<CaseRow>(
     `
       SELECT ${CASE_COLUMNS}
       FROM site_public.case_studies
-      WHERE slug = $1
+      WHERE slug = $1 OR slug = $2
+      ORDER BY (slug = $1) DESC
       LIMIT 1
     `,
-    [slug],
+    [requestedSlug, legacySlug],
   );
 
   return rows[0] ? toCase(rows[0]) : null;
