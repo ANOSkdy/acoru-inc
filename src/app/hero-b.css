@@ -1,5 +1,6 @@
 /* Acoru ヒーロー案B: original geometry, timing, spacing and light brand palette. */
 :root { --acoru-header-height: 78px; }
+html { scrollbar-gutter: stable; }
 .acoru-header-spacer { height: calc(var(--acoru-header-height) + env(safe-area-inset-top, 0px)); flex-shrink: 0; }
 main [id]:not(.acoru-b-anchor) { scroll-margin-top: calc(var(--acoru-header-height) + env(safe-area-inset-top, 0px) + 16px); }
 .acoru-b-home, .acoru-b-header {
@@ -27,9 +28,10 @@ main [id]:not(.acoru-b-anchor) { scroll-margin-top: calc(var(--acoru-header-heig
   position: fixed; inset: 0 0 auto; z-index: 40;
   padding: calc(16px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 48px) 16px;
   min-height: calc(var(--acoru-header-height) + env(safe-area-inset-top, 0px));
-  background: color-mix(in srgb, var(--hero-bg) 90%, transparent);
+  /* A fixed underlay keeps the header identical over every page background. */
+  background: var(--hero-bg);
   border-bottom: 1px solid color-mix(in srgb, var(--hero-brand) 10%, transparent);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
 }
 .acoru-b-header > .acoru-b-header-inner { width: 100%; max-width: none; padding: 0; gap: 16px; }
 .acoru-b-header .acoru-header-wordmark { font-family: var(--font-hero-display), sans-serif; font-size: 17px; letter-spacing: .03em; color: var(--hero-fg); }
@@ -37,6 +39,8 @@ main [id]:not(.acoru-b-anchor) { scroll-margin-top: calc(var(--acoru-header-heig
 .acoru-b-header .acoru-b-header-links { gap: clamp(14px, 2.4vw, 30px); font-size: 13px; font-weight: 400; letter-spacing: normal; }
 .acoru-b-header .acoru-b-header-links a:not(.acoru-header-cta) { color: var(--hero-muted); padding: 0; border-radius: 0; background: none; }
 .acoru-b-header .acoru-b-header-links a:not(.acoru-header-cta):hover { color: var(--hero-brand); }
+.acoru-b-header .acoru-header-nav-link[aria-current="page"] { color: var(--hero-brand); }
+.acoru-b-header .acoru-header-cta[aria-current="page"] { background: #433676; }
 .acoru-b-header .acoru-header-cta { min-height: 44px; padding: 0 20px; border-radius: 999px; background: var(--hero-brand); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .03em; }
 .acoru-b-header .acoru-header-cta:hover { background: #433676; color: #fff; }
 .acoru-mobile-navigation { max-height: calc(100svh - var(--acoru-header-height) - env(safe-area-inset-top, 0px)); overflow-y: auto; }

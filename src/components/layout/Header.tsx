@@ -21,13 +21,14 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
+  const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
     {!isHome && <div className="acoru-header-spacer" aria-hidden="true" />}
     <header className="acoru-b-header">
       <Container className="acoru-b-header-inner flex items-center justify-between">
-        <Link href="/" aria-label="Acoru合同会社 トップへ" className="acoru-header-brand flex items-center gap-2.5" onClick={closeMenu}>
+        <Link href="/" aria-label="Acoru合同会社 トップへ" aria-current={isHome ? "page" : undefined} className="acoru-header-brand flex items-center gap-2.5" onClick={closeMenu}>
           <svg
             data-acoru-header-logo
             viewBox="0 0 500 500"
@@ -79,12 +80,13 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="inline-flex items-center rounded-full px-3 py-2 transition-colors hover:bg-slate-100 hover:text-slate-900"
+              aria-current={isCurrent(item.href) ? "page" : undefined}
+              className="acoru-header-nav-link inline-flex items-center"
             >
               {item.label}
             </Link>
           ))}
-          <Button href="/contact" className="acoru-header-cta" variant="primary">お問い合わせ</Button>
+          <Button href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined} className="acoru-header-cta" variant="primary">お問い合わせ</Button>
         </nav>
       </Container>
 
@@ -95,13 +97,14 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-2.5 transition-[background-color,color,transform] motion-fast motion-spring-soft hover:bg-slate-50"
+                aria-current={isCurrent(item.href) ? "page" : undefined}
+                className="acoru-header-nav-link acoru-header-mobile-link rounded-lg px-3 py-2.5"
                 onClick={closeMenu}
               >
                 {item.label}
               </Link>
             ))}
-            <Button href="/contact" className="acoru-header-cta w-full justify-center" onClick={closeMenu}>
+            <Button href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined} className="acoru-header-cta w-full justify-center" onClick={closeMenu}>
               お問い合わせ
             </Button>
           </Container>

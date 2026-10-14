@@ -63,3 +63,16 @@ test("Button preserves click handlers for both links and native form buttons", (
   }
   assert.equal(clicked, 2);
 });
+
+test("the current section is marked in desktop and mobile navigation, including nested cases", () => {
+  for (const [route, active] of [["/about", "/about"], ["/cases/sugimura-kenki-nfc-nippo", "/cases"], ["/service/rfid-ai-nippo", "/service"], ["/contact", "/contact"]]) {
+    const tree = header(route, true);
+    for (const name of ["メインナビゲーション", "モバイルナビゲーション"]) {
+      const nav = tree.find(node => node.props?.["aria-label"] === name);
+      const marked = nodes(nav).filter(node => node.props?.href && node.props["aria-current"] === "page");
+      assert.deepEqual(marked.map(node => node.props.href), [active]);
+    }
+  }
+  assert.equal(nodes(header("/cases-other")).some(node => node.props?.href === "/cases" && node.props["aria-current"]), false);
+  assert.equal(Button({href: "/contact", "aria-current": "page", children: "お問い合わせ"}).props["aria-current"], "page");
+});

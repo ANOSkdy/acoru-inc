@@ -25,20 +25,21 @@ export function Button({
   variant = "primary",
   className,
   onClick,
+  "aria-current": ariaCurrent,
   ...props
 }: ButtonProps) {
   const classes = `${baseClasses} ${variantClasses[variant]} ${className ?? ""}`.trim();
 
   if (href) {
     return (
-      <Link href={href} className={classes} onClick={onClick}>
+      <Link href={href} className={classes} onClick={onClick} aria-current={ariaCurrent}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classes} onClick={onClick} {...props}>
+    <button className={classes} onClick={onClick} aria-current={ariaCurrent} {...props}>
       {children}
     </button>
   );
