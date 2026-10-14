@@ -1,5 +1,6 @@
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import { publicCaseHref } from "@/lib/case-urls";
 
 export type RichTextProps = {
   source?: string;
@@ -59,7 +60,7 @@ export function RichText({ source, className }: RichTextProps) {
             const isExternal = href?.startsWith("http");
             return (
               <a
-                href={href}
+                href={publicCaseHref(href)}
                 className="text-slate-900 underline underline-offset-2"
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noreferrer noopener" : undefined}

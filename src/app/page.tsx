@@ -7,20 +7,20 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { getCases, getNews } from "@/lib/content";
 
 const dormantDataExamples = ["紙の日報", "Excelの案件表", "手書きの作業記録", "写真・LINE・チャットの報告", "現場ごとの口頭連絡", "属人化したマニュアル", "事務員だけが知っている確認手順", "社長の頭の中にある判断基準"];
-const featuredCaseSlugs = ["jr-hokkaido-system-renewal", "case-1", "jr-hokkaido-sier-collaboration"];
+const featuredCaseSlugs = ["jr-hokkaido-system-renewal", "sugimura-kenki-nfc-nippo", "jr-hokkaido-sier-collaboration"];
 const casePresentation: Record<string, { title: string; subtitle: string }> = {
   "jr-hokkaido-system-renewal": { title: "JR北海道向け業務システム刷新支援", subtitle: "要望整理・移行計画・試験準備" },
-  "case-1": { title: "スギムラ建機のAI日報・NFC打刻導入事例", subtitle: "現場記録と集計の効率化" },
+  "sugimura-kenki-nfc-nippo": { title: "スギムラ建機のAI日報・NFC打刻導入事例", subtitle: "現場記録と集計の効率化" },
   "jr-hokkaido-sier-collaboration": { title: "NTTデータ北海道とのJR北海道向けプロジェクト参画", subtitle: "SIer協業でAcoruが担う「技術・業務・利用者をつなぐ」役割" },
 };
 
 export const metadata: Metadata = {
-  title: "Acoru inc. | 北海道の業務データ基盤化支援",
+  title: { absolute: "北海道の業務データ基盤化支援 | Acoru合同会社" },
   description: "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
   openGraph: {
-    type: "website", url: "/", title: "Acoru inc. | 北海道の業務データ基盤化支援",
+    type: "website", url: "/", title: "北海道の業務データ基盤化支援 | Acoru合同会社",
     description: "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
-    siteName: "Acoru inc.",
+    siteName: "Acoru合同会社",
   },
   alternates: { canonical: "/" },
 };

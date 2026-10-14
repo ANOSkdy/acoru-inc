@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 
 const baseClasses =
   "inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-[background-color,border-color,color,transform,box-shadow] motion-fast motion-spring-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#534491]/45 focus-visible:ring-offset-2 active:translate-y-0";
@@ -16,27 +16,30 @@ type ButtonProps = {
   href?: string;
   variant?: "primary" | "ghost";
   className?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">;
 
 export function Button({
   children,
   href,
   variant = "primary",
   className,
+  onClick,
+  "aria-current": ariaCurrent,
   ...props
 }: ButtonProps) {
   const classes = `${baseClasses} ${variantClasses[variant]} ${className ?? ""}`.trim();
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick} aria-current={ariaCurrent}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} onClick={onClick} aria-current={ariaCurrent} {...props}>
       {children}
     </button>
   );

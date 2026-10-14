@@ -1,4 +1,7 @@
 import "server-only";
+import { cache } from "react";
+import { LEGACY_SUGIMURA_CASE_SLUG, publicCaseSlug, SUGIMURA_CASE_SLUG } from "@/lib/case-urls";
+import { caseStructuredData, type CaseStructuredData } from "@/lib/case-structured-data";
 
 import { querySitePublic } from "@/lib/database";
 
@@ -25,7 +28,10 @@ export type Case = {
   solution?: string;
   result?: string;
   publishedAt?: string;
+  publishedAtIso?: string;
   heroImageUrl?: string;
+  heroImageAlt?: string;
+  structuredData?: CaseStructuredData;
 };
 
 export type CompanyProfile = {
@@ -66,7 +72,9 @@ type CaseRow = {
   solution_markdown: string | null;
   result_markdown: string | null;
   published_date: string | null;
+  published_iso: string | null;
   hero_media_url: string | null;
+  hero_media_alt_text: string | null;
 };
 
 type CompanyRow = {
@@ -106,7 +114,7 @@ function toCase(row: CaseRow): Case {
   return {
     id: row.id,
     title: row.title,
-    slug: row.slug,
+    slug: publicCaseSlug(row.slug),
     clientName: optional(row.client_name),
     industry: optional(row.industry),
     summary: optional(row.summary),
@@ -114,7 +122,10 @@ function toCase(row: CaseRow): Case {
     solution: optional(row.solution_markdown),
     result: optional(row.result_markdown),
     publishedAt: optional(row.published_date),
+    publishedAtIso: optional(row.published_iso),
     heroImageUrl: optional(row.hero_media_url),
+    heroImageAlt: optional(row.hero_media_alt_text),
+    structuredData: caseStructuredData[publicCaseSlug(row.slug)],
   };
 }
 
@@ -147,7 +158,9 @@ const CASE_COLUMNS = `
     published_at AT TIME ZONE 'Asia/Tokyo',
     'YYYY-MM-DD'
   ) AS published_date,
-  hero_media_url
+  published_at::text AS published_iso,
+  hero_media_url,
+  hero_media_alt_text
 `;
 
 export async function getNews(): Promise<NewsItem[]> {
@@ -186,21 +199,24 @@ export async function getCases(): Promise<Case[]> {
   return rows.map(toCase);
 }
 
-export async function getCaseBySlug(
+export const getCaseBySlug = cache(async function getCaseBySlug(
   slug: string,
 ): Promise<Case | null> {
+  const requestedSlug = publicCaseSlug(slug);
+  const legacySlug = requestedSlug === SUGIMURA_CASE_SLUG ? LEGACY_SUGIMURA_CASE_SLUG : requestedSlug;
   const rows = await querySitePublic<CaseRow>(
     `
       SELECT ${CASE_COLUMNS}
       FROM site_public.case_studies
-      WHERE slug = $1
+      WHERE slug = $1 OR slug = $2
+      ORDER BY (slug = $1) DESC
       LIMIT 1
     `,
-    [slug],
+    [requestedSlug, legacySlug],
   );
 
   return rows[0] ? toCase(rows[0]) : null;
-}
+});
 
 export async function getCompanyProfile(): Promise<CompanyProfile | null> {
   const rows = await querySitePublic<CompanyRow>(`

@@ -16,7 +16,7 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <Container className="flex flex-col gap-2 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-        <p className="shrink-0">© {year} Acoru inc.</p>
+        <p className="shrink-0">© {year} Acoru合同会社</p>
         <nav aria-label="フッターナビゲーション" className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
           {navItems.map((item) => (
             <Link

@@ -1,0 +1,111 @@
+/* Header interaction only: no shared hero paths or scroll state are changed. */
+.acoru-b-header {
+  --header-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* SVG uses a 500-unit viewBox rendered at 28px: 35.714 units = 2 CSS px. */
+  --header-mark-opening: 35.714px;
+}
+.acoru-b-header .acoru-header-nav-link {
+  position: relative;
+  transition: color 220ms var(--header-ease);
+}
+.acoru-header-nav-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -4px;
+  height: 1.5px;
+  background: var(--hero-brand);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--header-ease);
+  pointer-events: none;
+}
+.acoru-header-mobile-link::after { inset-inline: 12px; bottom: 5px; }
+.acoru-b-header .acoru-header-nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.acoru-header-brand svg { overflow: visible; transition: color 220ms var(--header-ease); }
+.acoru-header-mark-upper, .acoru-header-mark-lower { transform-box: view-box; transform-origin: center; }
+@keyframes acoru-header-mark-upper {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(-1 * var(--header-mark-opening))); }
+}
+@keyframes acoru-header-mark-lower {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(var(--header-mark-opening)); }
+}
+.acoru-b-header .acoru-header-cta {
+  position: relative;
+  isolation: isolate;
+  padding: 0 34px 0 20px;
+  /* Reset Button's generic hover utilities, including the individual translate. */
+  translate: none;
+  transform: none;
+  box-shadow: none;
+  transition: transform 260ms var(--header-ease), color 260ms var(--header-ease), background 260ms var(--header-ease);
+}
+.acoru-header-cta::before, .acoru-header-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.acoru-header-cta::before {
+  z-index: -1;
+  background: #433676;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 260ms var(--header-ease);
+}
+.acoru-header-cta::after {
+  z-index: -2;
+  /* The shadow is static. Only its opacity changes, keeping animation composited. */
+  box-shadow: 0 4px 12px rgb(83 68 145 / 22%);
+  opacity: 0;
+  transition: opacity 260ms var(--header-ease);
+}
+.acoru-header-cta-label { position: relative; z-index: 1; }
+.acoru-header-cta-arrow {
+  position: absolute;
+  z-index: 1;
+  right: 12px;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: transform 260ms var(--header-ease), opacity 260ms var(--header-ease);
+}
+
+/* Keyboard focus works with mouse, touch keyboards and assistive input. */
+.acoru-b-header .acoru-header-nav-link:focus-visible { color: var(--hero-brand); }
+.acoru-header-nav-link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+.acoru-header-brand:focus-visible .acoru-header-mark-upper { animation: acoru-header-mark-upper 360ms var(--header-ease); }
+.acoru-header-brand:focus-visible .acoru-header-mark-lower { animation: acoru-header-mark-lower 360ms var(--header-ease); }
+.acoru-b-header .acoru-header-cta:focus-visible { transform: translateY(-1px); }
+.acoru-header-cta:focus-visible::before { transform: scaleX(1); }
+.acoru-header-cta:focus-visible::after { opacity: 1; }
+.acoru-header-cta:focus-visible .acoru-header-cta-arrow { opacity: 1; transform: translateX(0); }
+
+@media (hover: hover) and (pointer: fine) {
+  .acoru-b-header .acoru-header-nav-link:hover { color: var(--hero-brand); }
+  .acoru-header-nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+  .acoru-header-brand:hover .acoru-header-mark-upper { animation: acoru-header-mark-upper 360ms var(--header-ease); }
+  .acoru-header-brand:hover .acoru-header-mark-lower { animation: acoru-header-mark-lower 360ms var(--header-ease); }
+  .acoru-b-header .acoru-header-cta:hover { transform: translateY(-1px); }
+  .acoru-header-cta:hover::before { transform: scaleX(1); }
+  .acoru-header-cta:hover::after { opacity: 1; }
+  .acoru-header-cta:hover .acoru-header-cta-arrow { opacity: 1; transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .acoru-header-mark-upper, .acoru-header-mark-lower { animation: none !important; transform: none !important; }
+  .acoru-header-nav-link::after { transform: none !important; transition: none; opacity: 0; }
+  .acoru-b-header .acoru-header-nav-link[aria-current="page"]::after { opacity: 1; }
+  .acoru-b-header .acoru-header-cta { transform: none !important; }
+  .acoru-header-cta::before, .acoru-header-cta::after { transform: none !important; opacity: 0; transition: none; }
+  .acoru-header-cta-arrow { opacity: 0 !important; transform: none !important; transition: none; }
+  .acoru-header-brand:focus-visible svg { color: #6b58ae; }
+  .acoru-b-header .acoru-header-cta:focus-visible { background: #433676; }
+}
+@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+  .acoru-header-brand:hover svg { color: #6b58ae; }
+  .acoru-b-header .acoru-header-cta:hover { background: #433676; }
+}

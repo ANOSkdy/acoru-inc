@@ -211,9 +211,9 @@ test("B header shows shared mark immediately, without the old docking behavior",
   const logo = nodes.find((node) => node.props?.["data-acoru-header-logo"]);
   assert.equal(logo.type, "svg");
   assert.doesNotMatch(logo.props.className, /dock/);
-  assert.ok(nodes.some((node) => node.props?.href === "/#featured-cases"));
+  assert.ok(nodes.some((node) => node.props?.href === "/cases"));
   const {acoruMarkPaths} = loadComponent("src/components/brand/acoru-mark.ts", {}, {});
-  assert.deepEqual(Array.from(logo.props.children, (node) => node.props.d), Object.values(acoruMarkPaths));
+  assert.deepEqual(treeNodes(logo).filter(node => node.type === "path").map(node => node.props.d), Object.values(acoruMarkPaths));
 });
 test("B uses one exact introduction, real thumbnails and three case slides", () => {
   const scene = mountHero();
@@ -317,14 +317,14 @@ test("case keyboard navigation scrolls to the matching chapter", () => {
 test("footer remains minimal; contact area and old service area do not return", () => {
   const {Footer} = loadComponent("src/components/layout/Footer.tsx", {}, {});
   const nodes = treeNodes(Footer());
-  assert.match(treeText(Footer()), /© \d{4} Acoru inc\./);
+  assert.match(treeText(Footer()), /© \d{4} Acoru合同会社/);
   assert.ok(!nodes.some((node) => node.type === "section" || node.type === "h2"));
   const page = fs.readFileSync(path.join(__dirname, "../src/app/page.tsx"), "utf8");
   assert.doesNotMatch(page, /service-main\.jpg|<Image|<footer/);
   assert.ok(page.indexOf("<HomeHero") < page.indexOf('id="latest-news"'));
   assert.match(page, /業務データの棚卸し/);
-  assert.ok(page.indexOf('"jr-hokkaido-system-renewal"') < page.indexOf('"case-1"'));
-  assert.ok(page.indexOf('"case-1"') < page.indexOf('"jr-hokkaido-sier-collaboration"'));
+  assert.ok(page.indexOf('"jr-hokkaido-system-renewal"') < page.indexOf('"sugimura-kenki-nfc-nippo"'));
+  assert.ok(page.indexOf('"sugimura-kenki-nfc-nippo"') < page.indexOf('"jr-hokkaido-sier-collaboration"'));
 });
 test("news and data inventory retain the approved production design", () => {
   const page = fs.readFileSync(path.join(__dirname, "../src/app/page.tsx"), "utf8");

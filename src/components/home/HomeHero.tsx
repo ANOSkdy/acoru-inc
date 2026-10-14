@@ -184,7 +184,7 @@ export function HomeHero({ cases }: { cases: HeroCase[] }) {
                 {cases.map((item, index) => (
                   <article className="acoru-b-slide" key={item.slug} data-case-slide aria-label={`${index + 1} / ${cases.length}：${item.title}`}>
                     <figure className="acoru-b-thumb">
-                      {item.image ? <Image src={item.image} alt={item.imageAlt || item.title} fill sizes="(max-width: 900px) 88vw, 52vw" className="object-contain" /> : <div className="acoru-b-image-fallback">Acoru inc.</div>}
+                      {item.image ? <Image src={item.image} alt={item.imageAlt || item.title} fill sizes="(max-width: 900px) 88vw, 52vw" className="object-contain" /> : <div className="acoru-b-image-fallback">Acoru合同会社</div>}
                       <span className="acoru-b-chip">{item.industry || "支援実績"}</span>
                     </figure>
                     <div className="acoru-b-slide-body">

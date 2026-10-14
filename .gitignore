@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local references and private working notes
+/.codex-remote-attachments/
+/docs/

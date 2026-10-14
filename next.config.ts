@@ -1,6 +1,8 @@
 // next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Both legacy spellings must redirect directly, before slash normalization.
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {
@@ -11,6 +13,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: "/cases/case-1", destination: "/cases/sugimura-kenki-nfc-nippo", permanent: true },
+      { source: "/cases/case-1/", destination: "/cases/sugimura-kenki-nfc-nippo", permanent: true },
+      // Preserve the previous no-trailing-slash behavior for other page routes.
+      // Vercel hoists slash redirects. Exclude the legacy URL even after hoisting.
+      { source: "/:path((?!cases/case-1(?:/|$)|api(?:/|$)|_next(?:/|$)|.*\\.[^/]+/?$).+)/", destination: "/:path", statusCode: 308 },
       {
         source: "/company",
         destination: "/about",
@@ -48,42 +55,42 @@ const nextConfig = {
       },
       {
         source: "/cases/4qdWsex3",
-        destination: "https://www.acoru.jp/news/post1",
+        destination: "https://acoru.jp/news/post1",
         permanent: true,
       },
       {
         source: "/cases/eXpX1Yfl",
-        destination: "https://www.acoru.jp/news/post7",
+        destination: "https://acoru.jp/news/post7",
         permanent: true,
       },
       {
         source: "/cases/23dBDo0a",
-        destination: "https://www.acoru.jp/news/post6",
+        destination: "https://acoru.jp/news/post6",
         permanent: true,
       },
       {
         source: "/cases/jJgWcKcx",
-        destination: "https://www.acoru.jp/news/post5",
+        destination: "https://acoru.jp/news/post5",
         permanent: true,
       },
       {
         source: "/cases/CGnEZvsr",
-        destination: "https://www.acoru.jp/news/post4",
+        destination: "https://acoru.jp/news/post4",
         permanent: true,
       },
       {
         source: "/cases/K4MFMKdP",
-        destination: "https://www.acoru.jp/news/post3",
+        destination: "https://acoru.jp/news/post3",
         permanent: true,
       },
       {
         source: "/cases/q2leQNYQ",
-        destination: "https://www.acoru.jp/news/post8",
+        destination: "https://acoru.jp/news/post8",
         permanent: true,
       },
       {
         source: "/cases/E3499Bzc",
-        destination: "https://www.acoru.jp/news/post9",
+        destination: "https://acoru.jp/news/post9",
         permanent: true,
       },
     ];

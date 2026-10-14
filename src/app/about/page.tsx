@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -150,23 +151,19 @@ export default async function AboutPage() {
                       </div>
                     )}
 
-                    {(company.phone || company.email) && (
-                      <div className="space-y-1">
-                        <p className="text-xs font-semibold text-slate-500">連絡先</p>
-                        {company.phone && <p className="font-semibold text-slate-900">TEL: {company.phone}</p>}
-                        {company.email && (
-                          <p>
-                            <span className="font-semibold text-slate-900">Mail: </span>
-                            <a
-                              href={`mailto:${company.email}`}
-                              className="font-semibold text-slate-900 underline underline-offset-2"
-                            >
-                              {company.email}
-                            </a>
-                          </p>
-                        )}
-                      </div>
-                    )}
+                    <div className="space-y-1">
+                      <p className="text-xs font-semibold text-slate-500">連絡先</p>
+                      <p>
+                        <Link href="/contact" className="font-semibold text-slate-900 underline underline-offset-2">
+                          お問い合わせフォーム
+                        </Link>
+                      </p>
+                      <p>
+                        <a href="mailto:support@acoru.jp" className="font-semibold text-slate-900 underline underline-offset-2">
+                          support@acoru.jp
+                        </a>
+                      </p>
+                    </div>
 
                     {(company.website || company.sns_x) && (
                       <div className="space-y-1">
