@@ -25,7 +25,7 @@ export function Header() {
   return (
     <header className={`sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur ${isHome ? "acoru-b-header" : ""}`}>
       <Container className={`flex items-center justify-between py-3 ${isHome ? "acoru-b-header-inner" : ""}`}>
-        <Link href="/" aria-label="Acoru トップへ" className="acoru-header-brand flex items-center gap-2.5" onClick={closeMenu}>
+        <Link href="/" aria-label="Acoru合同会社 トップへ" className="acoru-header-brand flex items-center gap-2.5" onClick={closeMenu}>
           <svg
             data-acoru-header-logo
             viewBox="0 0 500 500"
@@ -40,7 +40,7 @@ export function Header() {
             <path d={acoruMarkPaths.arc2} />
           </svg>
           <span className="acoru-header-wordmark text-lg font-black tracking-[0.04em] text-slate-900">
-            Acoru inc.
+            Acoru合同会社
           </span>
         </Link>
 

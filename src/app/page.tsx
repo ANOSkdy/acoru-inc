@@ -15,12 +15,12 @@ const casePresentation: Record<string, { title: string; subtitle: string }> = {
 };
 
 export const metadata: Metadata = {
-  title: "Acoru inc. | 北海道の業務データ基盤化支援",
+  title: { absolute: "北海道の業務データ基盤化支援 | Acoru合同会社" },
   description: "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
   openGraph: {
-    type: "website", url: "/", title: "Acoru inc. | 北海道の業務データ基盤化支援",
+    type: "website", url: "/", title: "北海道の業務データ基盤化支援 | Acoru合同会社",
     description: "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
-    siteName: "Acoru inc.",
+    siteName: "Acoru合同会社",
   },
   alternates: { canonical: "/" },
 };

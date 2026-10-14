@@ -20,7 +20,7 @@ export function ServiceDetail({ slug }: Props) {
     serviceType: service.category,
     provider: {
       "@type": "Organization",
-      name: "Acoru inc.",
+      name: "Acoru合同会社",
       url: "https://acoru.jp/",
     },
     areaServed: "北海道",

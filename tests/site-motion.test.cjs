@@ -317,7 +317,7 @@ test("case keyboard navigation scrolls to the matching chapter", () => {
 test("footer remains minimal; contact area and old service area do not return", () => {
   const {Footer} = loadComponent("src/components/layout/Footer.tsx", {}, {});
   const nodes = treeNodes(Footer());
-  assert.match(treeText(Footer()), /© \d{4} Acoru inc\./);
+  assert.match(treeText(Footer()), /© \d{4} Acoru合同会社/);
   assert.ok(!nodes.some((node) => node.type === "section" || node.type === "h2"));
   const page = fs.readFileSync(path.join(__dirname, "../src/app/page.tsx"), "utf8");
   assert.doesNotMatch(page, /service-main\.jpg|<Image|<footer/);

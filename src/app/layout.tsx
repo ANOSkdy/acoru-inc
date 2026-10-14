@@ -9,17 +9,17 @@ import { heroBody, heroDisplay, heroMono } from "@/lib/hero-fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://acoru.jp"),
-  applicationName: "Acoru inc.",
+  applicationName: "Acoru合同会社",
   title: {
-    default: "Acoru inc. | 北海道の中小企業向け 業務データ基盤化支援",
-    template: "%s | Acoru inc.",
+    default: "北海道の中小企業向け 業務データ基盤化支援 | Acoru合同会社",
+    template: "%s | Acoru合同会社",
   },
   description:
     "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読める業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
-  creator: "Acoru inc.",
-  publisher: "Acoru inc.",
+  creator: "Acoru合同会社",
+  publisher: "Acoru合同会社",
   openGraph: {
-    siteName: "Acoru inc.",
+    siteName: "Acoru合同会社",
   },
   twitter: {
     card: "summary_large_image",
