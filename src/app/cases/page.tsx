@@ -1,5 +1,7 @@
 // src/app/cases/page.tsx
 import Link from "next/link";
+import Image from "next/image";
+import type { Metadata } from "next";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -7,6 +9,12 @@ import { getCases } from "@/lib/content";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "北海道のDX導入事例・支援実績",
+  description: "Acoru合同会社のDX支援実績。JR北海道向け業務システム刷新・情報セキュリティ教材整備から、北海道の企業の業務データ基盤化、AI日報、業務自動化までご紹介します。",
+  alternates: { canonical: "https://acoru.jp/cases" },
+};
 
 export default async function CasesPage() {
   const cases = await getCases();
@@ -21,7 +29,7 @@ export default async function CasesPage() {
               現場起点で設計した、リアルなDXプロジェクト。
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              北海道の建設・運送現場を中心に、AI日報やAIエージェント、DX設計支援などを組み合わせたプロジェクトの一部をご紹介します。実際にどのような課題をどう解決したのかをご覧いただけます。
+              JR北海道向けの業務システム刷新や教材整備、北海道の建設・運送現場でのAI日報、業務データ基盤化など、Acoruが参画・支援したプロジェクトをご紹介します。課題と担当業務、取り組みの意義をお伝えします。
             </p>
           </div>
 
@@ -36,8 +44,13 @@ export default async function CasesPage() {
               <Link
                 key={c.id}
                 href={`/cases/${c.slug}`}
-                className="flex flex-col gap-2 rounded-2xl px-3 py-3 transition hover:bg-slate-50 md:flex-row md:items-baseline md:gap-4"
+                className="flex flex-col gap-4 rounded-2xl px-3 py-3 transition hover:bg-slate-50 md:flex-row md:items-center"
               >
+                {c.heroImageUrl && (
+                  <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-xl bg-slate-50 md:w-56">
+                    <Image src={c.heroImageUrl} alt={c.heroImageAlt || c.title} fill sizes="(min-width: 768px) 224px, 100vw" className="object-contain" />
+                  </div>
+                )}
                 <div className="flex-1 space-y-2">
                   <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
                     {c.industry && (
