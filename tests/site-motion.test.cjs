@@ -213,7 +213,7 @@ test("B header shows shared mark immediately, without the old docking behavior",
   assert.doesNotMatch(logo.props.className, /dock/);
   assert.ok(nodes.some((node) => node.props?.href === "/cases"));
   const {acoruMarkPaths} = loadComponent("src/components/brand/acoru-mark.ts", {}, {});
-  assert.deepEqual(Array.from(logo.props.children, (node) => node.props.d), Object.values(acoruMarkPaths));
+  assert.deepEqual(treeNodes(logo).filter(node => node.type === "path").map(node => node.props.d), Object.values(acoruMarkPaths));
 });
 test("B uses one exact introduction, real thumbnails and three case slides", () => {
   const scene = mountHero();

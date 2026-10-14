@@ -38,9 +38,11 @@ export function Header() {
             aria-hidden="true"
             className="h-[30px] w-[30px] shrink-0 text-[#534491]"
           >
-            <path d={acoruMarkPaths.peak} />
-            <path d={acoruMarkPaths.arc1} />
-            <path d={acoruMarkPaths.arc2} />
+            <g className="acoru-header-mark-upper"><path d={acoruMarkPaths.peak} /></g>
+            <g className="acoru-header-mark-lower">
+              <path d={acoruMarkPaths.arc1} />
+              <path d={acoruMarkPaths.arc2} />
+            </g>
           </svg>
           <span className="acoru-header-wordmark text-lg font-black tracking-[0.04em] text-slate-900">
             Acoru合同会社
@@ -86,7 +88,10 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Button href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined} className="acoru-header-cta" variant="primary">お問い合わせ</Button>
+          <Button href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined} className="acoru-header-cta" variant="primary">
+            <span className="acoru-header-cta-label">お問い合わせ</span>
+            <span className="acoru-header-cta-arrow" aria-hidden="true">→</span>
+          </Button>
         </nav>
       </Container>
 
@@ -105,7 +110,8 @@ export function Header() {
               </Link>
             ))}
             <Button href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined} className="acoru-header-cta w-full justify-center" onClick={closeMenu}>
-              お問い合わせ
+              <span className="acoru-header-cta-label">お問い合わせ</span>
+              <span className="acoru-header-cta-arrow" aria-hidden="true">→</span>
             </Button>
           </Container>
         </nav>
