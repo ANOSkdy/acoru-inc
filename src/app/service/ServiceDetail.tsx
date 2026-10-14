@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServiceBySlug } from "./_data";
+import { ORGANIZATION_ID } from "@/lib/structured-data";
 
 type Props = {
   slug: string;
@@ -20,6 +21,7 @@ export function ServiceDetail({ slug }: Props) {
     serviceType: service.category,
     provider: {
       "@type": "Organization",
+      "@id": ORGANIZATION_ID,
       name: "Acoru合同会社",
       url: "https://acoru.jp/",
     },

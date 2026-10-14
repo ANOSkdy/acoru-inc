@@ -31,46 +31,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  schema,
 }: {
   children: React.ReactNode;
+  schema: React.ReactNode;
 }) {
-  const structuredData = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "Acoru inc.",
-      alternateName: ["Acoru", "Acoru合同会社"],
-      url: "https://acoru.jp/",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "Acoru inc.",
-      url: "https://acoru.jp/",
-      logo: "https://acoru.jp/acoru-logo.png",
-      description:
-        "紙・Excel・日報・現場記録を整理し、AIが読める業務データへ変える会社です。",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      name: "Acoru inc.",
-      url: "https://acoru.jp/",
-      image: "https://acoru.jp/acoru-logo.png",
-      areaServed: "北海道",
-      serviceType: "業務データ基盤化支援",
-      description:
-        "北海道の中小企業向けに、紙・Excel・日報・現場記録をAIが読める業務データへ整え、現場と経営をつなぐ業務基盤づくりを支援します。",
-    },
-  ];
-
   return (
     <html lang="ja" className={`${heroDisplay.variable} ${heroBody.variable} ${heroMono.variable}`}>
+      <head>{schema}</head>
       <body className="bg-white text-slate-900 antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
         <div className="relative min-h-screen">
           {/* ごく薄い背景アクセント */}
           <div className="pointer-events-none fixed inset-0 -z-10">

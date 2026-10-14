@@ -323,8 +323,8 @@ test("footer remains minimal; contact area and old service area do not return", 
   assert.doesNotMatch(page, /service-main\.jpg|<Image|<footer/);
   assert.ok(page.indexOf("<HomeHero") < page.indexOf('id="latest-news"'));
   assert.match(page, /業務データの棚卸し/);
-  assert.ok(page.indexOf('"jr-hokkaido-system-renewal"') < page.indexOf('"case-1"'));
-  assert.ok(page.indexOf('"case-1"') < page.indexOf('"jr-hokkaido-sier-collaboration"'));
+  assert.ok(page.indexOf('"jr-hokkaido-system-renewal"') < page.indexOf('"sugimura-kenki-nfc-nippo"'));
+  assert.ok(page.indexOf('"sugimura-kenki-nfc-nippo"') < page.indexOf('"jr-hokkaido-sier-collaboration"'));
 });
 test("news and data inventory retain the approved production design", () => {
   const page = fs.readFileSync(path.join(__dirname, "../src/app/page.tsx"), "utf8");
