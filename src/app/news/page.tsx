@@ -1,5 +1,6 @@
 // src/app/news/page.tsx
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -7,6 +8,11 @@ import { getNews } from "@/lib/content";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: "お知らせ・コラム | 北海道の中小企業のAI活用・業務データ基盤",
+  description: "Acoruの最新情報と、北海道の中小企業向けのAI活用、業務データ整理、システム内製・運用に関するコラムを掲載しています。",
+  alternates: { canonical: "https://acoru.jp/news" },
+};
 
 export default async function NewsPage() {
   const news = await getNews();
@@ -18,10 +24,10 @@ export default async function NewsPage() {
           <div className="space-y-3">
             <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">お知らせ</p>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              プロダクトリリース・イベント・メディア掲載などの最新情報。
+              お知らせ・コラム
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              AI日報「スマレポ」やAIエージェント、各種イベント・メディア掲載など、Acoruに関する最新のお知らせを掲載しています。
+              北海道の中小企業に向けたAI活用・業務データ基盤づくりのコラムと、Acoruのサービス・イベントなどの最新情報を掲載しています。
             </p>
           </div>
 

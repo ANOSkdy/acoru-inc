@@ -1,5 +1,6 @@
-import type { Case } from "@/lib/content";
+import type { Case, NewsItem } from "@/lib/content";
 import { caseUrl } from "@/lib/case-urls";
+import { newsEditorial, newsUrl } from "@/lib/news-editorial";
 
 export const ORGANIZATION_ID = "https://acoru.jp/#organization";
 
@@ -76,4 +77,31 @@ export function caseGraph(c: Case) {
 
 export function serializeGraph(graph: object[]) {
   return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
+}
+
+export function newsGraph(article: NewsItem) {
+  const url = newsUrl(article.slug);
+  const editorial = newsEditorial(article.slug);
+  return [
+    {
+      "@type": "BlogPosting", "@id": `${url}#article`, headline: article.title,
+      description: article.summary, articleSection: article.category, inLanguage: "ja",
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      datePublished: article.publishedAtIso,
+      image: article.heroImageUrl ? [article.heroImageUrl] : undefined,
+      author: editorial
+        ? { "@type": "Person", name: editorial.author, url: editorial.authorUrl }
+        : { "@type": "Organization", "@id": ORGANIZATION_ID, name: "Acoru合同会社" },
+      publisher: { "@type": "Organization", "@id": ORGANIZATION_ID, name: "Acoru合同会社" },
+      ...(editorial ? { isBasedOn: editorial.sourceUrl } : {}),
+    },
+    {
+      "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://acoru.jp/" },
+        { "@type": "ListItem", position: 2, name: "お知らせ・コラム", item: "https://acoru.jp/news" },
+        { "@type": "ListItem", position: 3, name: article.title, item: url },
+      ],
+    },
+  ];
 }
