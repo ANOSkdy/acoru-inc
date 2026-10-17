@@ -1,5 +1,20 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Public content cache
+
+Public news, cases and company information share a tagged data cache. Public
+pages use ISR with a 24-hour fallback refresh; CMS saves normally invalidate
+them immediately. Contact submissions always write directly to the database.
+
+Set `ACORU_REVALIDATE_SECRET` as a Production Secret in Vercel. Configure the CMS
+with the same secret and `ACORU_REVALIDATE_URL=https://acoru.jp/api/revalidate`.
+The authenticated POST endpoint invalidates only the fixed public content tag
+and routes. A successful response means invalidation was accepted; pages are
+regenerated on their next request. Use separate URLs and secrets for previews.
+
+Verify changes with `pnpm typecheck`, `pnpm build`, and
+`node --test tests/public-content-cache.test.cjs tests/case-urls.test.cjs tests/structured-data.test.cjs`.
+
 ## Getting Started
 
 First, run the development server:

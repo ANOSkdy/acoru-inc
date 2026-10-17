@@ -7,7 +7,7 @@ import { Section } from "@/components/ui/Section";
 import { getNews } from "@/lib/content";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "お知らせ・コラム | 北海道の中小企業のAI活用・業務データ基盤",
   description: "Acoruの最新情報と、北海道の中小企業向けのAI活用、業務データ整理、システム内製・運用に関するコラムを掲載しています。",

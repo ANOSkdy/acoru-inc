@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { getCompanyProfile } from "@/lib/content";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Acoruについて | 北海道の業務データ基盤化支援会社",
