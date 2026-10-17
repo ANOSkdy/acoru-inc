@@ -1,7 +1,7 @@
 // src/app/news/[slug]/page.tsx
 import { NewsDetail } from "../NewsDetail";
 import type { Metadata } from "next";
-import { getNewsBySlug } from "@/lib/content";
+import { getNews, getNewsBySlug } from "@/lib/content";
 import { newsEditorial, newsUrl } from "@/lib/news-editorial";
 
 type Props = {
@@ -9,7 +9,11 @@ type Props = {
 };
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
+
+export async function generateStaticParams() {
+  return (await getNews()).map(({ slug }) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

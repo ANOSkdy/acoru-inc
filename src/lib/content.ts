@@ -1,9 +1,11 @@
 import "server-only";
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import { LEGACY_SUGIMURA_CASE_SLUG, publicCaseSlug, SUGIMURA_CASE_SLUG } from "@/lib/case-urls";
 import { caseStructuredData, type CaseStructuredData } from "@/lib/case-structured-data";
 
 import { querySitePublic } from "@/lib/database";
+import { PUBLIC_CONTENT_REVALIDATE_SECONDS, PUBLIC_CONTENT_TAG } from "@/lib/public-content-cache";
 
 export type NewsItem = {
   id: string;
@@ -167,7 +169,7 @@ const CASE_COLUMNS = `
   hero_media_alt_text
 `;
 
-export async function getNews(): Promise<NewsItem[]> {
+async function readNews(): Promise<NewsItem[]> {
   const rows = await querySitePublic<NewsRow>(`
     SELECT ${NEWS_COLUMNS}
     FROM site_public.news
@@ -180,49 +182,31 @@ export async function getNews(): Promise<NewsItem[]> {
 export const getNewsBySlug = cache(async function getNewsBySlug(
   slug: string,
 ): Promise<NewsItem | null> {
-  const rows = await querySitePublic<NewsRow>(
-    `
-      SELECT ${NEWS_COLUMNS}
-      FROM site_public.news
-      WHERE slug = $1
-      LIMIT 1
-    `,
-    [slug],
-  );
-
-  return rows[0] ? toNews(rows[0]) : null;
+  return (await getNews()).find((item) => item.slug === slug) ?? null;
 });
 
-export async function getCases(): Promise<Case[]> {
+async function readCases(): Promise<Case[]> {
   const rows = await querySitePublic<CaseRow>(`
     SELECT ${CASE_COLUMNS}
     FROM site_public.case_studies
     ORDER BY sort_order ASC, published_at DESC, id DESC
   `);
 
-  return rows.map(toCase);
+  // Prefer the canonical row if both the old and new CMS slugs exist.
+  const hasCanonical = rows.some((row) => row.slug === SUGIMURA_CASE_SLUG);
+  return rows
+    .filter((row) => !hasCanonical || row.slug !== LEGACY_SUGIMURA_CASE_SLUG)
+    .map(toCase);
 }
 
 export const getCaseBySlug = cache(async function getCaseBySlug(
   slug: string,
 ): Promise<Case | null> {
   const requestedSlug = publicCaseSlug(slug);
-  const legacySlug = requestedSlug === SUGIMURA_CASE_SLUG ? LEGACY_SUGIMURA_CASE_SLUG : requestedSlug;
-  const rows = await querySitePublic<CaseRow>(
-    `
-      SELECT ${CASE_COLUMNS}
-      FROM site_public.case_studies
-      WHERE slug = $1 OR slug = $2
-      ORDER BY (slug = $1) DESC
-      LIMIT 1
-    `,
-    [requestedSlug, legacySlug],
-  );
-
-  return rows[0] ? toCase(rows[0]) : null;
+  return (await getCases()).find((item) => item.slug === requestedSlug) ?? null;
 });
 
-export async function getCompanyProfile(): Promise<CompanyProfile | null> {
+async function readCompanyProfile(): Promise<CompanyProfile | null> {
   const rows = await querySitePublic<CompanyRow>(`
     SELECT
       name,
@@ -260,6 +244,29 @@ export async function getCompanyProfile(): Promise<CompanyProfile | null> {
     map_url: optional(company.map_url),
     sns_x: optional(company.x_url),
   };
+}
+
+const getPublicContent = cache(unstable_cache(
+  async () => {
+    const [news, cases, company] = await Promise.all([
+      readNews(), readCases(), readCompanyProfile(),
+    ]);
+    return { news, cases, company };
+  },
+  ["acoru-public-content-v1"],
+  { tags: [PUBLIC_CONTENT_TAG], revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS },
+));
+
+export async function getNews(): Promise<NewsItem[]> {
+  return (await getPublicContent()).news;
+}
+
+export async function getCases(): Promise<Case[]> {
+  return (await getPublicContent()).cases;
+}
+
+export async function getCompanyProfile(): Promise<CompanyProfile | null> {
+  return (await getPublicContent()).company;
 }
 
 export async function submitContact(input: {

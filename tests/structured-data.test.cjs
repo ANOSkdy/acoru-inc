@@ -17,7 +17,11 @@ function load(file, imports = {}) {
 
 const urls = load("src/lib/case-urls.ts");
 const { caseStructuredData } = load("src/lib/case-structured-data.ts", { "@/lib/case-urls": urls });
-const { siteGraph, caseGraph, serializeGraph, ORGANIZATION_ID } = load("src/lib/structured-data.ts", { "@/lib/case-urls": urls });
+const editorial = load("src/lib/news-editorial.ts");
+const { siteGraph, caseGraph, serializeGraph, ORGANIZATION_ID } = load("src/lib/structured-data.ts", {
+  "@/lib/case-urls": urls,
+  "@/lib/news-editorial": editorial,
+});
 const parse = graph => JSON.parse(serializeGraph(graph))["@graph"];
 
 test("the site identifies the legal entity with a real logo and confirmed profiles", () => {

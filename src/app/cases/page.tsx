@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/content";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "北海道のDX導入事例・支援実績",

@@ -2,7 +2,7 @@
 import { CaseDetail } from "../CaseDetail";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getCaseBySlug } from "@/lib/content";
+import { getCases, getCaseBySlug } from "@/lib/content";
 import { caseUrl } from "@/lib/case-urls";
 
 // ★ Next.js 16 では params は Promise で渡ってくる
@@ -11,7 +11,11 @@ type Props = {
 };
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
+
+export async function generateStaticParams() {
+  return (await getCases()).map(({ slug }) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
