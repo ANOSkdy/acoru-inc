@@ -16,7 +16,9 @@ const navItems = [
 ];
 
 export function Header() {
-  const pathname = usePathname();
+  // Vercel ISR renders the root route internally as /index.
+  const rawPathname = usePathname();
+  const pathname = rawPathname === "/index" ? "/" : rawPathname;
   const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
 

@@ -55,6 +55,16 @@ test("the mobile contact link closes the menu, just like the other navigation li
   assert.equal(open, false);
 });
 
+test("the Vercel ISR /index path renders the same homepage header as /", () => {
+  for (const route of ["/", "/index"]) {
+    const tree = header(route);
+    assert.equal(tree.some(node => node.props?.className === "acoru-header-spacer"), false);
+    const brand = tree.find(node => node.props?.["aria-label"] === "Acoru合同会社 トップへ");
+    assert.equal(brand.props["aria-current"], "page");
+  }
+  assert.equal(header("/index/other").some(node => node.props?.className === "acoru-header-spacer"), true);
+});
+
 test("Button preserves click handlers for both links and native form buttons", () => {
   let clicked = 0;
   for (const props of [{ href: "/contact" }, { type: "submit" }]) {
