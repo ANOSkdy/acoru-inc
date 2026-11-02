@@ -146,11 +146,11 @@ export async function CaseDetail({ slug }: Props) {
         {isSugimura && <SugimuraEstimateNote />}
         {isSugimura && <SugimuraEvidenceSections />}
         <section className="rounded-2xl bg-slate-50 p-5">
-          <h2 className="text-base font-semibold text-slate-900">業務システム刷新・DXのご相談</h2>
+          <h2 className="text-base font-semibold text-slate-900">業務データ整理・業務基盤づくりのご相談</h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-600">業務要望やデータの整理から、システム設計、現場での運用定着まで。御社の課題や体制に合わせた進め方をご相談いただけます。</p>
           <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold">
             <Link href="/service" className="underline underline-offset-4">Acoruの支援サービスを見る</Link>
-            <Link href="/contact" className="underline underline-offset-4">業務・DXについて相談する</Link>
+            <Link href="/contact" className="underline underline-offset-4">業務データの整理について相談する</Link>
           </div>
         </section>
       </section>

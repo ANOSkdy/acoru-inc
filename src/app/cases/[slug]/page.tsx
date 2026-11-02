@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = await getCaseBySlug(slug);
   if (!c) notFound();
   const title = `${c.title} | Acoru合同会社`;
-  const description = c.summary || `${c.title}。AcoruのDX支援実績をご紹介します。`;
+  const description = c.summary || `${c.title}。Acoruの業務基盤づくりの支援実績をご紹介します。`;
   const url = caseUrl(c.slug);
   const images = c.heroImageUrl
     ? [{ url: c.heroImageUrl, alt: c.heroImageAlt || c.title }]
