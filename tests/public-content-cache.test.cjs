@@ -30,6 +30,7 @@ test("listing, metadata, details and unknown slugs reuse one public snapshot; co
     "@/lib/public-content-cache": { PUBLIC_CONTENT_TAG: "acoru-public-content", PUBLIC_CONTENT_REVALIDATE_SECONDS: 86400 },
     "@/lib/case-urls": urls,
     "@/lib/case-structured-data": { caseStructuredData: {} },
+    "@/lib/company-positioning": load("src/lib/company-positioning.ts", {}),
     "@/lib/database": { querySitePublic: async (sql) => {
       queries.push(sql);
       if (sql.includes("FROM site_public.news")) return [{ id: "1", slug: "news-one", title: "News", body_markdown: "Body" }];

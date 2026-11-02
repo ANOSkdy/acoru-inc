@@ -11,8 +11,8 @@ export const runtime = "nodejs";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "北海道のDX導入事例・支援実績",
-  description: "Acoru合同会社のDX支援実績。JR北海道向け業務システム刷新・情報セキュリティ教材整備から、北海道の企業の業務データ基盤化、AI日報、業務自動化までご紹介します。",
+  title: "北海道の業務基盤づくり・データ活用の支援実績",
+  description: "Acoru合同会社の支援実績。JR北海道向け業務システム刷新・情報セキュリティ教材整備から、北海道の企業の業務データ基盤化、AI日報、業務自動化までご紹介します。",
   alternates: { canonical: "https://acoru.jp/cases" },
 };
 
@@ -26,7 +26,7 @@ export default async function CasesPage() {
           <div className="space-y-3">
             <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">導入事例</p>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              現場起点で設計した、リアルなDXプロジェクト。
+              現場と経営をつなぐ、業務基盤づくりの実績。
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
               JR北海道向けの業務システム刷新や教材整備、北海道の建設・運送現場でのAI日報、業務データ基盤化など、Acoruが参画・支援したプロジェクトをご紹介します。課題と担当業務、取り組みの意義をお伝えします。

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { companyPositioning } from "@/lib/company-positioning";
 import { getCompanyProfile } from "@/lib/content";
 
 export const runtime = "nodejs";
@@ -41,7 +42,7 @@ export default async function AboutPage() {
         <Container>
           <div className="max-w-4xl space-y-6">
             <h1 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
-              北海道の中小企業に眠る業務データを、AIが使える経営資産に変える。
+              {companyPositioning.mission}
             </h1>
 
             <div className="space-y-4 text-sm leading-relaxed text-slate-700 sm:text-base">
@@ -70,33 +71,20 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-100/70 md:px-7 md:py-6">
               <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">MISSION</h2>
-              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">「現場から始まるDX」で、北海道の中小企業の経営を見える化する。</p>
+              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">{companyPositioning.mission}</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-                現場の負担を増やすDXではなく、現場の「困った」を解消しながら、記録・確認・集計が経営判断につながるデータ基盤を設計します。まずは1現場・1プロジェクトから、小さく試しながら確実に定着させることを大切にしています。
+                紙・Excel・日報・現場記録を整理し、AIが読み取り、経営判断に使える業務データへ整えます。現場・事務・経営が同じデータを見て判断できるよう、入力・確認・更新の運用まで伴走します。
               </p>
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-100/70 md:px-7 md:py-6">
               <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">VISION</h2>
-              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">業務データとAIが「当たり前の道具」になる未来をつくる。</p>
+              <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">{companyPositioning.vision}</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 特別な企業だけが使えるテクノロジーではなく、現場で働くすべての人にとって自然に使える道具として、業務データ基盤とAI活用を届けていきます。
                 そのために、UI/UX、業務フロー、担当者への操作レクチャー・運用定着まで含めて設計します。
               </p>
             </div>
-          </div>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 px-6 py-6 shadow-sm shadow-slate-100/70 md:px-7 md:py-7">
-            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">インクルーシブDXとは</h2>
-            <p className="mt-2 text-lg font-semibold text-slate-900 sm:text-xl">ITスキルや役職にかかわらず、全員が迷わず使えるDX。</p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              「一部の人だけが便利になるDX」ではなく、現場・事務・経営の全員にとって価値のある業務データ基盤をつくること。
-              それがAcoruの考えるインクルーシブDXです。画面や導線の分かりやすさ、導入〜定着までの伴走も含めて設計します。
-            </p>
           </div>
         </Container>
       </Section>

@@ -25,6 +25,7 @@ test("company contact details never publish the CMS phone or legacy email", asyn
     "@/components/ui/Button": { Button: link },
     "@/components/ui/Container": { Container: wrapper },
     "@/components/ui/Section": { Section: wrapper },
+    "@/lib/company-positioning": load("src/lib/company-positioning.ts", {}),
     "@/lib/content": { getCompanyProfile: async () => ({ name: "Acoru合同会社", phone: "090-0000-0000", email: "legacy@example.com" }) },
   });
   const html = renderToStaticMarkup(await AboutPage());

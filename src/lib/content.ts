@@ -3,6 +3,7 @@ import { cache } from "react";
 import { unstable_cache } from "next/cache";
 import { LEGACY_SUGIMURA_CASE_SLUG, publicCaseSlug, SUGIMURA_CASE_SLUG } from "@/lib/case-urls";
 import { caseStructuredData, type CaseStructuredData } from "@/lib/case-structured-data";
+import { companyPositioning } from "@/lib/company-positioning";
 
 import { querySitePublic } from "@/lib/database";
 import { PUBLIC_CONTENT_REVALIDATE_SECONDS, PUBLIC_CONTENT_TAG } from "@/lib/public-content-cache";
@@ -83,9 +84,6 @@ type CaseRow = {
 
 type CompanyRow = {
   name: string | null;
-  tagline: string | null;
-  mission: string | null;
-  vision: string | null;
   ceo: string | null;
   address: string | null;
   phone: string | null;
@@ -210,9 +208,6 @@ async function readCompanyProfile(): Promise<CompanyProfile | null> {
   const rows = await querySitePublic<CompanyRow>(`
     SELECT
       name,
-      tagline,
-      mission,
-      vision,
       ceo,
       address,
       phone,
@@ -232,9 +227,6 @@ async function readCompanyProfile(): Promise<CompanyProfile | null> {
 
   return {
     name: optional(company.name),
-    tagline: optional(company.tagline),
-    mission: optional(company.mission),
-    vision: optional(company.vision),
     ceo: optional(company.ceo),
     address: optional(company.address),
     phone: optional(company.phone),
@@ -266,7 +258,8 @@ export async function getCases(): Promise<Case[]> {
 }
 
 export async function getCompanyProfile(): Promise<CompanyProfile | null> {
-  return (await getPublicContent()).company;
+  const company = (await getPublicContent()).company;
+  return company ? { ...company, ...companyPositioning } : null;
 }
 
 export async function submitContact(input: {
