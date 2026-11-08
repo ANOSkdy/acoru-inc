@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef } from "react";
 
 import { acoruMarkPaths } from "@/components/brand/acoru-mark";
+import { brandMessage, sugimuraEvidence, valueMessage } from "@/lib/messaging";
 import { getHeroFrame, getHeroProgress } from "./hero-motion";
 import { createHeroParticles } from "./hero-particles";
 
@@ -165,15 +166,19 @@ export function HomeHero({ cases }: { cases: HeroCase[] }) {
         <div className="acoru-b-copy">
           <svg className="acoru-b-static-logo" viewBox="0 0 500 500" fill="currentColor" aria-hidden="true">{mark}</svg>
           <p className="acoru-b-eyebrow">北海道・札幌発</p>
-          <h1>業務データで現場と経営をつなぐ。<br />AI時代の業務基盤を。</h1>
-          <p>北海道の中小企業に残る紙、Excel、口頭連絡、日報、現場記録を整理し、AIが読み取り、経営判断に使える業務データへ変えます。システム導入だけでなく、現場で使い続けられる運用まで伴走します。</p>
-          <div className="acoru-b-ctas"><Link className="acoru-b-btn acoru-b-btn-ghost" href="/service">事業内容を見る</Link><Link className="acoru-b-btn acoru-b-btn-solid" href="/contact">業務データ診断を相談する</Link></div>
+          <h1>{brandMessage}</h1>
+          <p>{valueMessage}現場で使い続けられる運用まで伴走します。</p>
+          <Link className="acoru-b-proof" href={sugimuraEvidence.href}>
+            <span>{sugimuraEvidence.company}</span>
+            <span>{sugimuraEvidence.label} <strong>{sugimuraEvidence.value}</strong></span>
+          </Link>
+          <div className="acoru-b-ctas"><a className="acoru-b-btn acoru-b-btn-solid acoru-b-btn-wide" href="#featured-cases">導入事例を見る<span aria-hidden="true">→</span></a></div>
         </div>
         <div className="acoru-b-layer acoru-b-reveal" role="region" aria-label="導入事例">
           <div className="acoru-b-showcase">
             <div className="acoru-b-showcase-head">
               <p className="acoru-b-eyebrow" data-reveal-item>導入事例</p>
-              <h2 data-reveal-item>技術と現場をつなぐ、Acoruの実績。</h2>
+              <h2 data-reveal-item>現場と経営がつながった、Acoruの実績。</h2>
               <p data-reveal-item>道内大手インフラ企業向けプロジェクトから、建設現場のAI日報まで。</p>
               <div className="acoru-b-counter" data-reveal-item aria-hidden="true"><b data-case-now>01</b><span>/ {String(cases.length).padStart(2, "0")}</span></div>
               <div className="acoru-b-pips" data-reveal-item aria-hidden="true">{cases.map((item, index) => <i key={item.slug} data-case-pip data-active={index === 0} />)}</div>

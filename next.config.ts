@@ -18,6 +18,8 @@ const nextConfig = {
       // Preserve the previous no-trailing-slash behavior for other page routes.
       // Vercel hoists slash redirects. Exclude the legacy URL even after hoisting.
       { source: "/:path((?!cases/case-1(?:/|$)|api(?:/|$)|_next(?:/|$)|.*\\.[^/]+/?$).+)/", destination: "/:path", statusCode: 308 },
+      // 社内問い合わせAI化は提供終了。旧URLはサービス一覧へ。
+      { source: "/service/ai-agent-support", destination: "/service", permanent: true },
       {
         source: "/company",
         destination: "/about",

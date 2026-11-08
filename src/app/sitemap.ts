@@ -8,7 +8,7 @@ export const revalidate = 86400;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://acoru.jp";
   const [cases, news] = await Promise.all([getCases(), getNews()]);
-  const staticRoutes = ["", "/about", "/service", "/cases", "/news", "/contact"];
+  const staticRoutes = ["", "/about", "/service", "/osasal", "/cases", "/news", "/contact", "/referral"];
   const serviceRoutes = services.map((service) => `/service/${service.slug}`);
 
   const staticEntries: MetadataRoute.Sitemap = [...staticRoutes, ...serviceRoutes].map((route) => ({

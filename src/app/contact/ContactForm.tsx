@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function ContactForm() {
+export function ContactForm({ osasalRequest = null }: {
+  osasalRequest?: "consultation" | "materials" | null;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -24,6 +26,7 @@ export function ContactForm() {
       personName: formData.get("personName")?.toString().trim() || "",
       email: formData.get("email")?.toString().trim() || "",
       phone: "",
+      referrerName: formData.get("referrerName")?.toString().trim() || "",
       category: formData.get("category")?.toString().trim() || "",
       message: formData.get("message")?.toString().trim() || "",
       privacyAgreed: formData.get("privacyAgreed") === "on",
@@ -71,6 +74,11 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="space-y-5 rounded-3xl border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-100/70 md:px-8 md:py-8"
     >
+      {osasalRequest && (
+        <p className="rounded-xl bg-[#534491]/5 px-4 py-3 text-sm text-[#534491]">
+          {osasalRequest === "materials" ? "Osasal（オササル）の資料をご希望の方は、以下のフォームからお申し込みください。" : "Osasal（オササル）についてのご相談を承ります。"}
+        </p>
+      )}
       {/* 会社名 */}
       <div className="space-y-1">
         <label
@@ -121,6 +129,27 @@ export function ContactForm() {
         />
       </div>
 
+      {/* 紹介者名（紹介元別の受注率計測に使う） */}
+      <div className="space-y-1">
+        <label
+          htmlFor="referrerName"
+          className="text-sm font-semibold text-slate-800"
+        >
+          紹介者名（任意）
+        </label>
+        <input
+          id="referrerName"
+          name="referrerName"
+          type="text"
+          maxLength={200}
+          aria-describedby="referrerName-help"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
+        />
+        <p id="referrerName-help" className="text-xs text-slate-500">
+          ご紹介でお越しの方は、紹介者の会社名・お名前をご記入ください。
+        </p>
+      </div>
+
       {/* お問い合わせ種別 */}
       <div className="space-y-1">
         <label
@@ -130,16 +159,16 @@ export function ContactForm() {
           お問い合わせの種別（任意）
         </label>
         <select
+          key={osasalRequest ?? "general"}
           id="category"
           name="category"
           className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-900 focus:bg-white min-h-[44px]"
-          defaultValue=""
+          defaultValue={osasalRequest ? "ai-nippo" : ""}
         >
           <option value="">選択してください</option>
-          <option value="data-foundation">業務データ整理・AI活用基盤づくりについて</option>
-          <option value="ai-nippo">NFC打刻・日報自動化について</option>
-          <option value="ai-agent">社内マニュアル・問い合わせAI化について</option>
-          <option value="dx-design">外部情シス・運用定着支援について</option>
+          <option value="data-foundation">業務データ診断について</option>
+          <option value="ai-nippo">業務システム（Osasal）について</option>
+          <option value="dx-design">デジタル顧問について</option>
           <option value="other">その他</option>
         </select>
       </div>
@@ -153,6 +182,8 @@ export function ContactForm() {
           お問い合わせ内容 <span className="text-rose-500">*</span>
         </label>
         <textarea
+          key={osasalRequest ?? "general"}
+          defaultValue={osasalRequest === "materials" ? "Osasal（オササル）の資料を希望します。" : osasalRequest === "consultation" ? "Osasal（オササル）について相談したいです。\n現在の記録方法：\n利用予定人数：\n相談したいこと：" : ""}
           id="message"
           name="message"
           required

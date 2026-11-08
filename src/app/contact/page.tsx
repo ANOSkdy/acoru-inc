@@ -12,7 +12,13 @@ export const metadata: Metadata = {
     "紙・Excel・日報・現場記録を整理したい、AI活用の前に業務データを整えたい。そんな北海道の中小企業のご相談をAcoruが整理し、進め方をご提案します。",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: {
+  searchParams: Promise<{ product?: string | string[]; request?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const osasalRequest = params.product === "osasal"
+    ? params.request === "materials" ? "materials" : "consultation"
+    : null;
   return (
     <>
       <Section className="pt-10 md:pt-12 pb-6">
@@ -32,7 +38,7 @@ export default function ContactPage() {
 
       <Section className="pt-0 pb-10">
         <Container>
-          <ContactForm />
+          <ContactForm key={osasalRequest ?? "general"} osasalRequest={osasalRequest} />
         </Container>
       </Section>
 
