@@ -5,8 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { HomeHero } from "@/components/home/HomeHero";
 import { getCases, getNews } from "@/lib/content";
+import { entryQuestions } from "@/lib/messaging";
 
-const dormantDataExamples = ["紙の日報", "Excelの案件表", "手書きの作業記録", "写真・LINE・チャットの報告", "現場ごとの口頭連絡", "属人化したマニュアル", "事務員だけが知っている確認手順", "社長の頭の中にある判断基準"];
 const featuredCaseSlugs = ["jr-hokkaido-system-renewal", "sugimura-kenki-nfc-nippo", "jr-hokkaido-sier-collaboration"];
 const casePresentation: Record<string, { title: string; subtitle: string }> = {
   "jr-hokkaido-system-renewal": { title: "JR北海道向け業務システム刷新支援", subtitle: "要望整理・移行計画・試験準備" },
@@ -16,10 +16,10 @@ const casePresentation: Record<string, { title: string; subtitle: string }> = {
 
 export const metadata: Metadata = {
   title: { absolute: "北海道の業務データ基盤化支援 | Acoru合同会社" },
-  description: "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
+  description: "業務データで現場と経営をつなぐ。人に依存していた業務と情報を、仕組みとして会社に残す。紙・Excel・日報・現場記録を経営判断に使える形に整え、北海道の中小企業の現場で使い続けられる運用まで伴走します。",
   openGraph: {
     type: "website", url: "/", title: "北海道の業務データ基盤化支援 | Acoru合同会社",
-    description: "Acoruは、紙・Excel・日報・現場記録を整理し、AIが読み取り経営判断に使える業務データへ変える会社です。北海道の中小企業向けに、現場と経営をつなぐ業務基盤づくりを支援します。",
+    description: "業務データで現場と経営をつなぐ。人に依存していた業務と情報を、仕組みとして会社に残す。紙・Excel・日報・現場記録を経営判断に使える形に整え、北海道の中小企業の現場で使い続けられる運用まで伴走します。",
     siteName: "Acoru合同会社",
   },
   alternates: { canonical: "/" },
@@ -49,6 +49,27 @@ export default async function HomePage() {
       </div>
 
       <div className="acoru-b-continuation">
+        <Section id="questions" className="acoru-b-inventory-shell">
+          <Container className="acoru-b-content-shell">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <p className="acoru-b-eyebrow">業務データの棚卸し</p>
+                <h2 className="acoru-b-after-title">現場の記録が経営の数字になるまで、手作業が挟まっていませんか。</h2>
+              </div>
+              <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {entryQuestions.map((item, index) => (
+                  <li key={item.type} className="flex flex-col gap-3 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-100/70">
+                    <p className="text-xs font-semibold tracking-[0.2em] text-[#534491]">{String(index + 1).padStart(2, "0")}｜{item.type}</p>
+                    <p className="text-lg font-semibold leading-snug text-slate-900 max-sm:text-balance">{item.question}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                紙の日報やExcelの案件表、事務員だけが知っている確認手順まで、散らばった記録を経営判断に使える形に整えます。<strong className="font-semibold text-[#534491]">紙のままでも対応できます。</strong>
+              </p>
+            </div>
+          </Container>
+        </Section>
         <Section id="latest-news" className="acoru-b-news-shell scroll-mt-24">
           <Container className="acoru-b-content-shell">
             <div className="space-y-4">
@@ -97,40 +118,17 @@ export default async function HomePage() {
           </Container>
         </Section>
 
-        <Section className="acoru-b-inventory-shell">
+        <Section id="contact" className="acoru-b-contact-shell">
           <Container className="acoru-b-content-shell">
-            <div className="rounded-[32px] border border-slate-200 bg-slate-50 p-6 shadow-sm shadow-slate-100/70 sm:p-8">
-              <div className="max-w-3xl space-y-3">
-                <p className="text-[12px] font-semibold tracking-[0.26em] text-slate-500">業務データの棚卸し</p>
-                <h2 className="text-xl font-semibold leading-snug tracking-tight text-slate-900 max-sm:text-balance sm:text-2xl">眠っている業務データはありませんか？</h2>
-                <p className="text-sm leading-7 text-slate-600 sm:text-base">
-                  業務データ基盤化は、社内に散らばる記録や判断基準を棚卸し、AIが読み取りやすく、経営判断に使える形へ整える取り組みです。
-                </p>
+            <div className="flex flex-col gap-6 rounded-[32px] bg-[#534491] p-8 text-white sm:p-10 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <p className="text-[12px] font-semibold tracking-[0.26em] text-white/70">お問い合わせ</p>
+                <h2 className="text-xl font-semibold leading-snug sm:text-2xl">まずは現状をお聞かせください。</h2>
+                <p className="text-sm leading-7 text-white/80">紙やExcelのままでも構いません。ご紹介でお越しの方は、フォームに紹介者名をご記入ください。</p>
               </div>
-              <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-slate-700 sm:hidden">
-                {dormantDataExamples.slice(0, 4).map((item) => (
-                  <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
-                    {item}
-                  </div>
-                ))}
-                <details className="group rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
-                  <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800">
-                    ほかの例を見る <span className="text-slate-500 group-open:hidden">＋</span><span className="hidden text-slate-500 group-open:inline">−</span>
-                  </summary>
-                  <div className="mt-3 space-y-2 border-t border-slate-200 pt-3">
-                    {dormantDataExamples.slice(4).map((item) => (
-                      <p key={item}>{item}</p>
-                    ))}
-                  </div>
-                </details>
-              </div>
-              <div className="mt-6 hidden gap-3 text-sm text-slate-700 sm:grid sm:grid-cols-2 lg:grid-cols-4">
-                {dormantDataExamples.map((item) => (
-                  <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-100/70">
-                    {item}
-                  </div>
-                ))}
-              </div>
+              <Link href="/contact" className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-[#534491] transition hover:-translate-y-0.5">
+                業務データ診断を相談する
+              </Link>
             </div>
           </Container>
         </Section>

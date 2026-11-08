@@ -24,6 +24,7 @@ function loadComponent(relativePath, hooks, browser) {
       if (name === "./hero-particles") return { createHeroParticles: () => browser.particlePainter };
       if (name === "./hero-motion") return loadComponent("src/components/home/hero-motion.ts", {}, {});
       if (name === "@/components/brand/acoru-mark") return loadComponent("src/components/brand/acoru-mark.ts", {}, {});
+      if (name === "@/lib/messaging") return loadComponent("src/lib/messaging.ts", {}, {});
       return {};
     },
     ...browser,
@@ -220,7 +221,11 @@ test("B uses one exact introduction, real thumbnails and three case slides", () 
   const nodes = treeNodes(scene.tree);
   assert.equal(nodes.filter((node) => node.type === "h1").length, 1);
   assert.equal(nodes.filter((node) => node.props?.["data-case-slide"]).length, 3);
-  assert.match(treeText(scene.tree), /紙、Excel、口頭連絡、日報、現場記録/);
+  const text = treeText(scene.tree);
+  assert.match(text, /業務データで現場と経営をつなぐ。/);
+  assert.match(text, /人に依存していた業務と情報を、仕組みとして会社に残す。/);
+  assert.match(text, /スギムラ建機[\s\S]*約85%削減/);
+  assert.doesNotMatch(text, /AI時代の業務基盤を/);
   assert.doesNotMatch(treeText(scene.tree), /まずは 1 現場|動きを止める|モーション仕様/);
   assert.equal(nodes.filter((node) => node.props?.src === "/case.jpg").length, 3);
   assert.equal(scene.nodes[".acoru-b-reveal"].inert, true);
@@ -326,15 +331,15 @@ test("footer remains minimal; contact area and old service area do not return", 
   assert.ok(page.indexOf('"jr-hokkaido-system-renewal"') < page.indexOf('"sugimura-kenki-nfc-nippo"'));
   assert.ok(page.indexOf('"sugimura-kenki-nfc-nippo"') < page.indexOf('"jr-hokkaido-sier-collaboration"'));
 });
-test("news and data inventory retain the approved production design", () => {
+test("news keeps its design and the inventory shows the three entry questions", () => {
   const page = fs.readFileSync(path.join(__dirname, "../src/app/page.tsx"), "utf8");
   const heroEnd = page.indexOf("</div>", page.indexOf("<HomeHero"));
   assert.ok(heroEnd < page.indexOf('id="latest-news"'), "hero theme must not wrap news/inventory");
   assert.match(page, /overflow-hidden rounded-\[32px\] border border-slate-200 bg-slate-50\/70/);
   assert.match(page, /n\.category \?\? "NEWS"/);
-  assert.match(page, /rounded-\[32px\] border border-slate-200 bg-slate-50 p-6/);
-  assert.match(page, /ほかの例を見る/);
-  assert.match(page, /dormantDataExamples\.slice\(0, 4\)/);
+  assert.match(page, /entryQuestions\.map/);
+  assert.match(page, /紙のままでも対応できます。/);
+  assert.doesNotMatch(page, /dormantDataExamples/);
 });
 test("B CSS retains source 700vh, responsive showcase and readable no-JS fallback", () => {
   const css = fs.readFileSync(path.join(__dirname, "../src/app/hero-b.css"), "utf8");

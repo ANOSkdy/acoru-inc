@@ -1,0 +1,232 @@
+.osasal-page {
+  --osasal-primary: #534491;
+  --osasal-ink: #242035;
+  --osasal-muted: #686278;
+  --osasal-tint: #f6f4fb;
+  --osasal-line: #e5dfef;
+  background: #fff; color: var(--osasal-ink);
+  font-family: var(--font-hero-body), "Hiragino Sans", "Yu Gothic", sans-serif;
+  overflow: clip; line-height: 1.85;
+}
+.osasal-page *, .osasal-page *::before, .osasal-page *::after { box-sizing: border-box; }
+.osasal-page [id] { scroll-margin-top: calc(var(--acoru-header-height) + env(safe-area-inset-top, 0px) + 90px); }
+.osasal-shell { width: min(1120px, calc(100% - 80px)); margin-inline: auto; }
+.osasal-page h1, .osasal-page h2, .osasal-page h3 { font-family: var(--font-hero-display), sans-serif; font-weight: 700; text-wrap: balance; }
+.osasal-page h2 { font-size: clamp(27px, 3.3vw, 42px); line-height: 1.5; letter-spacing: -.035em; }
+.osasal-page h3 { font-size: 19px; line-height: 1.6; }
+.osasal-page a:focus-visible, .osasal-page summary:focus-visible { outline: 3px solid var(--osasal-primary); outline-offset: 5px; border-radius: 3px; }
+.osasal-eyebrow { display: flex; gap: 16px; align-items: center; margin-bottom: 17px; color: var(--osasal-primary); font-size: 12px; font-weight: 500; letter-spacing: .1em; }
+.osasal-eyebrow > span { font-family: var(--font-hero-mono), monospace; font-size: 11px; opacity: .65; }
+.osasal-lead { margin-top: 18px; max-width: 760px; font-size: 15px; color: var(--osasal-muted); line-height: 1.95; }
+.osasal-small { margin-top: 20px; color: var(--osasal-muted); font-size: 12px; line-height: 1.9; }
+.osasal-section { padding-block: 84px; }
+.osasal-section-heading { margin-bottom: 36px; }
+.osasal-tint { background: var(--osasal-tint); }
+.osasal-reading-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; pointer-events: none; }
+.osasal-reading-progress > div { width: 100%; height: 100%; background: var(--osasal-primary); transform: scaleX(0); transform-origin: left; }
+.osasal-broadcast { position: sticky; top: calc(var(--acoru-header-height) + env(safe-area-inset-top, 0px)); z-index: 30; min-height: 42px; padding: 9px 18px; display: flex; gap: 10px; align-items: center; justify-content: center; background: var(--osasal-primary); color: white; font-size: 12px; line-height: 1.7; text-align: center; }
+.osasal-broadcast-dot { width: 6px; height: 6px; flex-shrink: 0; border-radius: 50%; background: #e6ddff; box-shadow: 0 0 0 4px #ffffff1c; }
+.osasal-hero { min-height: 650px; padding-block: 36px 66px; display: grid; grid-template-columns: 1fr 1.05fr; gap: 38px; align-items: center; }
+.osasal-breadcrumb { display: flex; gap: 12px; font-size: 11px; color: var(--osasal-muted); margin-bottom: 45px; }
+.osasal-breadcrumb a { text-decoration: underline; text-underline-offset: 3px; }
+.osasal-wordmark { display: flex; align-items: baseline; gap: 16px; font-family: var(--font-hero-display), sans-serif; font-size: clamp(50px, 6vw, 76px); font-weight: 900; line-height: 1.15; letter-spacing: -.055em; color: var(--osasal-primary); }
+.osasal-wordmark > span { font-size: 12px; letter-spacing: .12em; font-weight: 500; }
+.osasal-catch { display: block; font-size: clamp(30px, 3.7vw, 48px); line-height: 1.45; letter-spacing: -.035em; margin-top: 24px; }
+.osasal-hero-description { margin-top: 22px; color: var(--osasal-muted); font-size: 15px; line-height: 1.9; }
+.osasal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.osasal-button { position: relative; display: inline-flex; align-items: center; justify-content: space-between; gap: 26px; min-height: 52px; padding: 12px 23px; border: 1px solid var(--osasal-primary); background: var(--osasal-primary); color: #fff; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 220ms ease, transform 220ms ease, box-shadow 220ms ease; }
+.osasal-button-secondary { color: var(--osasal-primary); background: transparent; border-color: #c8bfe0; }
+.osasal-button > span, .osasal-text-link > span { transition: transform 220ms ease; }
+.osasal-hero-price { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 24px; font-size: 11px; color: var(--osasal-muted); }
+.osasal-hero-price strong { color: var(--osasal-ink); font-size: 13px; font-weight: 500; }
+.osasal-hero-price a { text-decoration: underline; text-underline-offset: 3px; }
+.osasal-visual { position: relative; isolation: isolate; width: 100%; aspect-ratio: 1.06; display: flex; align-items: center; justify-content: center; perspective: 1100px; }
+.osasal-visual::before { content: ""; position: absolute; inset: 2% -5%; border-radius: 50%; z-index: -2; background: radial-gradient(ellipse, #e5def6 0%, #f6f3fc 47%, transparent 70%); }
+.osasal-orbit { position: absolute; width: 95%; height: 78%; border: 1px solid #d9cee9; border-radius: 50%; transform: rotate(-30deg); z-index: -1; }
+.osasal-orbit-two { width: 68%; height: 98%; transform: rotate(35deg); border-style: dashed; border-color: #e7e0f2; }
+.osasal-photo-shell { position: relative; overflow: hidden; width: 97%; border-radius: 26px; transform: rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) rotate(-4deg); box-shadow: 0 26px 55px #49377520; transition: transform 300ms ease; background: #ede4de; }
+.osasal-product-image { width: 100%; height: auto; display: block; }
+.osasal-photo-shell-flat { transform: rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)); background: #1c1930; }
+.osasal-photo-caption { position: absolute; bottom: 16px; left: 18px; padding: 7px 13px; border-radius: 6px; font-size: 12px; color: var(--osasal-primary); background: #ffffffeb; }
+.osasal-tap-indicator { position: absolute; top: 12%; right: 8%; width: 68px; height: 68px; background: white; color: var(--osasal-primary); border: 1px solid #e5dfef; border-radius: 19px; display: grid; place-items: center; box-shadow: 0 10px 35px #53449114; }
+.osasal-tap-indicator svg { width: 42px; height: 42px; }
+.osasal-signal-ring { position: absolute; inset: -8px; border: 1px solid #a394c5; border-radius: 25px; animation: osasal-signal 3.6s ease-out infinite; animation-play-state: paused; }
+.osasal-signal-ring-two { animation-delay: 1.8s; }
+.osasal-record-card { position: absolute; bottom: 9%; left: 6%; right: 0; padding: 18px; display: flex; gap: 14px; align-items: center; overflow: hidden; background: #fffffff2; border: 1px solid var(--osasal-line); border-radius: 13px; box-shadow: 0 14px 40px #53449118; }
+.osasal-record-icon { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--osasal-tint); color: var(--osasal-primary); font-size: 18px; }
+.osasal-record-label { display: block; color: var(--osasal-muted); font-size: 10px; }
+.osasal-record-card strong { display: block; font-size: 14px; font-weight: 500; color: var(--osasal-primary); letter-spacing: .05em; }
+.osasal-record-flow { position: absolute; bottom: 0; left: -30%; width: 30%; height: 2px; background: linear-gradient(90deg, transparent, #9b87c7, transparent); animation: osasal-data-flow 3.6s ease-in-out infinite; animation-play-state: paused; }
+.osasal-visual figcaption { position: absolute; bottom: 0; right: 0; color: var(--osasal-muted); font-size: 10px; }
+.osasal-page[data-animated="true"] .osasal-signal-ring, .osasal-page[data-animated="true"] .osasal-record-flow { animation-play-state: running; }
+.osasal-section-nav { border-block: 1px solid var(--osasal-line); }
+.osasal-section-nav > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 38px; padding-block: 19px; }
+.osasal-section-nav a { display: inline-flex; align-items: center; min-height: 28px; font-size: 12px; color: var(--osasal-muted); }
+.osasal-broadcast-note { margin-top: 22px; padding: 20px 24px; background: var(--osasal-tint); border-left: 2px solid var(--osasal-primary); border-radius: 0 8px 8px 0; font-size: 14px; }
+.osasal-about-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 65px; }
+.osasal-about-grid > div > p:last-child { color: var(--osasal-muted); font-size: 14px; }
+.osasal-about-grid .osasal-lead { margin-top: 0; margin-bottom: 20px; color: var(--osasal-ink); font-size: 17px; }
+.osasal-problems { display: grid; grid-template-columns: 1fr 1fr; column-gap: 50px; margin-top: 32px; list-style: none; }
+.osasal-problems li { display: flex; align-items: baseline; gap: 12px; padding-block: 18px; border-bottom: 1px solid var(--osasal-line); font-size: 14px; }
+.osasal-problems li > span { color: var(--osasal-primary); }
+.osasal-three-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.osasal-feature-card, .osasal-note-card { position: relative; padding: 30px; background: white; border: 1px solid var(--osasal-line); border-radius: 14px; overflow: hidden; }
+.osasal-feature-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 27px; color: var(--osasal-primary); }
+.osasal-feature-top > span { color: #b5a9cc; font-family: var(--font-hero-mono), monospace; font-size: 11px; }
+.osasal-feature-card p, .osasal-note-card p { margin-top: 17px; color: var(--osasal-muted); font-size: 13px; line-height: 2; }
+.osasal-feature-line { position: absolute; bottom: 0; inset-inline: 0; height: 2px; background: var(--osasal-primary); transform: scaleX(0); transform-origin: left; transition: transform 400ms ease; }
+.osasal-case-panel { display: grid; grid-template-columns: 1fr .75fr; gap: 35px 50px; padding: 48px; border-radius: 20px; background: var(--osasal-primary); color: white; }
+.osasal-case-panel .osasal-eyebrow, .osasal-case-panel .osasal-lead { color: #eee7fa; }
+.osasal-case-panel h2 { font-size: clamp(26px, 3vw, 36px); }
+.osasal-case-panel .osasal-lead { font-size: 13px; }
+.osasal-text-link { display: inline-flex; min-height: 44px; align-items: center; gap: 25px; margin-top: 24px; font-size: 13px; text-decoration: underline; text-underline-offset: 6px; }
+.osasal-case-stat { display: flex; flex-direction: column; justify-content: center; }
+.osasal-case-stat > span { font-size: 13px; letter-spacing: .05em; }
+.osasal-case-stat strong { font-family: var(--font-hero-display), sans-serif; font-size: clamp(96px, 11vw, 148px); line-height: 1.2; letter-spacing: -.055em; font-weight: 900; }
+.osasal-case-stat strong > span { font-size: .4em; margin-left: 8px; font-weight: 500; }
+.osasal-case-stat p { color: #e4ddf0; font-size: 10px; line-height: 1.9; }
+.osasal-before-after { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 12px; grid-column: 1 / -1; border-top: 1px solid #ffffff38; padding-top: 28px; }
+.osasal-before-after > div > span { font-size: 11px; color: #e4dced; }
+.osasal-before-after p { margin-top: 8px; font-size: 13px; }
+.osasal-before-after-arrow { align-self: center; text-align: center; color: #cabce6; }
+.osasal-testimonial { grid-column: 1 / -1; border-top: 1px solid #ffffff38; padding-top: 24px; }
+.osasal-testimonial cite { font-size: 12px; font-style: normal; }
+.osasal-table-scroll { overflow-x: auto; border: 1px solid var(--osasal-line); border-radius: 12px; }
+.osasal-comparison { width: 100%; min-width: 590px; border-collapse: collapse; text-align: left; font-size: 13px; }
+.osasal-comparison th, .osasal-comparison td { padding: 20px 24px; border-bottom: 1px solid var(--osasal-line); vertical-align: top; }
+.osasal-comparison thead { background: #faf9fc; }
+.osasal-comparison th { font-weight: 500; }
+.osasal-comparison tr > :last-child { background: var(--osasal-tint); color: var(--osasal-primary); }
+.osasal-comparison tbody tr:last-child > * { border-bottom: 0; }
+.osasal-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; list-style: none; }
+.osasal-steps li { position: relative; display: flex; flex-direction: column; align-items: flex-start; border-top: 1px solid #cfc4e4; padding-top: 24px; }
+.osasal-step-number { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--osasal-primary); color: white; font-family: var(--font-hero-mono), monospace; font-size: 12px; margin-bottom: 22px; }
+.osasal-steps h3 { font-size: 17px; }
+.osasal-steps p { margin-block: 14px 18px; font-size: 13px; color: var(--osasal-muted); }
+.osasal-step-period { margin-top: auto; color: var(--osasal-primary); font-size: 10px; background: #eee8f7; padding: 5px 9px; border-radius: 4px; }
+.osasal-pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.osasal-price-card { padding: 30px 36px; border: 1px solid var(--osasal-line); border-radius: 14px; }
+.osasal-price-monthly { background: var(--osasal-tint); border-color: #c3b6db; }
+.osasal-price-card > p:first-child { color: var(--osasal-primary); font-size: 14px; }
+.osasal-price-card > div { display: flex; align-items: baseline; gap: 10px; margin-block: 15px; color: var(--osasal-primary); }
+.osasal-price-card strong { font-family: var(--font-hero-display), sans-serif; font-size: 68px; line-height: 1.2; letter-spacing: -.045em; font-weight: 900; }
+.osasal-price-card > div > span { font-size: 19px; }
+.osasal-price-card .osasal-price-approx { font-size: 17px; }
+.osasal-price-unit { font-size: 12px; }
+.osasal-price-card > p:last-child { color: var(--osasal-muted); font-size: 12px; }
+.osasal-faq-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 60px; }
+.osasal-faq-grid .osasal-lead { font-size: 13px; }
+.osasal-faq-list details { padding: 22px 0; border-bottom: 1px solid #d9d0e8; }
+.osasal-faq-list details:first-child { border-top: 1px solid #d9d0e8; }
+.osasal-faq-list summary { display: flex; align-items: baseline; gap: 12px; cursor: pointer; list-style: none; font-size: 14px; font-weight: 500; }
+.osasal-faq-list summary::-webkit-details-marker { display: none; }
+.osasal-faq-q { flex-shrink: 0; color: var(--osasal-primary); font-family: var(--font-hero-mono), monospace; font-size: 11px; }
+.osasal-faq-toggle { margin-left: auto; flex-shrink: 0; color: var(--osasal-primary); transition: transform 220ms ease; }
+.osasal-faq-list details[open] .osasal-faq-toggle { transform: rotate(45deg); }
+.osasal-faq-list details > p { margin: 15px 30px 0; color: var(--osasal-muted); font-size: 13px; line-height: 2; }
+.osasal-company { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; border-top: 1px solid var(--osasal-line); padding-top: 36px; }
+.osasal-company-brand img { width: 100%; max-width: 340px; height: auto; }
+.osasal-company-brand > p { font-size: 13px; color: var(--osasal-muted); margin-top: 24px; }
+.osasal-company-brand .osasal-text-link { color: var(--osasal-primary); }
+.osasal-company dl > div { display: grid; grid-template-columns: 110px 1fr; padding-block: 15px; border-bottom: 1px solid var(--osasal-line); font-size: 13px; }
+.osasal-company dt { color: var(--osasal-muted); }
+.osasal-company dd a { text-decoration: underline; text-underline-offset: 4px; }
+.osasal-final { position: relative; padding-block: 82px; background: #f0ebf8; text-align: center; overflow: hidden; }
+.osasal-final::before { content: ""; position: absolute; pointer-events: none; width: 700px; height: 700px; border: 1px solid #ddd2ef; border-radius: 50%; top: -220px; left: calc(50% - 350px); }
+.osasal-final > div { position: relative; }
+.osasal-final .osasal-eyebrow, .osasal-final .osasal-actions { justify-content: center; }
+.osasal-final h2 { color: var(--osasal-primary); }
+.osasal-final h2 + p { margin-top: 22px; font-size: 14px; color: var(--osasal-muted); }
+.osasal-final .osasal-text-link { color: var(--osasal-primary); }
+.osasal-mobile-break { display: none; }
+@keyframes osasal-signal { 0% { transform: scale(.9); opacity: 0; } 15% { opacity: .7; } 75%, 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes osasal-data-flow { 0%, 15% { transform: translateX(0); opacity: 0; } 25% { opacity: 1; } 85%, 100% { transform: translateX(450%); opacity: 0; } }
+@media (hover: hover) and (pointer: fine) {
+  .osasal-button:hover { background: #433676; transform: translateY(-2px); box-shadow: 0 7px 20px #53449120; }
+  .osasal-button-secondary:hover { background: #eae4f4; }
+  .osasal-button:hover > span, .osasal-text-link:hover > span { transform: translate(2px, -2px); }
+  .osasal-feature-card:hover .osasal-feature-line { transform: scaleX(1); }
+  .osasal-section-nav a:hover { color: var(--osasal-primary); }
+}
+@media (max-width: 999px) {
+  .osasal-shell { width: calc(100% - 48px); }
+  .osasal-hero { gap: 25px; min-height: 580px; }
+  .osasal-about-grid, .osasal-faq-grid { gap: 35px; }
+  .osasal-feature-card { padding: 24px; }
+  .osasal-three-grid { gap: 14px; }
+  .osasal-case-panel { padding: 36px; gap: 30px; }
+  .osasal-company { gap: 40px; }
+  .osasal-steps { gap: 18px; }
+}
+@media (max-width: 699px) {
+  .osasal-shell { width: calc(100% - 40px); }
+  .osasal-broadcast { padding-inline: 12px; font-size: 10px; gap: 8px; }
+  .osasal-hero { grid-template-columns: 1fr; gap: 14px; padding-block: 20px 38px; min-height: auto; }
+  .osasal-breadcrumb { margin-bottom: 28px; }
+  .osasal-hero .osasal-eyebrow { font-size: 10px; margin-bottom: 14px; }
+  .osasal-wordmark { font-size: 58px; }
+  .osasal-catch { font-size: 35px; margin-top: 18px; }
+  .osasal-hero-description { font-size: 13px; margin-top: 17px; }
+  .osasal-actions { gap: 10px; margin-top: 22px; }
+  .osasal-hero .osasal-button { flex: 1; gap: 10px; padding: 11px 14px; }
+  .osasal-hero-price { margin-top: 16px; }
+  .osasal-hero-price a { flex-basis: 100%; margin-top: 3px; }
+  .osasal-visual { width: min(100%, 440px); justify-self: center; aspect-ratio: 1.35; }
+  .osasal-tap-indicator { top: 5%; width: 54px; height: 54px; border-radius: 14px; }
+  .osasal-tap-indicator svg { width: 34px; height: 34px; }
+  .osasal-record-card { bottom: 6%; padding: 12px; }
+  .osasal-record-card strong { font-size: 12px; }
+  .osasal-record-label { font-size: 9px; }
+  .osasal-visual figcaption { bottom: -15px; font-size: 9px; }
+  .osasal-photo-caption { bottom: 12px; left: 12px; font-size: 10px; }
+  .osasal-section-nav > div { justify-content: flex-start; gap: 5px 22px; padding-block: 13px; }
+  .osasal-section-nav a { font-size: 11px; min-height: 32px; }
+  .osasal-section { padding-block: 54px; }
+  .osasal-section-heading { margin-bottom: 28px; }
+  .osasal-eyebrow { font-size: 11px; margin-bottom: 14px; }
+  .osasal-lead { font-size: 13px; }
+  .osasal-about-grid, .osasal-faq-grid, .osasal-company, .osasal-three-grid { grid-template-columns: 1fr; }
+  .osasal-about-grid { gap: 25px; }
+  .osasal-about-grid .osasal-lead { font-size: 15px; }
+  .osasal-about-grid > div > p:last-child { font-size: 13px; }
+  .osasal-problems { grid-template-columns: 1fr; margin-top: 22px; }
+  .osasal-problems li { font-size: 12px; padding-block: 16px; }
+  .osasal-feature-card { padding: 27px; }
+  .osasal-feature-top { margin-bottom: 22px; }
+  .osasal-case-panel { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
+  .osasal-case-stat { padding-top: 22px; border-top: 1px solid #ffffff38; }
+  .osasal-case-stat strong { font-size: 112px; }
+  .osasal-case-stat p { font-size: 10px; }
+  .osasal-before-after { grid-template-columns: 1fr; gap: 17px; }
+  .osasal-before-after-arrow { transform: rotate(90deg); justify-self: start; margin-left: 8px; }
+  .osasal-comparison { min-width: 520px; font-size: 12px; }
+  .osasal-comparison th, .osasal-comparison td { padding: 16px; }
+  .osasal-steps { grid-template-columns: 1fr 1fr; gap: 30px 18px; }
+  .osasal-steps li { padding-top: 18px; }
+  .osasal-step-number { margin-bottom: 18px; }
+  .osasal-step-period { font-size: 9px; padding: 5px 7px; }
+  .osasal-steps h3 { font-size: 15px; }
+  .osasal-steps p { font-size: 12px; }
+  .osasal-pricing-grid { gap: 12px; }
+  .osasal-price-card { padding: 22px 17px; }
+  .osasal-price-card strong { font-size: 55px; }
+  .osasal-price-card > p:first-child { font-size: 12px; }
+  .osasal-price-card > div { gap: 4px; flex-wrap: wrap; }
+  .osasal-price-card > div > span { font-size: 15px; }
+  .osasal-price-card > p:last-child { font-size: 10px; }
+  .osasal-price-unit { font-size: 10px; }
+  .osasal-faq-grid { gap: 0; }
+  .osasal-faq-list summary { font-size: 12px; gap: 8px; }
+  .osasal-faq-list details > p { font-size: 12px; margin-inline: 0; }
+  .osasal-company { gap: 25px; }
+  .osasal-company-brand img { max-width: 270px; }
+  .osasal-company dl > div { grid-template-columns: 85px 1fr; font-size: 12px; }
+  .osasal-final { padding-block: 56px; }
+  .osasal-final .osasal-button { gap: 14px; padding-inline: 18px; }
+  .osasal-mobile-break { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .osasal-page *, .osasal-page *::before, .osasal-page *::after { animation: none !important; transition: none !important; }
+  .osasal-photo-shell, .osasal-button:hover, .osasal-button:hover > span, .osasal-text-link:hover > span { transform: none !important; }
+  .osasal-signal-ring, .osasal-record-flow { display: none; }
+}

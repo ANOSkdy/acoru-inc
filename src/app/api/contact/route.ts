@@ -54,8 +54,10 @@ export async function POST(request: Request) {
   const phone = "";
   const message = textField(body, "message", 10_000);
   const serviceInterest = textField(body, "category", 200);
+  const referrerName = textField(body, "referrerName", 200);
 
   if (
+    referrerName === null ||
     companyName === null ||
     personName === null ||
     email === null ||
@@ -85,7 +87,8 @@ export async function POST(request: Request) {
       personName,
       email,
       phone,
-      message,
+      // DB関数の引数を増やさず、紹介者名は本文の先頭に残す。
+      message: referrerName ? `【紹介者】${referrerName}\n\n${message}` : message,
       serviceInterest,
       privacyAccepted: true,
       privacyPolicyVersion: PRIVACY_POLICY_VERSION,

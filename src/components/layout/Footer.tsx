@@ -8,6 +8,7 @@ const navItems = [
   { href: "/cases", label: "導入事例" },
   { href: "/news", label: "お知らせ" },
   { href: "/contact", label: "お問い合わせ" },
+  { href: "/referral", label: "ご紹介いただく方へ" },
 ];
 
 export function Footer() {

@@ -1,4 +1,6 @@
-import { ServiceDetail } from "../ServiceDetail";
+import { ServiceDetail, serviceMetadata } from "../ServiceDetail";
+
+export const metadata = serviceMetadata("data-foundation");
 
 export const dynamic = "force-dynamic";
 

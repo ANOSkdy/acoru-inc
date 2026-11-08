@@ -65,8 +65,8 @@ test("legacy CMS positioning cannot return through company information", async (
 
   const html = renderToStaticMarkup(await aboutPage(content)());
   assert.doesNotMatch(html, /DX|旧ビジョン/);
-  assert.equal(html.split(companyPositioning.mission).length - 1, 3);
-  assert.equal(html.split(companyPositioning.vision).length - 1, 2);
+  assert.equal(html.split(companyPositioning.mission).length - 1, 1);
+  assert.equal(html.split(companyPositioning.vision).length - 1, 1);
   assert.ok(html.includes(companyPositioning.tagline));
   for (const value of [company.name, company.ceo, company.address, company.established]) {
     assert.ok(html.includes(value));

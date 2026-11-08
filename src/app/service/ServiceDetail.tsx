@@ -1,9 +1,24 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServiceBySlug } from "./_data";
+import { Button } from "@/components/ui/Button";
+import { pricingNote } from "@/lib/messaging";
 import { ORGANIZATION_ID } from "@/lib/structured-data";
 import { getNewsBySlug } from "@/lib/content";
 import { AI_DATABASE_ARTICLE_SLUG } from "@/lib/news-editorial";
+
+export function serviceMetadata(slug: string): Metadata {
+  const service = getServiceBySlug(slug);
+  if (!service) return {};
+  const title = `${service.name}（${service.price}・税抜）`;
+  return {
+    title,
+    description: service.shortDescription,
+    openGraph: { type: "website", url: `/service/${slug}`, title: `${title} | Acoru合同会社`, description: service.shortDescription, siteName: "Acoru合同会社" },
+    alternates: { canonical: `/service/${slug}` },
+  };
+}
 
 type Props = {
   slug: string;
@@ -74,8 +89,14 @@ export async function ServiceDetail({ slug }: Props) {
             href="/service"
             className="text-[12px] font-semibold tracking-[0.18em] text-slate-600 underline-offset-4 hover:underline"
           >
-            ← 事業一覧へ戻る
+            ← サービス一覧へ戻る
           </Link>
+        </div>
+
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 rounded-2xl bg-[#534491]/5 px-5 py-4">
+          <span className="text-xs font-semibold tracking-[0.2em] text-[#534491]">{service.priceLabel}</span>
+          <span className="text-xl font-semibold text-slate-900">{service.price}</span>
+          <span className="text-xs text-slate-500">（税抜）</span>
         </div>
 
         <details className="group rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-[14px] leading-7 text-slate-700 sm:hidden">
@@ -97,7 +118,7 @@ export async function ServiceDetail({ slug }: Props) {
 
         {service.targetData && (
           <div>
-            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">整理できる業務データ</h2>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">対象になる記録</h2>
             <ul className="mt-3 grid gap-2 text-[13px] leading-relaxed text-slate-700 md:grid-cols-2 md:text-[14px]">
               {service.targetData.map((item) => (
                 <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">{item}</li>
@@ -133,7 +154,7 @@ export async function ServiceDetail({ slug }: Props) {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">技術面の実装ポイント</h2>
+          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">Acoruが担うこと</h2>
           <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
             {service.technicalProof.map((item) => (
               <li key={item} className="flex gap-2">
@@ -187,6 +208,14 @@ export async function ServiceDetail({ slug }: Props) {
             <p className="mt-2 text-sm leading-7 text-slate-600">サービスの比較と、本番運用前に確認したい7項目を解説します。</p>
           </aside>
         )}
+
+        <div className="flex flex-col gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs leading-6 text-slate-500">{pricingNote}</p>
+          <div className="flex flex-wrap gap-3">
+            {service.related && <Button href={service.related.href} variant="ghost">{service.related.label}</Button>}
+            <Button href="/contact">相談する</Button>
+          </div>
+        </div>
       </section>
     </div>
   );

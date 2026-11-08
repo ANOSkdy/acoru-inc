@@ -60,3 +60,19 @@ test("phone-only contact requests are rejected before storage; email requests di
   assert.equal(saved[0].email, "test@example.com");
   assert.equal(saved[0].phone, "");
 });
+
+test("referrer names are kept at the top of the stored message", async () => {
+  const saved = [];
+  const { POST } = load("src/app/api/contact/route.ts", {
+    "next/server": { NextResponse: { json: (body, options) => Response.json(body, options) } },
+    "@/lib/content": { submitContact: async input => { saved.push(input); } },
+  });
+  const request = body => new Request("https://acoru.jp/api/contact", { method: "POST", body: JSON.stringify(body) });
+  const body = { personName: "Test", email: "test@example.com", message: "Test inquiry", privacyAgreed: true };
+  assert.equal((await POST(request({ ...body, referrerName: "札幌商事 山田様" }))).status, 200);
+  assert.equal(saved[0].message, "【紹介者】札幌商事 山田様\n\nTest inquiry");
+  assert.equal((await POST(request(body))).status, 200);
+  assert.equal(saved[1].message, "Test inquiry");
+  assert.equal((await POST(request({ ...body, referrerName: "x".repeat(201) }))).status, 400);
+  assert.equal(saved.length, 2);
+});
