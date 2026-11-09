@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { HomeHero } from "@/components/home/HomeHero";
+import { HbcMediaPopup } from "@/components/media/HbcMediaPopup";
 import { getCases, getNews } from "@/lib/content";
 import { entryQuestions } from "@/lib/messaging";
 import { osasal } from "@/lib/osasal";
@@ -134,6 +135,9 @@ export default async function HomePage() {
           </Container>
         </Section>
       </div>
+
+      {/* トップページ限定のメディア掲載告知。設定は src/lib/media-popup.ts */}
+      <HbcMediaPopup />
     </>
   );
 }
