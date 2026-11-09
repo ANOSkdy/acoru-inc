@@ -1,0 +1,138 @@
+/* HBCメディア掲載告知ポップアップ（トップページのみ）。
+   ネイティブ <dialog> の top layer に描画されるため、ヘッダー等との z-index 衝突はない。 */
+.acoru-media-popup {
+  --mp-primary: #534491;
+  --mp-primary-hover: #433676;
+  --mp-ink: #0f172a;
+  --mp-muted: #475569;
+  --mp-line: #e2e8f0;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mp-ink);
+  width: min(960px, calc(100vw - 48px));
+  max-width: none;
+  max-height: min(90dvh, 820px);
+  overflow: visible;
+}
+.acoru-media-popup::backdrop { background: rgb(15 23 42 / 0.55); }
+
+.acoru-media-popup__panel {
+  position: relative;
+  box-sizing: border-box;
+  max-height: min(90dvh, 820px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 36px 40px 32px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 24px 64px rgb(15 23 42 / 0.28);
+}
+
+.acoru-media-popup__close {
+  position: absolute; top: 14px; right: 14px; z-index: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 999px;
+  border: 1px solid var(--mp-line); background: #ffffff; color: var(--mp-ink);
+  cursor: pointer;
+  transition: background-color var(--dur-fast, 140ms) ease, border-color var(--dur-fast, 140ms) ease;
+}
+.acoru-media-popup__close:hover { background: #f1f5f9; border-color: #cbd5e1; }
+
+.acoru-media-popup :focus-visible { outline: 3px solid var(--mp-primary); outline-offset: 3px; }
+
+.acoru-media-popup__header { text-align: center; padding: 0 40px; }
+.acoru-media-popup__eyebrow {
+  display: inline-block; margin: 0 0 10px; padding: 4px 14px; border-radius: 999px;
+  background: #efecf8; color: var(--mp-primary);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.18em;
+}
+.acoru-media-popup__title {
+  margin: 0; font-size: clamp(1.35rem, 2.6vw, 1.85rem); font-weight: 700; line-height: 1.4;
+  text-wrap: balance; word-break: auto-phrase;
+}
+.acoru-media-popup__subtitle {
+  margin: 8px 0 0; color: var(--mp-muted); font-size: 0.98rem; font-weight: 600; line-height: 1.6;
+  text-wrap: balance; word-break: auto-phrase;
+}
+
+.acoru-media-popup__grid {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 28px; align-items: center; margin-top: 28px;
+}
+
+.acoru-media-popup__thumb {
+  position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: 18px; background: #0f172a;
+  box-shadow: 0 10px 28px rgb(15 23 42 / 0.18);
+}
+.acoru-media-popup__thumb-img { object-fit: cover; transition: transform var(--dur-base, 220ms) ease; }
+.acoru-media-popup__thumb:hover .acoru-media-popup__thumb-img { transform: scale(1.03); }
+.acoru-media-popup__play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; padding-left: 4px; border-radius: 999px;
+  background: rgb(255 255 255 / 0.92); color: var(--mp-primary);
+  box-shadow: 0 6px 20px rgb(15 23 42 / 0.3);
+}
+
+.acoru-media-popup__body { margin: 0; color: #334155; font-size: 0.95rem; line-height: 1.85; }
+
+.acoru-media-popup__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.acoru-media-popup__cta {
+  display: inline-flex; flex: 1 1 auto; align-items: center; justify-content: center; gap: 6px;
+  min-height: 48px; padding: 0 20px; border-radius: 999px;
+  font-size: 0.92rem; font-weight: 700; text-decoration: none; white-space: nowrap;
+  transition: background-color var(--dur-fast, 140ms) ease, color var(--dur-fast, 140ms) ease, border-color var(--dur-fast, 140ms) ease;
+}
+.acoru-media-popup__cta--primary { background: var(--mp-primary); color: #ffffff; border: 1px solid var(--mp-primary); }
+.acoru-media-popup__cta--primary:hover { background: var(--mp-primary-hover); border-color: var(--mp-primary-hover); }
+.acoru-media-popup__cta--secondary { background: #ffffff; color: var(--mp-primary); border: 1px solid #c9c0e6; }
+.acoru-media-popup__cta--secondary:hover { background: #f5f3fb; border-color: var(--mp-primary); }
+
+.acoru-media-popup__case {
+  display: inline-flex; align-items: center; gap: 4px; min-height: 44px; margin-top: 6px;
+  color: var(--mp-primary); font-size: 0.9rem; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 4px;
+}
+.acoru-media-popup__case:hover { color: var(--mp-primary-hover); }
+
+.acoru-media-popup__note { margin: 6px 0 0; color: #64748b; font-size: 12px; line-height: 1.6; }
+
+/* 開くアニメーション（reduced motion では省略） */
+@media (prefers-reduced-motion: no-preference) {
+  .acoru-media-popup[open] .acoru-media-popup__panel { animation: acoru-media-popup-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .acoru-media-popup[open]::backdrop { animation: acoru-media-popup-fade 220ms ease both; }
+}
+@keyframes acoru-media-popup-in { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes acoru-media-popup-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* スマートフォン：下部寄りのコンパクトなシート。内部のみスクロール。 */
+@media (max-width: 767px) {
+  .acoru-media-popup {
+    width: calc(100vw - 24px);
+    max-height: min(75dvh, 680px);
+    margin: auto auto 12px;
+    margin-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  .acoru-media-popup::backdrop { background: rgb(15 23 42 / 0.4); }
+  .acoru-media-popup__panel { max-height: min(75dvh, 680px); padding: 20px 18px 18px; border-radius: 22px; }
+  .acoru-media-popup__close { top: 10px; right: 10px; }
+  .acoru-media-popup__header { padding: 0 44px; }
+  .acoru-media-popup__eyebrow { margin-bottom: 8px; }
+  .acoru-media-popup__title { font-size: 1.15rem; }
+  .acoru-media-popup__subtitle { font-size: 0.86rem; }
+  .acoru-media-popup__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 16px; }
+  .acoru-media-popup__thumb { border-radius: 14px; }
+  .acoru-media-popup__play { width: 52px; height: 52px; }
+  .acoru-media-popup__body { font-size: 0.88rem; line-height: 1.75; }
+  .acoru-media-popup__actions { flex-direction: column; margin-top: 14px; }
+  .acoru-media-popup__cta { width: 100%; }
+  .acoru-media-popup__case { justify-content: center; width: 100%; }
+  .acoru-media-popup__note { text-align: center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .acoru-media-popup[open] .acoru-media-popup__panel { animation-name: acoru-media-popup-sheet; }
+  }
+}
+@keyframes acoru-media-popup-sheet { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
