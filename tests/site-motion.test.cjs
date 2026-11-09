@@ -354,9 +354,11 @@ test("B CSS retains source 700vh, responsive showcase and readable no-JS fallbac
 
 test("B proof badge links to Osasal with the TV note when media is given", () => {
   const plain = treeNodes(mountHero().tree).find((node) => node.props?.className === "acoru-b-proof");
+  assert.ok(treeNodes(mountHero().tree).some((node) => node.props?.className === "acoru-b-btn acoru-b-btn-ghost acoru-b-btn-wide"));
   assert.equal(plain.props.href, "/cases/sugimura-kenki-nfc-nippo");
   assert.doesNotMatch(treeText(plain), /TV/);
-  const proof = treeNodes(mountHero({ media: { label: "HBC「今日ドキッ！」で紹介されました", href: "/osasal" } }).tree).find((node) => node.props?.className === "acoru-b-proof");
+  const proof = treeNodes(mountHero({ media: { label: "HBC「今日ドキッ！」で紹介されました", href: "/osasal", thumbnail: "https://i.ytimg.com/vi/x/mqdefault.jpg" } }).tree).find((node) => node.props?.className === "acoru-b-proof acoru-b-proof-featured");
+  assert.ok(treeNodes(proof).some((node) => node.props?.src === "https://i.ytimg.com/vi/x/mqdefault.jpg" && node.props.alt === ""));
   assert.equal(proof.props.href, "/osasal");
   assert.match(treeText(proof), /TVHBC「今日ドキッ！」で紹介されました[\s\S]*スギムラ建機[\s\S]*約85%削減/);
 });

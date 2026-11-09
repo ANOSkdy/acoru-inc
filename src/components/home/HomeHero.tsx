@@ -13,7 +13,7 @@ export type HeroCase = { slug: string; title: string; subtitle: string; industry
 const mark = Object.values(acoruMarkPaths).map((path) => <path key={path} d={path} />);
 
 // メディア掲載の告知。指定時はスギムラ建機の実績バッジに表示し、リンク先も差し替える。
-export type HeroMedia = { label: string; href: string };
+export type HeroMedia = { label: string; href: string; thumbnail?: string };
 
 export function HomeHero({ cases, media }: { cases: HeroCase[]; media?: HeroMedia }) {
   const id = useId().replace(/:/g, "");
@@ -171,12 +171,20 @@ export function HomeHero({ cases, media }: { cases: HeroCase[]; media?: HeroMedi
           <p className="acoru-b-eyebrow">北海道・札幌発</p>
           <h1>{brandMessage}</h1>
           <p>{valueMessage}現場で使い続けられる運用まで伴走します。</p>
-          <Link className="acoru-b-proof" href={media?.href ?? sugimuraEvidence.href}>
-            {media ? <span className="acoru-b-proof-media"><span className="acoru-b-proof-tv">TV</span>{media.label}</span> : null}
-            <span className="acoru-b-proof-company">{sugimuraEvidence.company}</span>
-            <span>{sugimuraEvidence.label} <strong>{sugimuraEvidence.value}</strong></span>
+          <Link className={media ? "acoru-b-proof acoru-b-proof-featured" : "acoru-b-proof"} href={media?.href ?? sugimuraEvidence.href}>
+            {media?.thumbnail ? (
+              <span className="acoru-b-proof-thumb">
+                <Image src={media.thumbnail} alt="" width={320} height={180} unoptimized loading="eager" />
+                <span className="acoru-b-proof-play" aria-hidden="true" />
+              </span>
+            ) : null}
+            <span className="acoru-b-proof-body">
+              {media ? <span className="acoru-b-proof-media"><span className="acoru-b-proof-tv">TV</span>{media.label}</span> : null}
+              <span className="acoru-b-proof-company">{sugimuraEvidence.company}</span>
+              <span>{sugimuraEvidence.label} <strong>{sugimuraEvidence.value}</strong></span>
+            </span>
           </Link>
-          <div className="acoru-b-ctas"><a className="acoru-b-btn acoru-b-btn-solid acoru-b-btn-wide" href="#featured-cases">導入事例を見る<span aria-hidden="true">→</span></a></div>
+          <div className="acoru-b-ctas"><a className="acoru-b-btn acoru-b-btn-ghost acoru-b-btn-wide" href="#featured-cases">導入事例を見る<span aria-hidden="true">→</span></a></div>
         </div>
         <div className="acoru-b-layer acoru-b-reveal" role="region" aria-label="導入事例">
           <div className="acoru-b-showcase">
