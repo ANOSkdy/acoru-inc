@@ -66,8 +66,8 @@ export default function OsasalPage() {
         </div>
         <figure className="osasal-visual" data-osasal-visual>
           <div className="osasal-orbit osasal-orbit-one" aria-hidden="true" /><div className="osasal-orbit osasal-orbit-two" aria-hidden="true" />
-          <div className="osasal-photo-shell osasal-photo-shell-flat"><Image src="/osasal-hero-telop.png" alt="重機の運転席でNFCタグにスマホをかざし、日報を記録するイメージ。「スマホをかざすだけで日報完了」" width={1920} height={1080} priority sizes="(min-width: 1000px) 560px, (min-width: 700px) 48vw, 100vw" className="osasal-product-image" /></div>
-          <figcaption>操作のイメージ</figcaption>
+          <div className="osasal-photo-shell osasal-photo-shell-flat"><Image src="/osasal-hero-hbc.webp" alt="重機に付けたNFCタグにスマホをかざす場面。テロップ「重機のタグにスマホをかざすと連携」「“日報”記入 1分間に短縮」" width={1291} height={718} priority sizes="(min-width: 1000px) 560px, (min-width: 700px) 48vw, 100vw" className="osasal-product-image" /></div>
+          <figcaption>出典：HBC「{osasal.broadcast.programName}」（{osasal.broadcast.dateLabel}放送）</figcaption>
         </figure>
       </section>
 
