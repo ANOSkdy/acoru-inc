@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { getCases } from "@/lib/content";
 import { SUGIMURA_CASE_SLUG } from "@/lib/case-urls";
 import { sugimuraEvidence } from "@/lib/messaging";
-import { broadcastVerb, osasal } from "@/lib/osasal";
+import { broadcastProgramLabel, broadcastVerb, osasal } from "@/lib/osasal";
 import { sugimuraCase } from "@/lib/sugimura-case";
 
 const overview = Object.fromEntries(sugimuraCase.overview);
@@ -47,7 +47,7 @@ export default async function CasesPage() {
 
           <Link href="/osasal" className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-[#534491]/20 bg-[#534491]/5 px-4 py-3 text-sm text-[#534491] transition hover:border-[#534491]/40">
             <span className="rounded-full bg-[#534491] px-2.5 py-0.5 text-[11px] font-semibold text-white">TV</span>
-            <span>{osasal.broadcast.dateLabel}、HBC「{osasal.broadcast.programName}」で、スギムラ建機様で使われているOsasal（AI日報）が{broadcastVerb}。</span>
+            <span>{osasal.broadcast.dateLabel}、{broadcastProgramLabel}で、スギムラ建機様で使われているOsasal（AI日報）が{broadcastVerb}。</span>
             <span className="ml-auto text-xs font-semibold">Osasalを見る <span aria-hidden="true">→</span></span>
           </Link>
 
