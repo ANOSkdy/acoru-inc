@@ -64,7 +64,9 @@ main [id]:not(.acoru-b-anchor) { scroll-margin-top: calc(var(--acoru-header-heig
 .acoru-b-copy > p:not(.acoru-b-eyebrow) { color: var(--hero-muted); margin: 0; max-width: 32em; }
 .acoru-b-proof { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 20px; padding: 10px 16px; border: 1px solid color-mix(in srgb, var(--hero-brand) 28%, transparent); border-radius: 12px; color: var(--hero-muted); font-size: 13px; text-decoration: none; transition: border-color .2s; }
 .acoru-b-proof:hover { border-color: var(--hero-brand); }
-.acoru-b-proof > span:first-child { color: var(--hero-brand); font-weight: 500; }
+.acoru-b-proof-company { color: var(--hero-brand); font-weight: 500; }
+.acoru-b-proof-media { display: flex; flex-basis: 100%; align-items: center; gap: 8px; color: var(--hero-brand); font-size: 12px; font-weight: 500; }
+.acoru-b-proof-tv { padding: 1px 8px; border-radius: 999px; background: var(--hero-brand); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .04em; }
 .acoru-b-proof strong { color: var(--hero-brand); font-size: 18px; font-weight: 700; }
 .acoru-b-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .acoru-b-btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; font-weight: 500; font-size: 14px; text-decoration: none; border: 1px solid var(--hero-brand); transition: background .2s, color .2s, transform .2s; }

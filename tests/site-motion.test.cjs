@@ -144,7 +144,7 @@ test("keyboard focus on an image's link immediately finishes its reveal", () => 
   site.cleanup();
 });
 
-function mountHero({ reduced = false, count = 3 } = {}) {
+function mountHero({ reduced = false, count = 3, media } = {}) {
   const browser = createBrowser({ reduced });
   const frames = new Map();
   const listeners = new Map();
@@ -184,7 +184,7 @@ function mountHero({ reduced = false, count = 3 } = {}) {
     useId: () => ":b:", useRef: () => ({current: hero}), useEffect: (callback) => { effect = callback; },
   }, { ...browser, ResizeObserver: browser.IntersectionObserver, performance: { now: () => 0 }, getComputedStyle: () => ({columnGap: "28px"}), particlePainter: painter });
   const cases = Array.from({length: count}, (_, i) => ({slug: String(i), title: ["JR", "スギムラ", "NTT"][i], subtitle: "支援内容", image: "/case.jpg"}));
-  const tree = HomeHero({cases});
+  const tree = HomeHero({cases, media});
   const cleanup = effect();
   const advance = (limit = 160) => {
     for (let i = 0; frames.size && i < limit; i++) {
@@ -350,4 +350,13 @@ test("B CSS retains source 700vh, responsive showcase and readable no-JS fallbac
   assert.match(css, /max-width: 900px/);
   assert.match(css, /:not\(\[data-scroll-motion="true"\]\)/);
   assert.match(css, /prefers-reduced-motion: reduce/);
+});
+
+test("B proof badge links to Osasal with the TV note when media is given", () => {
+  const plain = treeNodes(mountHero().tree).find((node) => node.props?.className === "acoru-b-proof");
+  assert.equal(plain.props.href, "/cases/sugimura-kenki-nfc-nippo");
+  assert.doesNotMatch(treeText(plain), /TV/);
+  const proof = treeNodes(mountHero({ media: { label: "HBC「今日ドキッ！」で紹介されました", href: "/osasal" } }).tree).find((node) => node.props?.className === "acoru-b-proof");
+  assert.equal(proof.props.href, "/osasal");
+  assert.match(treeText(proof), /TVHBC「今日ドキッ！」で紹介されました[\s\S]*スギムラ建機[\s\S]*約85%削減/);
 });

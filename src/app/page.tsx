@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { HomeHero } from "@/components/home/HomeHero";
 import { getCases, getNews } from "@/lib/content";
 import { entryQuestions } from "@/lib/messaging";
+import { broadcastVerb, osasal } from "@/lib/osasal";
 
 const featuredCaseSlugs = ["jr-hokkaido-system-renewal", "sugimura-kenki-nfc-nippo", "jr-hokkaido-sier-collaboration"];
 const casePresentation: Record<string, { title: string; subtitle: string }> = {
@@ -45,7 +46,7 @@ export default async function HomePage() {
   return (
     <>
       <div className="acoru-b-home" id="top">
-        <HomeHero cases={featuredCases} />
+        <HomeHero cases={featuredCases} media={{ label: `HBC「${osasal.broadcast.programName}」で${broadcastVerb}`, href: "/osasal" }} />
       </div>
 
       <div className="acoru-b-continuation">
