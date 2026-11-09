@@ -76,7 +76,22 @@ export default function OsasalPage() {
       <section className="osasal-section osasal-shell" aria-labelledby="broadcast-title">
         <p className="osasal-eyebrow"><span>01</span>HBCでのご紹介</p>
         <h2 id="broadcast-title">{broadcast.status === "aired" ? "HBCの番組で紹介されました" : "HBCの番組で紹介されます"}</h2>
-        <p className="osasal-lead">Osasalは、{broadcast.dateLabel}{broadcast.timeLabel}放送の{broadcastProgramLabel}で{broadcastVerb}。</p>
+        <p className="osasal-lead">Osasalは、{broadcast.dateLabel}{broadcast.timeLabel}放送の{broadcastProgramLabel}で{broadcastVerb}。{broadcast.video ? "放送の内容は、HBCニュースの公式YouTubeでご覧いただけます。" : null}</p>
+        {broadcast.video ? (
+          <figure className="osasal-video">
+            <div className="osasal-video-frame">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${broadcast.video.youtubeId}`}
+                title={broadcast.video.title}
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+            <figcaption>出典：{broadcast.video.channel}（YouTube）｜<a href={`https://www.youtube.com/watch?v=${broadcast.video.youtubeId}`} target="_blank" rel="noopener noreferrer">YouTubeで見る<span className="osasal-sr-only">（新しいタブで開きます）</span></a></figcaption>
+          </figure>
+        ) : null}
         {broadcast.points.length ? <div className="osasal-three-grid">{broadcast.points.map(point => <article className="osasal-note-card" key={point.title}><h3>{point.title}</h3><p>{point.description}</p></article>)}</div> : broadcast.status === "aired" ? null : <p className="osasal-broadcast-note">番組で紹介された内容は、放送後にこのページでお知らせします。</p>}
         {broadcast.background ? <p className="osasal-small">{broadcast.background}</p> : null}
       </section>
