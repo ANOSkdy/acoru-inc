@@ -71,14 +71,25 @@ export function HbcMediaPopup() {
 
     let timer: number | undefined;
     let cancelled = false;
+    let opened = false;
+
+    const onFirstScroll = () => {
+      if (cancelled || opened || document.hidden) return;
+      // 遅延を待たずに表示し、本文を読み進められる前に告知を見せる。
+      window.clearTimeout(timer);
+      tryOpen();
+    };
+    const stopListeningScroll = () => window.removeEventListener("scroll", onFirstScroll);
 
     const tryOpen = () => {
-      if (cancelled) return;
+      if (cancelled || opened) return;
       if (document.hidden) return; // タブ復帰後に visibilitychange から再開する。
       if (document.querySelector(COMPETING_UI_SELECTOR)) {
         timer = window.setTimeout(tryOpen, COMPETING_UI_RETRY_MS);
         return;
       }
+      opened = true;
+      stopListeningScroll();
       shownInThisPageLoad = true;
       setState("open");
     };
@@ -91,6 +102,7 @@ export function HbcMediaPopup() {
       }
       setState("waiting");
       timer = window.setTimeout(tryOpen, isPreview ? 500 : config.delayMs);
+      if (config.openOnFirstScroll) window.addEventListener("scroll", onFirstScroll, { passive: true });
     };
 
     const onVisibilityChange = () => {
@@ -107,6 +119,7 @@ export function HbcMediaPopup() {
     return () => {
       cancelled = true;
       window.clearTimeout(timer);
+      stopListeningScroll();
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);

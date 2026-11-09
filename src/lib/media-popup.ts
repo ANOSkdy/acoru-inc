@@ -9,7 +9,9 @@ export const hbcMediaPopup = {
   startAt: "2026-11-09T00:00:00+09:00",
   // 仮の終了日。公開前に事業側で最終確認する。
   endAt: "2026-12-09T23:59:59+09:00",
-  delayMs: 5000,
+  // 5秒では先にスクロールされるため短縮。待機中に最初のスクロールがあればその時点で表示する。
+  delayMs: 1500,
+  openOnFirstScroll: true,
   cooldownDays: 14,
   articleUrl: "/news/hbc-sugimura-kenki-osasal",
   videoUrl: `https://www.youtube.com/watch?v=${youtubeId}`,
