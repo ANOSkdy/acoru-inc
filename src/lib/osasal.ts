@@ -15,6 +15,12 @@ export const osasal = {
     shortName: "今日ドキッ！",
     dateLabel: "2026年11月9日",
     timeLabel: "18時台",
+    // HBCニュース公式YouTubeで公開された放送回。
+    video: {
+      youtubeId: "ylMbSmcpsO8",
+      title: "保育園の入園問い合わせ9倍 WEB制作費100万円から月額3000円、建設会社では日報作成が30分から1分、AI活用で経費削減や省力化…北海道の企業でもじわり浸透",
+      channel: "HBCニュース 北海道放送",
+    } as { youtubeId: string; title: string; channel: string } | null,
     points: [] as { title: string; description: string }[],
     background: null as string | null,
   },
