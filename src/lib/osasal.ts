@@ -8,17 +8,22 @@ export const OSASAL_CASE_PATH = "/cases/sugimura-kenki-nfc-nippo";
 export const osasal = {
   broadcast: {
     status: "aired" as "scheduled" | "aired",
-    programName: "日本をつなぐ！ローカル変革者（イノベーター）",
+    programName: "今日ドキッ！",
+    // 番組内のニュース深掘りコーナー（旧・もうひとホリ）。
+    cornerName: "ひとホリ",
     // タイトルは32文字以内に収めるため短縮名を使う。
-    shortName: "ローカル変革者",
+    shortName: "今日ドキッ！",
     dateLabel: "2026年11月9日",
+    timeLabel: "18時台",
     points: [] as { title: string; description: string }[],
     background: null as string | null,
   },
   pricing: { implementation: 350000, monthlyEstimate: 70000 },
 };
 
-export const broadcastVerb = osasal.broadcast.status === "aired" ? "紹介されました" : "紹介予定です";
+// 例: HBC「今日ドキッ！」の「ひとホリ」
+export const broadcastProgramLabel = `HBC「${osasal.broadcast.programName}」の「${osasal.broadcast.cornerName}」`;
+export const broadcastVerb =osasal.broadcast.status === "aired" ? "紹介されました" : "紹介予定です";
 export const osasalTitle = `Osasal（オササル）｜AI日報｜HBC${osasal.broadcast.shortName}で${osasal.broadcast.status === "aired" ? "紹介" : "紹介予定"}`;
 export const osasalDescription = `Osasal（オササル）は、スマホをかざして日報・勤怠を記録するAI日報。転記や集計の手間を減らし、北海道・札幌のAcoruが定着まで支援。${osasal.broadcast.dateLabel}HBCで${osasal.broadcast.status === "aired" ? "紹介" : "紹介予定"}。初期35万円・月額7万円〜（税抜）。`;
 

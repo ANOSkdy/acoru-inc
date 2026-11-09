@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { broadcastVerb, osasal, osasalDescription, osasalFaq, osasalGraph, osasalTitle, OSASAL_CASE_PATH, OSASAL_URL } from "@/lib/osasal";
+import { broadcastProgramLabel, broadcastVerb, osasal, osasalDescription, osasalFaq, osasalGraph, osasalTitle, OSASAL_CASE_PATH, OSASAL_URL } from "@/lib/osasal";
 import { organizationDetails, serializeGraph } from "@/lib/structured-data";
 import { hasCompleteCaseSection, sugimuraCase } from "@/lib/sugimura-case";
 import { OsasalMotion } from "./OsasalMotion";
@@ -53,7 +53,7 @@ export default function OsasalPage() {
     <div className="osasal-page" data-osasal-page>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeGraph(osasalGraph()) }} />
       <div className="osasal-reading-progress" aria-hidden="true"><div data-osasal-progress /></div>
-      <aside className="osasal-broadcast" aria-label="放送のお知らせ"><span className="osasal-broadcast-dot" aria-hidden="true" /><span>{broadcast.dateLabel}｜HBC「{broadcast.programName}」で{broadcastVerb}</span></aside>
+      <aside className="osasal-broadcast" aria-label="放送のお知らせ"><span className="osasal-broadcast-dot" aria-hidden="true" /><span>{broadcast.dateLabel}｜{broadcastProgramLabel}で{broadcastVerb}</span></aside>
 
       <section className="osasal-hero osasal-shell" aria-labelledby="osasal-title" data-motion-hero>
         <div className="osasal-hero-copy">
@@ -76,7 +76,7 @@ export default function OsasalPage() {
       <section className="osasal-section osasal-shell" aria-labelledby="broadcast-title">
         <p className="osasal-eyebrow"><span>01</span>HBCでのご紹介</p>
         <h2 id="broadcast-title">{broadcast.status === "aired" ? "HBCの番組で紹介されました" : "HBCの番組で紹介されます"}</h2>
-        <p className="osasal-lead">Osasalは、{broadcast.dateLabel}のHBC「{broadcast.programName}」で{broadcastVerb}。</p>
+        <p className="osasal-lead">Osasalは、{broadcast.dateLabel}{broadcast.timeLabel}放送の{broadcastProgramLabel}で{broadcastVerb}。</p>
         {broadcast.points.length ? <div className="osasal-three-grid">{broadcast.points.map(point => <article className="osasal-note-card" key={point.title}><h3>{point.title}</h3><p>{point.description}</p></article>)}</div> : broadcast.status === "aired" ? null : <p className="osasal-broadcast-note">番組で紹介された内容は、放送後にこのページでお知らせします。</p>}
         {broadcast.background ? <p className="osasal-small">{broadcast.background}</p> : null}
       </section>

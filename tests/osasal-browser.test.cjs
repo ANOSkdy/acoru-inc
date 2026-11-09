@@ -20,7 +20,7 @@ test("Osasal search entry, mobile reading and inquiry journeys work", { skip: !b
     assert.equal(await page.locator("h1").count(), 1);
     assert.match(await page.locator("h1").innerText(), /Osasal/);
     const title = await page.title();
-    assert.ok(title.length <= 32 && title.includes("オササル") && title.includes("HBCローカル変革者で紹介"));
+    assert.ok(title.length <= 32 && title.includes("オササル") && title.includes("HBC今日ドキッ！で紹介"));
     const description = await page.locator('meta[name="description"]').getAttribute("content");
     assert.ok(description.length <= 120 && description.includes("北海道") && description.includes("35万円") && description.includes("7万円〜") && description.includes("税抜"));
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), "https://acoru.jp/osasal");
