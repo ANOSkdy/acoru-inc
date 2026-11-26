@@ -22,7 +22,7 @@ test("listing, metadata, details and unknown slugs reuse one public snapshot; co
     "server-only": {},
     react: { cache: (fn) => fn },
     "next/cache": { unstable_cache: (fn, key, options) => {
-      assert.equal(key[0], "acoru-public-content-v1");
+      assert.equal(key[0], "acoru-public-content-v2");
       assert.equal(options.revalidate, 86400);
       reload = () => { snapshot = undefined; };
       return () => snapshot ??= fn();
@@ -34,17 +34,22 @@ test("listing, metadata, details and unknown slugs reuse one public snapshot; co
     "@/lib/database": { querySitePublic: async (sql) => {
       queries.push(sql);
       if (sql.includes("FROM site_public.news")) return [{ id: "1", slug: "news-one", title: "News", body_markdown: "Body" }];
-      if (sql.includes("FROM site_public.case_studies")) return [
-        { id: "2", slug: "case-1", title: "Legacy" },
-        { id: "3", slug: "sugimura-kenki-nfc-nippo", title: "Canonical" },
-      ];
+      if (sql.includes("FROM site_public.case_studies")) {
+        assert.match(sql, /\bbody_markdown\b/u);
+        return [
+          { id: "2", slug: "case-1", title: "Legacy" },
+          { id: "3", slug: "sugimura-kenki-nfc-nippo", title: "Canonical", body_markdown: "## 課題\n\n紙の日報" },
+        ];
+      }
       return [];
     } },
   });
   await Promise.all([content.getNews(), content.getCases(), content.getCompanyProfile()]);
   assert.equal(queries.length, 3);
   assert.equal((await content.getNewsBySlug("news-one")).body, "Body");
-  assert.equal((await content.getCaseBySlug("case-1")).title, "Canonical");
+  const canonicalCase = await content.getCaseBySlug("case-1");
+  assert.equal(canonicalCase.title, "Canonical");
+  assert.equal(canonicalCase.body, "## 課題\n\n紙の日報");
   assert.equal(await content.getNewsBySlug("missing"), null);
   assert.equal((await content.getCases()).length, 1);
   assert.equal(queries.length, 3);
