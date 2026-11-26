@@ -89,62 +89,22 @@ export async function CaseDetail({ slug }: Props) {
           </section>
         )}
 
-        {/* 課題・解決策 */}
-        <div className="grid gap-6 md:grid-cols-2">
-          <section>
-            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-              課題
-            </h2>
-            {c.challenge ? (
-              <RichText
-                source={c.challenge}
-                className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]"
-              />
-            ) : (
-              <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-                課題の詳細は現在準備中です。
-              </p>
-            )}
-          </section>
+        {c.body ? (
+          <RichText source={c.body} preserveHeadingLevels />
+        ) : (
+          <p className="text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
+            事例の詳細は現在準備中です。
+          </p>
+        )}
 
-          <section>
-            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-              解決策
-            </h2>
-            {c.solution ? (
-              <RichText
-                source={c.solution}
-                className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]"
-              />
-            ) : (
-              <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-                解決策の詳細は現在準備中です。
-              </p>
-            )}
-          </section>
-        </div>
-
-        {isSugimura && <SugimuraRoleSection />}
-        {isSugimura && <SugimuraOverviewSection />}
-
-        {/* 導入効果 */}
-        <section>
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-            成果・取り組みの意義
-          </h2>
-          {c.result ? (
-            <RichText
-              source={c.result}
-              className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]"
-            />
-          ) : (
-            <p className="mt-2 text-[13px] leading-relaxed text-slate-700 md:text-[14px]">
-              導入効果の詳細は現在準備中です。
-            </p>
-          )}
-        </section>
-        {isSugimura && <SugimuraEstimateNote />}
-        {isSugimura && <SugimuraEvidenceSections />}
+        {isSugimura && (
+          <>
+            <SugimuraEstimateNote />
+            <SugimuraRoleSection />
+            <SugimuraOverviewSection />
+            <SugimuraEvidenceSections />
+          </>
+        )}
         <section className="rounded-2xl bg-slate-50 p-5">
           <h2 className="text-base font-semibold text-slate-900">業務データ整理・業務基盤づくりのご相談</h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-600">業務要望やデータの整理から、システム設計、現場での運用定着まで。御社の課題や体制に合わせた進め方をご相談いただけます。</p>

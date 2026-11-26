@@ -28,9 +28,7 @@ export type Case = {
   clientName?: string;
   industry?: string;
   summary?: string;
-  challenge?: string;
-  solution?: string;
-  result?: string;
+  body?: string;
   publishedAt?: string;
   publishedAtIso?: string;
   heroImageUrl?: string;
@@ -73,9 +71,7 @@ type CaseRow = {
   client_name: string | null;
   industry: string | null;
   summary: string | null;
-  challenge_markdown: string | null;
-  solution_markdown: string | null;
-  result_markdown: string | null;
+  body_markdown: string | null;
   published_date: string | null;
   published_iso: string | null;
   hero_media_url: string | null;
@@ -121,9 +117,7 @@ function toCase(row: CaseRow): Case {
     clientName: optional(row.client_name),
     industry: optional(row.industry),
     summary: optional(row.summary),
-    challenge: optional(row.challenge_markdown),
-    solution: optional(row.solution_markdown),
-    result: optional(row.result_markdown),
+    body: optional(row.body_markdown),
     publishedAt: optional(row.published_date),
     publishedAtIso: optional(row.published_iso),
     heroImageUrl: optional(row.hero_media_url),
@@ -155,9 +149,7 @@ const CASE_COLUMNS = `
   client_name,
   industry,
   summary,
-  challenge_markdown,
-  solution_markdown,
-  result_markdown,
+  body_markdown,
   to_char(
     published_at AT TIME ZONE 'Asia/Tokyo',
     'YYYY-MM-DD'
@@ -245,7 +237,7 @@ const getPublicContent = cache(unstable_cache(
     ]);
     return { news, cases, company };
   },
-  ["acoru-public-content-v1"],
+  ["acoru-public-content-v2"],
   { tags: [PUBLIC_CONTENT_TAG], revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS },
 ));
 
