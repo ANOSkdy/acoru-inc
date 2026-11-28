@@ -1,5 +1,6 @@
 // src/app/contact/ContactForm.tsx
 "use client";
+import { track } from "@vercel/analytics";
 
 import { useState, FormEvent } from "react";
 
@@ -7,8 +8,9 @@ import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function ContactForm({ osasalRequest = null }: {
+export function ContactForm({ osasalRequest = null, knowledgeSlug }: {
   osasalRequest?: "consultation" | "materials" | null;
+  knowledgeSlug?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -62,6 +64,7 @@ export function ContactForm({ osasalRequest = null }: {
 
       setStatus("success");
       form.reset();
+      if (knowledgeSlug) track("knowledge_contact_sent", { article: knowledgeSlug });
     } catch (err) {
       console.error(err);
       setStatus("error");

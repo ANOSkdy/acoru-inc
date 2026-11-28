@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { getNews } from "@/lib/content";
+import { getArticlesForSection } from "@/lib/content";
 
 export const runtime = "nodejs";
 export const revalidate = 86400;
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-  const news = await getNews();
+  const news = await getArticlesForSection("news");
 
   return (
     <Section className="pt-10 md:pt-12 pb-20">

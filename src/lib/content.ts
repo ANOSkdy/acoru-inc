@@ -4,6 +4,7 @@ import { unstable_cache } from "next/cache";
 import { LEGACY_SUGIMURA_CASE_SLUG, publicCaseSlug, SUGIMURA_CASE_SLUG } from "@/lib/case-urls";
 import { caseStructuredData, type CaseStructuredData } from "@/lib/case-structured-data";
 import { companyPositioning } from "@/lib/company-positioning";
+import { articleSection, type ArticleSection } from "@/lib/news-editorial";
 
 import { querySitePublic } from "@/lib/database";
 import { PUBLIC_CONTENT_REVALIDATE_SECONDS, PUBLIC_CONTENT_TAG } from "@/lib/public-content-cache";
@@ -19,6 +20,7 @@ export type NewsItem = {
   body?: string;
   externalUrl?: string;
   heroImageUrl?: string;
+  heroImageAlt?: string;
 };
 
 export type Case = {
@@ -62,6 +64,7 @@ type NewsRow = {
   body_markdown: string | null;
   external_url: string | null;
   hero_media_url: string | null;
+  hero_media_alt_text: string | null;
 };
 
 type CaseRow = {
@@ -106,6 +109,7 @@ function toNews(row: NewsRow): NewsItem {
     body: optional(row.body_markdown),
     externalUrl: optional(row.external_url),
     heroImageUrl: optional(row.hero_media_url),
+    heroImageAlt: optional(row.hero_media_alt_text),
   };
 }
 
@@ -139,7 +143,8 @@ const NEWS_COLUMNS = `
   summary,
   body_markdown,
   external_url,
-  hero_media_url
+  hero_media_url,
+  hero_media_alt_text
 `;
 
 const CASE_COLUMNS = `
@@ -243,6 +248,10 @@ const getPublicContent = cache(unstable_cache(
 
 export async function getNews(): Promise<NewsItem[]> {
   return (await getPublicContent()).news;
+}
+
+export async function getArticlesForSection(section: ArticleSection): Promise<NewsItem[]> {
+  return (await getNews()).filter((article) => articleSection(article.category) === section);
 }
 
 export async function getCases(): Promise<Case[]> {

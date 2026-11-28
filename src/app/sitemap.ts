@@ -2,13 +2,17 @@ import type { MetadataRoute } from "next";
 import { services } from "./service/_data";
 import { getCases, getNews } from "@/lib/content";
 import { caseUrl } from "@/lib/case-urls";
+import { articlePath } from "@/lib/news-editorial";
 
 export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://acoru.jp";
-  const [cases, news] = await Promise.all([getCases(), getNews()]);
-  const staticRoutes = ["", "/about", "/service", "/osasal", "/cases", "/news", "/contact", "/referral"];
+  const [cases, news] = await Promise.all([
+    getCases().catch(() => []),
+    getNews().catch(() => []),
+  ]);
+  const staticRoutes = ["", "/about", "/service", "/osasal", "/cases", "/news", "/knowledge", "/contact", "/referral"];
   const serviceRoutes = services.map((service) => `/service/${service.slug}`);
 
   const staticEntries: MetadataRoute.Sitemap = [...staticRoutes, ...serviceRoutes].map((route) => ({
@@ -19,6 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...cases.map((c) => ({ url: caseUrl(c.slug), priority: 0.7, ...(c.heroImageUrl ? { images: [c.heroImageUrl] } : {}) })),
-    ...news.map((n) => ({ url: `${baseUrl}/news/${encodeURIComponent(n.slug)}`, priority: 0.6 })),
+    ...news.map((article) => ({ url: `${baseUrl}${articlePath(article)}`, priority: 0.6 })),
   ];
 }

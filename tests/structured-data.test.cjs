@@ -18,11 +18,29 @@ function load(file, imports = {}) {
 const urls = load("src/lib/case-urls.ts");
 const { caseStructuredData } = load("src/lib/case-structured-data.ts", { "@/lib/case-urls": urls });
 const editorial = load("src/lib/news-editorial.ts");
-const { siteGraph, caseGraph, serializeGraph, ORGANIZATION_ID } = load("src/lib/structured-data.ts", {
+const { siteGraph, caseGraph, newsGraph, serializeGraph, ORGANIZATION_ID } = load("src/lib/structured-data.ts", {
   "@/lib/case-urls": urls,
   "@/lib/news-editorial": editorial,
 });
 const parse = graph => JSON.parse(serializeGraph(graph))["@graph"];
+
+test("article paths, topic labels and breadcrumbs follow the CMS section", () => {
+  for (const [category, section, label] of [
+    ["Column", "news", "お知らせ・コラム"],
+    ["Knowledgeable", "news", "お知らせ・コラム"],
+    ["Knowledge:外注・納品確認", "knowledge", "Acoru Knowledge"],
+    [" Knowledge： 現場事例 ", "knowledge", "Acoru Knowledge"],
+  ]) {
+    const article = { slug: "example", category, title: "解説" };
+    const path = `/${section}/example`;
+    assert.equal(editorial.articlePath(article), path);
+    const [post, crumbs] = parse(newsGraph(article));
+    assert.equal(post.mainEntityOfPage["@id"], "https://acoru.jp" + path);
+    assert.equal(crumbs.itemListElement[1].name, label);
+    assert.equal(crumbs.itemListElement[1].item, "https://acoru.jp/" + section);
+    assert.equal(crumbs.itemListElement[2].item, post.mainEntityOfPage["@id"]);
+  }
+});
 
 test("the site identifies the legal entity with a real logo and confirmed profiles", () => {
   const organization = parse(siteGraph()).find(item => item["@type"] === "Organization");
