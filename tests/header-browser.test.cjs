@@ -10,7 +10,7 @@ test("headers match across routes and input modes; CSS motion preserves layout",
   const { chromium } = require("playwright");
   const browser = await chromium.launch({ headless: true, ...(process.env.HEADER_BROWSER_CHANNEL ? { channel: process.env.HEADER_BROWSER_CHANNEL } : {}) });
   const report = [];
-  const routes = ["/", "/about", "/service", "/cases", "/cases/sugimura-kenki-nfc-nippo", "/news", "/contact"];
+  const routes = ["/", "/about", "/service", "/cases", "/cases/sugimura-kenki-nfc-nippo", "/knowledge", "/news", "/contact"];
   const fileSlug = route => route === "/" ? "home" : route.split("/").filter(Boolean).join("-");
   if (output) fs.mkdirSync(output, { recursive: true });
   const capture = async (page, name) => {
@@ -50,10 +50,10 @@ test("headers match across routes and input modes; CSS motion preserves layout",
         await page.evaluate(() => document.fonts.ready);
         const value = await data(page);
         assert.equal(value.header.position, "fixed");
-        assert.equal(value.header.height, 78);
+        assert.equal(value.header.height, 78, `${route} at ${width}px`);
         assert.equal(value.overlap, false, route);
         assert.equal(value.overflow, false, route);
-        assert.deepEqual(value.nav.links.map(x => x.href), ["/about", "/service", "/cases", "/news", "/contact"]);
+        assert.deepEqual(value.nav.links.map(x => x.href), ["/about", "/service", "/cases", "/knowledge", "/news", "/contact"]);
         const current = route === "/" ? [] : [route.startsWith("/cases/") ? "/cases" : route];
         assert.deepEqual(value.nav.links.filter(x => x.current === "page").map(x => x.href), current);
         for (const link of value.nav.links.filter(x => x.current === "page" && x.href !== "/contact")) assert.equal(link.color, "rgb(83, 68, 145)");
@@ -63,13 +63,13 @@ test("headers match across routes and input modes; CSS motion preserves layout",
         report.push(value);
         await capture(page, `after-${width}-${fileSlug(route)}`);
         if (output) await page.screenshot({ path: path.join(output, `page-${width}-${fileSlug(route)}.png`) });
-        if (width === 390) {
+        if (width < 1024) {
           const toggle = page.getByRole("button", { name: "メニューを開閉" });
           await page.waitForTimeout(500);
           await toggle.click();
           await page.waitForFunction(() => document.querySelector("header button").getAttribute("aria-expanded") === "true");
           const menu = page.getByRole("navigation", { name: "モバイルナビゲーション" });
-          assert.deepEqual(await menu.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href"))), ["/about", "/service", "/cases", "/news", "/contact"]);
+          assert.deepEqual(await menu.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href"))), ["/about", "/service", "/cases", "/knowledge", "/news", "/contact"]);
           await settle(page);
           await capture(page, `after-${width}-${fileSlug(route)}-menu`);
           await menu.getByRole("link", { name: "お問い合わせ", exact: true }).click();
@@ -143,7 +143,8 @@ test("headers match across routes and input modes; CSS motion preserves layout",
     assert.ok(await brand.evaluate(el => el.matches(":focus-visible")));
     await page.keyboard.press("Tab"); await settle(page);
     assert.equal((await pseudo(nav, "::after")).transform, "matrix(1, 0, 0, 1, 0, 0)");
-    for (let i = 0; i < 4; i++) await page.keyboard.press("Tab");
+    const navLinkCount = await page.locator(".acoru-b-header-links a").count();
+    for (let i = 1; i < navLinkCount; i++) await page.keyboard.press("Tab");
     await settle(page);
     assert.ok(await cta.evaluate(el => el.matches(":focus-visible")));
     assert.equal(await cta.locator(".acoru-header-cta-arrow").evaluate(el => getComputedStyle(el).opacity), "1");

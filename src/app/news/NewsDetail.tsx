@@ -1,23 +1,11 @@
 // src/app/news/NewsDetail.tsx
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { RichText } from "@/components/common/RichText";
-import { getNewsBySlug } from "@/lib/content";
+import type { NewsItem } from "@/lib/content";
 import { newsEditorial } from "@/lib/news-editorial";
 
-type Props = {
-  slug: string;
-};
-
-export const runtime = "nodejs";
-
-export async function NewsDetail({ slug }: Props) {
-  const n = await getNewsBySlug(slug);
-
-  if (!n) {
-    notFound();
-  }
+export function NewsDetail({ article: n }: { article: NewsItem }) {
   const editorial = newsEditorial(n.slug);
 
   return (

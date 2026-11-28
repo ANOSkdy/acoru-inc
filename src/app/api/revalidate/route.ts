@@ -16,10 +16,11 @@ export async function POST(request: Request) {
   }
 
   revalidateTag(PUBLIC_CONTENT_TAG, { expire: 0 });
-  for (const path of ["/", "/about", "/news", "/cases", "/sitemap.xml"]) {
+  for (const path of ["/", "/about", "/news", "/knowledge", "/cases", "/sitemap.xml"]) {
     revalidatePath(path);
   }
   revalidatePath("/news/[slug]", "page");
+  revalidatePath("/knowledge/[slug]", "page");
   revalidatePath("/cases/[slug]", "page");
   return Response.json({ invalidated: true });
 }

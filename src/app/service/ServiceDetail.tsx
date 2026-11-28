@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { pricingNote } from "@/lib/messaging";
 import { ORGANIZATION_ID } from "@/lib/structured-data";
 import { getNewsBySlug } from "@/lib/content";
-import { AI_DATABASE_ARTICLE_SLUG } from "@/lib/news-editorial";
+import { AI_DATABASE_ARTICLE_SLUG, articlePath } from "@/lib/news-editorial";
 
 export function serviceMetadata(slug: string): Metadata {
   const service = getServiceBySlug(slug);
@@ -204,7 +204,7 @@ export async function ServiceDetail({ slug }: Props) {
         {relatedArticle && (
           <aside className="rounded-2xl border border-[#534491]/20 bg-[#534491]/5 p-5">
             <h2 className="text-sm font-semibold text-[#534491]">導入前に読みたいコラム</h2>
-            <Link href={`/news/${relatedArticle.slug}`} className="mt-3 block text-base font-semibold leading-7 text-slate-900 underline underline-offset-4">{relatedArticle.title}</Link>
+            <Link href={articlePath(relatedArticle)} className="mt-3 block text-base font-semibold leading-7 text-slate-900 underline underline-offset-4">{relatedArticle.title}</Link>
             <p className="mt-2 text-sm leading-7 text-slate-600">サービスの比較と、本番運用前に確認したい7項目を解説します。</p>
           </aside>
         )}

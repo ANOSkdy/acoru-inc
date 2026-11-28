@@ -12,6 +12,7 @@ const navItems = [
   { href: "/about", label: "Acoruについて" },
   { href: "/service", label: "事業内容" },
   { href: "/cases", label: "導入事例" },
+  { href: "/knowledge", label: "Acoru Knowledge" },
   { href: "/news", label: "お知らせ" },
 ];
 
@@ -53,7 +54,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white/70 text-slate-900 shadow-sm shadow-slate-200/80 transition-[background-color,transform,box-shadow] motion-fast motion-spring-soft hover:-translate-y-0.5 hover:bg-slate-50 active:translate-y-0 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white/70 text-slate-900 shadow-sm shadow-slate-200/80 transition-[background-color,transform,box-shadow] motion-fast motion-spring-soft hover:-translate-y-0.5 hover:bg-slate-50 active:translate-y-0 lg:hidden"
           aria-label="メニューを開閉"
           aria-expanded={isOpen}
           aria-controls="acoru-mobile-navigation"
@@ -79,7 +80,7 @@ export function Header() {
           </span>
         </button>
 
-        <nav aria-label="メインナビゲーション" className="acoru-b-header-links hidden items-center md:flex">
+        <nav aria-label="メインナビゲーション" className="acoru-b-header-links hidden items-center lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -98,7 +99,7 @@ export function Header() {
       </Container>
 
       {isOpen && (
-        <nav id="acoru-mobile-navigation" aria-label="モバイルナビゲーション" className="acoru-mobile-navigation menu-open-enter border-t border-slate-200 bg-white/95 shadow-sm shadow-slate-200/80 backdrop-blur md:hidden">
+        <nav id="acoru-mobile-navigation" aria-label="モバイルナビゲーション" className="acoru-mobile-navigation menu-open-enter border-t border-slate-200 bg-white/95 shadow-sm shadow-slate-200/80 backdrop-blur lg:hidden">
           <Container className="flex flex-col gap-2 py-4 text-[13px] font-semibold tracking-[0.14em] text-slate-700">
             {navItems.map((item) => (
               <Link

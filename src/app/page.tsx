@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { HomeHero } from "@/components/home/HomeHero";
-import { getCases, getNews } from "@/lib/content";
+import { getCases, getArticlesForSection } from "@/lib/content";
 import { entryQuestions } from "@/lib/messaging";
 import { osasal } from "@/lib/osasal";
 
@@ -30,7 +30,7 @@ export const runtime = "nodejs";
 export const revalidate = 86400;
 
 export default async function HomePage() {
-  const [news, cases] = await Promise.all([getNews(), getCases()]);
+  const [news, cases] = await Promise.all([getArticlesForSection("news"), getCases()]);
   const latestNews = news.slice(0, 5);
   const featuredCases = [
     ...featuredCaseSlugs.flatMap((slug) => cases.filter((item) => item.slug === slug)),

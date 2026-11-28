@@ -1,6 +1,6 @@
 import type { Case, NewsItem } from "@/lib/content";
 import { caseUrl } from "@/lib/case-urls";
-import { newsEditorial, newsUrl } from "@/lib/news-editorial";
+import { articlePath, knowledgeTopic, newsEditorial } from "@/lib/news-editorial";
 
 export const ORGANIZATION_ID = "https://acoru.jp/#organization";
 
@@ -80,12 +80,13 @@ export function serializeGraph(graph: object[]) {
 }
 
 export function newsGraph(article: NewsItem) {
-  const url = newsUrl(article.slug);
+  const url = `https://acoru.jp${articlePath(article)}`;
+  const topic = knowledgeTopic(article.category);
   const editorial = newsEditorial(article.slug);
   return [
     {
       "@type": "BlogPosting", "@id": `${url}#article`, headline: article.title,
-      description: article.summary, articleSection: article.category, inLanguage: "ja",
+      description: article.summary, articleSection: topic ?? article.category, inLanguage: "ja",
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       datePublished: article.publishedAtIso,
       image: article.heroImageUrl ? [article.heroImageUrl] : undefined,
@@ -99,7 +100,7 @@ export function newsGraph(article: NewsItem) {
       "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "ホーム", item: "https://acoru.jp/" },
-        { "@type": "ListItem", position: 2, name: "お知らせ・コラム", item: "https://acoru.jp/news" },
+        { "@type": "ListItem", position: 2, name: topic ? "Acoru Knowledge" : "お知らせ・コラム", item: topic ? "https://acoru.jp/knowledge" : "https://acoru.jp/news" },
         { "@type": "ListItem", position: 3, name: article.title, item: url },
       ],
     },

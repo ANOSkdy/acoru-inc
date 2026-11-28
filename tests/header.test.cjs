@@ -37,7 +37,7 @@ test("every header links to the public listings and has the same button CTA", ()
     const tree = header(route);
     const nav = tree.find(node => node.props?.["aria-label"] === "メインナビゲーション");
     const links = nodes(nav).filter(node => node.props?.href);
-    assert.deepEqual(links.map(node => node.props.href), ["/about", "/service", "/cases", "/news", "/contact"]);
+    assert.deepEqual(links.map(node => node.props.href), ["/about", "/service", "/cases", "/knowledge", "/news", "/contact"]);
     assert.equal(links.at(-1).type, Button);
     assert.equal(tree.find(node => node.type === "header").props.className, "acoru-b-header");
     assert.equal(tree.some(node => node.props?.className === "acoru-header-spacer"), route !== "/");
@@ -75,7 +75,7 @@ test("Button preserves click handlers for both links and native form buttons", (
 });
 
 test("the current section is marked in desktop and mobile navigation, including nested cases", () => {
-  for (const [route, active] of [["/about", "/about"], ["/cases/sugimura-kenki-nfc-nippo", "/cases"], ["/service/rfid-ai-nippo", "/service"], ["/contact", "/contact"]]) {
+  for (const [route, active] of [["/about", "/about"], ["/cases/sugimura-kenki-nfc-nippo", "/cases"], ["/knowledge/example", "/knowledge"], ["/service/rfid-ai-nippo", "/service"], ["/contact", "/contact"]]) {
     const tree = header(route, true);
     for (const name of ["メインナビゲーション", "モバイルナビゲーション"]) {
       const nav = tree.find(node => node.props?.["aria-label"] === name);

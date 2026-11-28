@@ -15,6 +15,7 @@ function load(file, imports, globals = {}) {
 
 test("listing, metadata, details and unknown slugs reuse one public snapshot; contact writes bypass it", async () => {
   const queries = [];
+  const published = [{ id: "1", slug: "news-one", title: "News", body_markdown: "Body" }];
   let snapshot;
   let reload;
   const urls = load("src/lib/case-urls.ts", {});
@@ -31,9 +32,10 @@ test("listing, metadata, details and unknown slugs reuse one public snapshot; co
     "@/lib/case-urls": urls,
     "@/lib/case-structured-data": { caseStructuredData: {} },
     "@/lib/company-positioning": load("src/lib/company-positioning.ts", {}),
+    "@/lib/news-editorial": load("src/lib/news-editorial.ts", {}),
     "@/lib/database": { querySitePublic: async (sql) => {
       queries.push(sql);
-      if (sql.includes("FROM site_public.news")) return [{ id: "1", slug: "news-one", title: "News", body_markdown: "Body" }];
+      if (sql.includes("FROM site_public.news")) return published;
       if (sql.includes("FROM site_public.case_studies")) {
         assert.match(sql, /\bbody_markdown\b/u);
         return [
@@ -59,6 +61,15 @@ test("listing, metadata, details and unknown slugs reuse one public snapshot; co
   reload();
   await content.getNews();
   assert.equal(queries.length, 7);
+  published.push({ id: "4", slug: "acceptance", category: "Knowledge:納品確認", title: "確認の手順" });
+  assert.equal((await content.getArticlesForSection("knowledge")).length, 0);
+  reload();
+  assert.equal((await content.getArticlesForSection("knowledge"))[0].slug, "acceptance");
+  assert.equal((await content.getArticlesForSection("news")).length, 1);
+  published.pop();
+  reload();
+  assert.equal(await content.getNewsBySlug("acceptance"), null);
+  assert.equal((await content.getArticlesForSection("knowledge")).length, 0);
 });
 
 test("refresh endpoint rejects unauthorized requests and only invalidates fixed public routes", async () => {
@@ -83,6 +94,9 @@ test("refresh endpoint rejects unauthorized requests and only invalidates fixed 
   assert.equal(invalidations[0][1], "acoru-public-content");
   assert.equal(invalidations[0][2].expire, 0);
   assert.ok(invalidations.some((entry) => entry[1] === "/news/[slug]" && entry[2] === "page"));
+  for (const path of ["/knowledge", "/knowledge/[slug]", "/sitemap.xml"]) {
+    assert.ok(invalidations.some((entry) => entry[1] === path));
+  }
   assert.ok(!invalidations.some((entry) => entry[1] === "/api/contact"));
   delete environment.ACORU_REVALIDATE_SECRET;
   assert.equal((await route.POST(request("Bearer local-test-secret"))).status, 503);

@@ -1,11 +1,13 @@
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { publicCaseHref } from "@/lib/case-urls";
+import { articleContents } from "./article-contents";
 
 export type RichTextProps = {
   source?: string;
   className?: string;
   preserveHeadingLevels?: boolean;
+  withContents?: boolean;
 };
 
 function combineClassName(base: string, extra?: string) {
@@ -15,7 +17,7 @@ function combineClassName(base: string, extra?: string) {
 /**
  * Markdownコンテンツを安全に描画するサーバーコンポーネント。
  */
-export function RichText({ source, className, preserveHeadingLevels = false }: RichTextProps) {
+export function RichText({ source, className, preserveHeadingLevels = false, withContents = false }: RichTextProps) {
   if (!source) return null;
 
   const containerClass = combineClassName(
@@ -27,6 +29,7 @@ export function RichText({ source, className, preserveHeadingLevels = false }: R
     <div className={containerClass}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={withContents ? [articleContents] : []}
         components={{
           h1: ({ ...props }) => (
             <h2

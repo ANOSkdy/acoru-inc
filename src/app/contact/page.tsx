@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "./ContactForm";
+import { getNewsBySlug } from "@/lib/content";
+import { knowledgeTopic } from "@/lib/news-editorial";
 
 export const runtime = "nodejs";
 
@@ -13,9 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage({ searchParams }: {
-  searchParams: Promise<{ product?: string | string[]; request?: string | string[] }>;
+  searchParams: Promise<{ product?: string | string[]; request?: string | string[]; knowledge?: string | string[] }>;
 }) {
   const params = await searchParams;
+  const source = typeof params.knowledge === "string" && params.knowledge.length <= 120
+    ? await getNewsBySlug(params.knowledge).catch(() => null)
+    : null;
+  const knowledgeSlug = source && knowledgeTopic(source.category) ? source.slug : undefined;
   const osasalRequest = params.product === "osasal"
     ? params.request === "materials" ? "materials" : "consultation"
     : null;
@@ -38,7 +44,7 @@ export default async function ContactPage({ searchParams }: {
 
       <Section className="pt-0 pb-10">
         <Container>
-          <ContactForm key={osasalRequest ?? "general"} osasalRequest={osasalRequest} />
+          <ContactForm key={knowledgeSlug ?? osasalRequest ?? "general"} osasalRequest={osasalRequest} knowledgeSlug={knowledgeSlug} />
         </Container>
       </Section>
 
